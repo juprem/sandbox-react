@@ -1,0 +1,20 @@
+.modal {
+  :global {
+    .ant-modal {
+      width: fit-content;
+    }
+  }
+}
+
+.modalResize {
+  :global {
+    .ant-modal {
+      width: fit-content;
+    }
+
+    .ant-modal-content {
+      resize: both;
+      overflow: auto;
+    }
+  }
+}
