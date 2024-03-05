@@ -1,0 +1,101 @@
+.label {
+  --selected: 0;
+  width: calc(30px + (var(--selected) * 20px));
+  height: fit-content;
+  background-color: #1ea7fd;
+  cursor: pointer;
+}
+
+.label:hover {
+  --selected: 1;
+}
+
+
+.hasSelector {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  background-color: #858484;
+}
+
+.hasSelector:has(div) {
+  border: 1px solid orange;
+}
+
+
+.custom-container {
+  position: relative;
+  z-index: 20;
+  overflow: hidden;
+  border-radius: 20px;
+  height: 100px;
+  width: 500px;
+}
+
+.custom-content {
+  background: linear-gradient(#ffffff, #e0e0e0) padding-box transparent;
+  padding: 0 1.5rem;
+  border: 2px solid transparent;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.background {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: #e0e0e0;
+  border-radius: 20px;
+}
+
+.trail {
+  width: 100px;
+  aspect-ratio: 2 / 1;
+  position: absolute;
+  background: radial-gradient(100% 100% at right, #8abad3, transparent 50%);
+  offset-path: border-box;
+  offset-anchor: 100% 50%;
+  animation: journey var(--speed, 6s) infinite linear;
+}
+
+@keyframes journey {
+  to {
+    offset-distance: 100%;
+  }
+}
+
+.scrollAppearance {
+  animation-fill-mode: both;
+  animation-name: list-item-scroll-effect;
+  view-timeline-name: --list-item-timeline;
+  animation-timeline: --list-item-timeline;
+  animation-range: entry 25% cover 50%;
+  color: white;
+}
+
+.scrollDisapear {
+  animation-fill-mode: both;
+  animation-name: hero-scroll-effect;
+  view-timeline-name: --list-item-timeline;
+  animation-timeline: --list-item-timeline;
+  animation-range: exit -25%;
+  color: white;
+}
+
+@keyframes hero-scroll-effect {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+     opacity: 0;
+     transform: scale(0.9) translateY(10vh);
+   }
+}
+
+@keyframes list-item-scroll-effect {
+  0% {
+    opacity: 0;
+    transform: translateX(-15px);
+  }
+}

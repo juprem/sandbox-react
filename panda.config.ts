@@ -12,7 +12,15 @@ export default defineConfig({
 
   // Useful for theme customization
   theme: {
-    extend: {},
+    extend: {
+      keyframes:{
+        trail: {
+          to: {
+            offsetDistance: "100%",
+          }
+        }
+      }
+    },
   },
 
   // The output directory for your css system

@@ -1,3 +1,5 @@
+/build
+src/assets/*.png
 # Logs
 logs
 *.log
