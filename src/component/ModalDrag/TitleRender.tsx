@@ -1,19 +1,20 @@
-import { Dispatch, SetStateAction } from 'react';
 import { css } from '../../../styled-system/css';
-import { ActionMode } from './DraggableModal.tsx';
 import Resize from '../../assets/resize.svg?react';
 import Dragging from '../../assets/dragging.svg?react';
 import { CustomModalButton } from './CustomModalButton.tsx';
+import { flex } from '../../styles/GlobalStyle.ts';
+import { ActionMode } from '../../hooks/useActionMode.ts';
+import { ReactNode } from 'react';
 
 interface TitleRenderProps {
-    title: string;
-    setActionMode: Dispatch<SetStateAction<ActionMode>>;
+    children: ReactNode;
+    setActionMode: (mode: ActionMode) => void;
     actionMode: ActionMode;
     isDraggable: boolean;
     isResizable: boolean;
 }
 
-export function TitleRender({ title, setActionMode, actionMode, isResizable, isDraggable }: TitleRenderProps) {
+export function TitleRender({ children, setActionMode, actionMode, isResizable, isDraggable }: TitleRenderProps) {
     return (
         <div
             className={css({
@@ -21,23 +22,25 @@ export function TitleRender({ title, setActionMode, actionMode, isResizable, isD
                 alignItems: 'center',
             })}
         >
-            {title}
-            <CustomModalButton
-                isEnable={isResizable}
-                actionMode={actionMode}
-                actionType="resize"
-                onClick={() => setActionMode((prevState) => (prevState === 'resize' ? 'none' : 'resize'))}
-            >
-                <Resize />
-            </CustomModalButton>
-            <CustomModalButton
-                actionMode={actionMode}
-                actionType="drag"
-                isEnable={isDraggable}
-                onClick={() => setActionMode((prevState) => (prevState === 'drag' ? 'none' : 'drag'))}
-            >
-                <Dragging />
-            </CustomModalButton>
+            {children}
+            <div className={flex()}>
+                <CustomModalButton
+                    isEnable={isResizable}
+                    actionMode={actionMode}
+                    actionType="resize"
+                    onClick={() => setActionMode('resize')}
+                >
+                    <Resize />
+                </CustomModalButton>
+                <CustomModalButton
+                    actionMode={actionMode}
+                    actionType="drag"
+                    isEnable={isDraggable}
+                    onClick={() => setActionMode('drag')}
+                >
+                    <Dragging />
+                </CustomModalButton>
+            </div>
         </div>
     );
 }
