@@ -1,25 +1,19 @@
 .modal {
   :global {
-    .ant-modal {
-      width: fit-content;
+    .ant-modal-content {
+      max-height: 80vh;
+      overflow-y: auto;
+      margin: 0 1rem;
     }
-  }
-  .ant-modal-mask {
-    background: transparent;
-    pointer-events: none;
   }
 }
 
-.modalResize {
-  :global {
-    .ant-modal {
-      width: fit-content;
-    }
-    .ant-modal-mask {
-      background: transparent;
-      pointer-events: none;
-    }
+.backgroundInteraction {
+      pointer-events: none !important;
+}
 
+.resizable {
+  :global {
     .ant-modal-content {
       resize: both;
       overflow: auto;
