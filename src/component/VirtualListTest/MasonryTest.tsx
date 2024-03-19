@@ -2,7 +2,7 @@ import { CellMeasurer, CellMeasurerCache, createMasonryCellPositioner, Masonry }
 import { MasonryCellProps } from 'react-virtualized/dist/es/Masonry';
 
 interface MasonryTestProps {
-    nbIColumn: number;
+    // nbIColumn: number;
 }
 
 export function MasonryTest({}: MasonryTestProps) {
