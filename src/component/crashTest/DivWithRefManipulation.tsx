@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import Draggable from 'react-draggable';
-import { css } from '../../styled-system/css';
+import { css } from '../../../styled-system/css';
 
 export function DivWithRefManipulation() {
     const divRef = useRef<HTMLDivElement>(null);
