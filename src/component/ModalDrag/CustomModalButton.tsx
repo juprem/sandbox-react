@@ -1,5 +1,5 @@
 import { css } from '../../../styled-system/css';
-import { Button } from '../Button.tsx';
+import { Button } from '../crashTest/Button.tsx';
 import { ReactNode } from 'react';
 import { ActionMode } from './DraggableModal.tsx';
 

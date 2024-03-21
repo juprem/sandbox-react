@@ -1,7 +1,7 @@
 import { Modal, Button, ModalProps } from 'antd';
 import { useState, ReactNode } from 'react';
 import Draggable from 'react-draggable';
-import styles from '../DraggableModal.module.scss';
+import styles from '../crashTest/DraggableModal.module.scss';
 import { TitleRender } from './TitleRender.tsx';
 import classNames from 'classnames';
 import { useActionMode } from '../../hooks/useActionMode.ts';
