@@ -1,12 +1,11 @@
 import { basicShape } from '../../styles/GlobalStyle.ts';
-import { useBasicContext } from '../../hooks/WithBasicContext.tsx';
 
-interface BasicComponentProps {}
+interface BasicComponentProps {
+    id: string;
+}
 
-export function BasicComponent({}: BasicComponentProps) {
-    const title = useBasicContext();
+export function BasicComponent({ id }: BasicComponentProps) {
+    console.log('render : ', id);
 
-    console.log('render');
-
-    return <div className={basicShape()}>{title}</div>;
+    return <div className={basicShape()} />;
 }
