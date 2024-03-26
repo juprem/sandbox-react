@@ -13,18 +13,36 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as MountingImport } from './routes/mounting'
+import { Route as EnhancedSwitchImport } from './routes/enhanced-switch'
+import { Route as DraggableMotionImport } from './routes/draggable-motion'
+import { Route as BasicAnimationImport } from './routes/basic-animation'
 
 // Create Virtual Routes
 
-const AboutLazyImport = createFileRoute('/about')()
 const IndexLazyImport = createFileRoute('/')()
 
 // Create/Update Routes
 
-const AboutLazyRoute = AboutLazyImport.update({
-  path: '/about',
+const MountingRoute = MountingImport.update({
+  path: '/mounting',
   getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/about.lazy').then((d) => d.Route))
+} as any)
+
+const EnhancedSwitchRoute = EnhancedSwitchImport.update({
+  path: '/enhanced-switch',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const DraggableMotionRoute = DraggableMotionImport.update({
+  path: '/draggable-motion',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const BasicAnimationRoute = BasicAnimationImport.update({
+  path: '/basic-animation',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
@@ -39,8 +57,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexLazyImport
       parentRoute: typeof rootRoute
     }
-    '/about': {
-      preLoaderRoute: typeof AboutLazyImport
+    '/basic-animation': {
+      preLoaderRoute: typeof BasicAnimationImport
+      parentRoute: typeof rootRoute
+    }
+    '/draggable-motion': {
+      preLoaderRoute: typeof DraggableMotionImport
+      parentRoute: typeof rootRoute
+    }
+    '/enhanced-switch': {
+      preLoaderRoute: typeof EnhancedSwitchImport
+      parentRoute: typeof rootRoute
+    }
+    '/mounting': {
+      preLoaderRoute: typeof MountingImport
       parentRoute: typeof rootRoute
     }
   }
@@ -48,6 +78,12 @@ declare module '@tanstack/react-router' {
 
 // Create and export the route tree
 
-export const routeTree = rootRoute.addChildren([IndexLazyRoute, AboutLazyRoute])
+export const routeTree = rootRoute.addChildren([
+  IndexLazyRoute,
+  BasicAnimationRoute,
+  DraggableMotionRoute,
+  EnhancedSwitchRoute,
+  MountingRoute,
+])
 
 /* prettier-ignore-end */

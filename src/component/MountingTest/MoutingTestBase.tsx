@@ -5,7 +5,7 @@ import { MountingTesting2 } from './MountingTesting2.tsx';
 
 interface MoutingTestBaseProps {}
 
-export function MoutingTestBase({}: MoutingTestBaseProps) {
+export function MountingTestBase({}: MoutingTestBaseProps) {
     const [switching, setSwitching] = useState<boolean>(true);
     const [switching2, setSwitching2] = useState<boolean>(true);
 
