@@ -1,0 +1,13 @@
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { darcula } from 'react-syntax-highlighter/dist/esm/styles/prism';
+interface CodeBlockProps {
+    codeString: string;
+}
+
+export function CodeBlock({ codeString }: CodeBlockProps) {
+    return (
+        <SyntaxHighlighter showLineNumbers language="typescript" style={darcula}>
+            {codeString}
+        </SyntaxHighlighter>
+    );
+}

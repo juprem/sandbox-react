@@ -2,6 +2,7 @@ import { basicShape, TRContainer } from '../../styles/GlobalStyle.ts';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { useState } from 'react';
 import { SliderMotion } from './Settings/SliderMotion.tsx';
+import { Centered } from '../Visualisation/Centered.tsx';
 interface BasicAnimationProps {}
 
 export function BasicAnimation({}: BasicAnimationProps) {
@@ -15,7 +16,7 @@ export function BasicAnimation({}: BasicAnimationProps) {
     );
 
     return (
-        <>
+        <Centered>
             <div className={TRContainer()}>
                 <SliderMotion setter={(val) => setRotation(val)} val={rotation} label="rotation" max={200} />
                 <SliderMotion setter={(val) => setX(val)} val={x} label="x" max={200} min={-200} />
@@ -29,6 +30,6 @@ export function BasicAnimation({}: BasicAnimationProps) {
                 transition={{}}
                 className={basicShape()}
             />
-        </>
+        </Centered>
     );
 }

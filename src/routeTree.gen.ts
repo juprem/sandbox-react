@@ -16,6 +16,7 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as MountingImport } from './routes/mounting'
 import { Route as EnhancedSwitchImport } from './routes/enhanced-switch'
 import { Route as DraggableMotionImport } from './routes/draggable-motion'
+import { Route as CrashTestImport } from './routes/crash-test'
 import { Route as BasicAnimationImport } from './routes/basic-animation'
 
 // Create Virtual Routes
@@ -36,6 +37,11 @@ const EnhancedSwitchRoute = EnhancedSwitchImport.update({
 
 const DraggableMotionRoute = DraggableMotionImport.update({
   path: '/draggable-motion',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const CrashTestRoute = CrashTestImport.update({
+  path: '/crash-test',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -61,6 +67,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BasicAnimationImport
       parentRoute: typeof rootRoute
     }
+    '/crash-test': {
+      preLoaderRoute: typeof CrashTestImport
+      parentRoute: typeof rootRoute
+    }
     '/draggable-motion': {
       preLoaderRoute: typeof DraggableMotionImport
       parentRoute: typeof rootRoute
@@ -81,6 +91,7 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren([
   IndexLazyRoute,
   BasicAnimationRoute,
+  CrashTestRoute,
   DraggableMotionRoute,
   EnhancedSwitchRoute,
   MountingRoute,
