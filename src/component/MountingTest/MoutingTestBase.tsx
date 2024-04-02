@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Button } from 'antd';
 import { MountingTesting } from './MountingTesting.tsx';
 import { MountingTesting2 } from './MountingTesting2.tsx';
+import { Centered } from '../Visualisation/Centered.tsx';
 
 interface MoutingTestBaseProps {}
 
@@ -10,14 +11,16 @@ export function MountingTestBase({}: MoutingTestBaseProps) {
     const [switching2, setSwitching2] = useState<boolean>(true);
 
     return (
-        <div style={{display: 'flex', gap: "10px"}}>
-            <Button onClick={() => setSwitching(!switching)}>Switch same component</Button>
-            {/*doesn't render on switch change*/}
-            {switching ? <MountingTesting content="first" /> : <MountingTesting content="second" />}
-            {/*does render on switch change*/}
-            <Button onClick={() => setSwitching2(!switching2)}>Switch with different component</Button>
-            {switching2 ? <MountingTesting content="first" /> : <MountingTesting2 content="second" />}
-        </div>
+        <Centered>
+            <div style={{ display: 'flex', gap: '10px' }}>
+                <Button onClick={() => setSwitching(!switching)}>Switch same component</Button>
+                {/*doesn't render on switch change*/}
+                {switching ? <MountingTesting content="first" /> : <MountingTesting content="second" />}
+                {/*does render on switch change*/}
+                <Button onClick={() => setSwitching2(!switching2)}>Switch with different component</Button>
+                {switching2 ? <MountingTesting content="first" /> : <MountingTesting2 content="second" />}
+            </div>
+        </Centered>
     );
 }
 

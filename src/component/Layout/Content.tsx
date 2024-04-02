@@ -12,10 +12,6 @@ export function Content({ children }: ContentProps) {
                 marginLeft: '250px',
                 height: '100vh',
                 backgroundColor: '#dedcdc',
-                padding: '5px',
-                alignItems: 'center',
-                justifyContent: 'center',
-                display: 'flex'
             })}
         >
             {children}

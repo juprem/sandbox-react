@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Switch } from 'antd';
 import { SliderMotion } from './Settings/SliderMotion.tsx';
 import { css } from '../../../styled-system/css';
+import { Centered } from '../Visualisation/Centered.tsx';
 interface DraggableMotionProps {}
 
 export function DraggableMotion({}: DraggableMotionProps) {
@@ -13,7 +14,7 @@ export function DraggableMotion({}: DraggableMotionProps) {
     const background = useTransform(x, [-200, 0, 200], ['#ff0000', '#7700ff', 'rgb(47,255,0)']);
 
     return (
-        <>
+        <Centered>
             <div className={TRContainer()}>
                 <SliderMotion setter={(val) => setElastic(val / 100)} val={elastic} label="elastic" />
                 <Switch className={css({ width: '50px' })} onChange={(val) => setMomentum(val)} />
@@ -25,6 +26,6 @@ export function DraggableMotion({}: DraggableMotionProps) {
                 dragElastic={elastic}
                 dragMomentum={momentum}
             />
-        </>
+        </Centered>
     );
 }
