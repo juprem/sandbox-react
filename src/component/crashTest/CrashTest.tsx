@@ -1,9 +1,24 @@
-import { TextSection } from '../Visualisation/TextSection/TextSection.tsx';
+import { Rules } from '../GameOfLife/Rules.tsx';
+import { Input } from 'antd';
+import { css } from '../../../styled-system/css';
+import { useState } from 'react';
 
-interface CrashTestProps {}
+interface CrashTestProps {
+    to: number;
+}
 
-export function CrashTest({}: CrashTestProps) {
-    const text =
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
-    return <TextSection>{text}</TextSection>;
+export function CrashTest({ to }: CrashTestProps) {
+    const [number, setNumber] = useState(0);
+    console.log(to);
+
+    return (
+        <>
+            <Input
+                className={css({ width: '50px' })}
+                onChange={(value) => setNumber(Number(value.target.value))}
+                type="number"
+            />
+            <Rules matrixSize={number} />
+        </>
+    );
 }

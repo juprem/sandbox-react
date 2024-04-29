@@ -3,9 +3,7 @@ import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { useState } from 'react';
 import { SliderMotion } from './Settings/SliderMotion.tsx';
 import { Centered } from '../Visualisation/Centered.tsx';
-interface BasicAnimationProps {}
-
-export function BasicAnimation({}: BasicAnimationProps) {
+export function BasicAnimation() {
     const [rotation, setRotation] = useState<number>(0);
     const [x, setX] = useState<number>(0);
     const xB = useMotionValue(0);

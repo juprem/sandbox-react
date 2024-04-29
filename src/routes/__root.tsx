@@ -9,28 +9,34 @@ const menu: { label: string; path: keyof FileRoutesByPath }[] = [
     { label: 'Basic animation', path: '/basic-animation' },
     { label: 'Draggable', path: '/draggable-motion' },
     { label: 'Enhanced switch', path: '/enhanced-switch' },
-    { label: 'Mounting test', path: '/mounting' },
+    { label: 'Mounting', path: '/mounting' },
 ];
 
 export const Route = createRootRoute({
     component: () => (
         <>
             <Sidebar>
-                <Link to="/" className={css({
-                    width: 'fit-content',
-                    display: 'flex'
-                })}>
+                <Link
+                    to="/"
+                    className={css({
+                        width: 'fit-content',
+                        display: 'flex',
+                    })}
+                >
                     <div
                         className={css({
                             fontSize: '20px',
                             marginBottom: '2rem',
-                            width: 'fit-content'
+                            width: 'fit-content',
+                            background: 'linear-gradient(45deg, #e66465, #9198e5)',
+                            backgroundClip: 'text',
+                            WebkitTextFillColor: 'transparent',
                         })}
                     >
                         DocsPers
                     </div>
                 </Link>
-                <div className={css({ display: 'flex', flexDirection: 'column' })}>
+                <div className={css({ display: 'flex', flexDirection: 'column', color: 'wheat' })}>
                     {menu.map((item) => (
                         <Link
                             key={String(item.path)}

@@ -6,7 +6,13 @@ interface CodeBlockProps {
 
 export function CodeBlock({ codeString }: CodeBlockProps) {
     return (
-        <SyntaxHighlighter showLineNumbers language="typescript" style={darcula}>
+        <SyntaxHighlighter
+            customStyle={{ borderRadius: '5px' }}
+            showLineNumbers
+            language="typescript"
+            style={darcula}
+            lineNumberStyle={{ color: 'white' }}
+        >
             {codeString}
         </SyntaxHighlighter>
     );

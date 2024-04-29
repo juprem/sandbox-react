@@ -60,6 +60,13 @@ export const textSection = cva({
     base: {
         width: '100%',
         color: 'black',
-        padding: '5% 10%',
+        padding: '0 0 0 10%',
+    },
+    variants: {
+        visual: {
+            top: {
+                paddingTop: "5%"
+            }
+        }
     }
 })

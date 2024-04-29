@@ -3,9 +3,7 @@ import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { useState } from 'react';
 import { Centered } from '../Visualisation/Centered.tsx';
 
-interface EnhancedSwitchProps {}
-
-export function EnhancedSwitch({}: EnhancedSwitchProps) {
+export function EnhancedSwitch() {
     const [switchOn, setSwitchOn] = useState<boolean>(false);
     const x = useMotionValue(0);
     const val = Math.random().toString(16).slice(2, 6);

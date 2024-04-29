@@ -1,8 +1,6 @@
 import Slider from 'react-slick';
 
-interface CarouselSlickProps {}
-
-export function CarouselSlick({}: CarouselSlickProps) {
+export function CarouselSlick() {
     const settings = {
         dots: true,
         infinite: true,

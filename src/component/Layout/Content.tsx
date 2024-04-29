@@ -9,9 +9,11 @@ export function Content({ children }: ContentProps) {
     return (
         <div
             className={css({
+                padding: '0.05px',
                 marginLeft: '250px',
                 height: '100vh',
-                backgroundColor: '#dedcdc',
+                overflow: 'auto',
+                background: 'linear-gradient(90deg, #f5deb3, #F5CA9C )',
             })}
         >
             {children}
