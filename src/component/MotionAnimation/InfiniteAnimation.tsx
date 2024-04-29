@@ -1,7 +1,5 @@
 import { motion } from 'framer-motion';
-interface AnimationProps {}
-
-export function InfiniteAnimation({}: AnimationProps) {
+export function InfiniteAnimation() {
     return (
         <motion.div
             style={{ backgroundColor: 'white', height: '200px', width: '200px' }}

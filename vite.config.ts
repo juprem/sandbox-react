@@ -1,6 +1,8 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import svgr from 'vite-plugin-svgr';
+// @ts-ignore
+import eslintPlugin from 'vite-plugin-eslint'
 import { TanStackRouterVite } from '@tanstack/router-vite-plugin';
 
 // https://vitejs.dev/config/
@@ -13,7 +15,7 @@ export default defineConfig({
         port: 3000,
         strictPort: true,
     },
-    plugins: [react(), svgr(), TanStackRouterVite(),],
+    plugins: [react(), svgr(), TanStackRouterVite(), eslintPlugin()],
     build: {
         outDir: 'build/',
     },

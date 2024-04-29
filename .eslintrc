@@ -1,7 +1,8 @@
 {
     "parser": "@typescript-eslint/parser",
     "extends": [
-        "plugin:import/typescript"
+        "plugin:import/typescript",
+        "eslint:recommended"
     ],
     "parserOptions": {
         "ecmaVersion": 2018,
@@ -10,7 +11,10 @@
             "jsx": true
         }
     },
-    "rules": {},
+    "rules": {
+        "@typescript-eslint/no-unused-vars": "off",
+        "no-unused-vars": "off"
+    },
     "settings": {
         "react": {
             "version": "detect"
@@ -18,5 +22,8 @@
         "import/resolver": {
             "typescript": true
         }
+    },
+    "env": {
+        "browser": true
     }
 }

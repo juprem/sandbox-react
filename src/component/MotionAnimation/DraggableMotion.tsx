@@ -5,9 +5,7 @@ import { Switch } from 'antd';
 import { SliderMotion } from './Settings/SliderMotion.tsx';
 import { css } from '../../../styled-system/css';
 import { Centered } from '../Visualisation/Centered.tsx';
-interface DraggableMotionProps {}
-
-export function DraggableMotion({}: DraggableMotionProps) {
+export function DraggableMotion() {
     const [elastic, setElastic] = useState<number>(0);
     const [momentum, setMomentum] = useState<boolean>(false);
     const x = useMotionValue(0);

@@ -1,11 +1,7 @@
 import { CellMeasurer, CellMeasurerCache, createMasonryCellPositioner, Masonry } from 'react-virtualized';
 import { MasonryCellProps } from 'react-virtualized/dist/es/Masonry';
 
-interface MasonryTestProps {
-    // nbIColumn: number;
-}
-
-export function MasonryTest({}: MasonryTestProps) {
+export function MasonryTest() {
     // Array of images with captions
     const list = Array.from({ length: 10000 }, (_, index) => index);
 

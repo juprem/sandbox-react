@@ -1,10 +1,18 @@
 import { ReactNode } from 'react';
 import { textSection } from '../../../styles/GlobalStyle.ts';
+import { Separator } from '../Separator.tsx';
 
 interface TextSectionProps {
     children: ReactNode;
+    separator?: boolean;
+    isTop?: boolean;
 }
 
-export function TextSection({ children }: TextSectionProps) {
-    return <div className={textSection()}>{children}</div>;
+export function TextSection({ children, separator = false, isTop }: TextSectionProps) {
+    return (
+        <>
+            <div className={textSection({ visual: isTop ? 'top' : undefined })}>{children}</div>
+            <Separator display={separator} />
+        </>
+    );
 }
