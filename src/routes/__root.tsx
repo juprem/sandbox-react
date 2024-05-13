@@ -9,11 +9,17 @@ const menu: { label: string; path: keyof FileRoutesByPath }[] = [
     { label: 'Basic animation', path: '/basic-animation' },
     { label: 'Draggable', path: '/draggable-motion' },
     { label: 'Enhanced switch', path: '/enhanced-switch' },
+    { label: 'Conway Game', path: '/conway-game' },
+    { label: 'Todo', path: '/todo' },
     { label: 'Mounting', path: '/mounting' },
 ];
 
 export const Route = createRootRoute({
-    component: () => (
+    component: () => <RootComponent />,
+});
+
+function RootComponent() {
+    return (
         <>
             <Sidebar>
                 <Link
@@ -67,5 +73,5 @@ export const Route = createRootRoute({
                 <Outlet />
             </Content>
         </>
-    ),
-});
+    );
+}

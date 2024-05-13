@@ -9,7 +9,7 @@ export function Content({ children }: ContentProps) {
     return (
         <div
             className={css({
-                padding: '0.05px',
+                padding: '1rem',
                 marginLeft: '250px',
                 height: '100vh',
                 overflow: 'auto',

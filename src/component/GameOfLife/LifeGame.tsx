@@ -21,14 +21,12 @@ export function LifeGame({ matrixSize, start, speedResolve }: LifeGameProps) {
     const [cellTab, setCellTab] = useState(init(matrixSize));
 
     useEffect(() => {
-        // Update the layout every second
         const intervalId = setInterval(() => {
             start && setCellTab((prevState) => calculateNextIteration(prevState));
         }, speedResolve);
 
-        // Clear the interval when the component unmounts
         return () => clearInterval(intervalId);
-    }, [start]); // Run only once when the component mounts
+    }, [start]);
 
     return (
         <>
