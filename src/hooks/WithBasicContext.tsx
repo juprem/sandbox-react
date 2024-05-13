@@ -18,5 +18,5 @@ export function useBasicContext() {
         throw Error('You are not inside a BasicContext');
     }
 
-    return context.title;
+    return context;
 }

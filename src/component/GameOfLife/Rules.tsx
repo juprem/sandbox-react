@@ -1,17 +1,6 @@
-// interface RulesProps {}
-
-import { css } from '../../../styled-system/css';
-import { LifeGame } from './LifeGame.tsx';
-import { Button, Input } from 'antd';
-import { useState } from 'react';
-
-export function Rules({ matrixSize }: { matrixSize: number }) {
-    const [start, setStart] = useState(false);
-    const [speed, setSpeed] = useState(1000);
-
+export function Rules() {
     return (
-        <div className={css({ color: 'black', marginLeft: '1rem', overflow: 'auto', marginBottom: "2rem" })}>
-            <Input onChange={(val) => setSpeed(Number(val.target.value))} type="number" defaultValue={1000} />
+        <div style={{ margin: '2rem' }}>
             <span>
                 À chaque itération, l'état d’une cellule est entièrement déterminé par l’état de ses huit cellules
                 voisines, selon les règles suivantes :
@@ -33,8 +22,6 @@ export function Rules({ matrixSize }: { matrixSize: number }) {
                 si une cellule a strictement moins de deux ou strictement plus de trois voisines vivantes, elle est
                 morte à l’étape suivante. C’est le cas de la cellule rouge dans la configuration de gauche.
             </li>
-            <Button onClick={() => setStart(!start)}>Start</Button>
-            <LifeGame matrixSize={matrixSize} key={matrixSize} start={start} speedResolve={speed} />
         </div>
     );
 }
