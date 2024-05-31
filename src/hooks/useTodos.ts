@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { todoService } from '../service/todoService.ts';
 
 export const todoKeys = {
@@ -16,11 +16,24 @@ export function useTodos() {
     });
 }
 
-export function useTodoId(id: string) {
+export function useGetTodoById(id: string) {
     const { getTodoById } = todoService();
 
     return useQuery({
         queryFn: () => getTodoById(id),
         queryKey: todoKeys.detail(id),
+    });
+}
+
+export function useCreateTodo() {
+    const queryClient = useQueryClient();
+    const { postTodo } = todoService();
+
+    return useMutation({
+        mutationFn: postTodo,
+        onSuccess: (todo) => {
+            queryClient.invalidateQueries({ queryKey: todoKeys.list() });
+            console.log('ajout de %s avec succès', todo.name);
+        },
     });
 }

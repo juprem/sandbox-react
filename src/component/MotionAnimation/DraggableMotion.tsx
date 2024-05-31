@@ -4,7 +4,8 @@ import { useState } from 'react';
 import { Switch } from 'antd';
 import { SliderMotion } from './Settings/SliderMotion.tsx';
 import { css } from '../../../styled-system/css';
-import { Centered } from '../Visualisation/Centered.tsx';
+import { Centered } from '../CodeBlock/Centered.tsx';
+
 export function DraggableMotion() {
     const [elastic, setElastic] = useState<number>(0);
     const [momentum, setMomentum] = useState<boolean>(false);
