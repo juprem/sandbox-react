@@ -1,20 +1,17 @@
-// interface TodoDetailsProps {}
-
 import { Route } from '../../../routes/todo_.$todoId.tsx';
-import { useTodoId } from '../../../hooks/useTodos.ts';
-import { css } from '../../../../styled-system/css';
+import { useGetTodoById } from '../../../hooks/useTodos.ts';
+import { WithSkeleton } from '../../../component/WithSkeleton/WithSkeleton.tsx';
+import { TodoDetailsDisplay } from './TodoDetailsDisplay.tsx';
 
 export function TodoDetailsIndex() {
     const { todoId } = Route.useParams();
-    const { data: todo, isLoading, isError } = useTodoId(todoId);
+    const { data: todo, isLoading, isError } = useGetTodoById(todoId);
 
-    if (isLoading || !todo) return <>Loading...</>;
     if (isError) return <>Error</>;
 
     return (
-        <>
-            <div className={css({ fontSize: '25px', fontWeight: 'bold' })}>{todo.name}</div>
-            <div>{todo.description}</div>
-        </>
+        <WithSkeleton loading={isLoading}>
+            <TodoDetailsDisplay todo={todo} todoId={todoId}/>
+        </WithSkeleton>
     );
 }

@@ -1,8 +1,8 @@
 import { fetchService } from './fetchService.ts';
-import { TodoSchema, TodosSchema } from '../model/TodoModel.ts';
+import { TodoCreate, TodoSchema, TodosSchema } from '../model/TodoModel.ts';
 
 export function todoService() {
-    const { getQuery } = fetchService();
+    const { getQuery, postQuery } = fetchService();
     async function getTodoById(id: string) {
         const todo = await getQuery(`/todos/${id}`);
 
@@ -15,5 +15,11 @@ export function todoService() {
         return TodosSchema.parse(todos);
     }
 
-    return { getTodoById, getTodos };
+    async function postTodo(todoCreate: TodoCreate) {
+        const todo = await postQuery('/todos', todoCreate)
+
+        return TodoSchema.parse(todo)
+    }
+
+    return { getTodoById, getTodos, postTodo };
 }

@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
-import { textSection } from '../../../styles/GlobalStyle.ts';
-import { Separator } from '../Separator.tsx';
+import { textSection } from '../../styles/GlobalStyle.ts';
+import { Separator } from '../CodeBlock/Separator.tsx';
 
 interface TextSectionProps {
     children: ReactNode;

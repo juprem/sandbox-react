@@ -18,8 +18,8 @@ function getNextStatus(allAroundCell: number, isAlive: 0 | 1, age: number): { is
 
 function getAllAroundAliveCell(cell: CellStatus, cells: CellStatus[][]): number {
     return cell.neighbour.reduce((nAlive, [posx, posy]) => {
-        return nAlive + cells[posx][posy].isAlive
-    }, 0)
+        return nAlive + cells[posx][posy].isAlive;
+    }, 0);
 }
 
 export function cleanUp(cells: CellStatus[][]): CellStatus[][] {
@@ -32,7 +32,7 @@ export function init(matrixSize: number): CellStatus[][] {
             isAlive: (index2 + index * 10) % 2 === 0 ? 1 : 0,
             position: [index, index2],
             age: 0,
-            neighbour: getAllNeighbour([index, index2], matrixSize)
+            neighbour: getAllNeighbour([index, index2], matrixSize),
         }));
     });
 }
@@ -49,14 +49,20 @@ function getAllNeighbour(position: [number, number], matrixSize: number) {
         [-1, 1],
     ];
 
-    return matrixNeighbour.map((pos) => {
-        if (position[0] + pos[0] < 0 || position[1] + pos[1] < 0 || position[0] + pos[0] > matrixSize - 1 || position[1] + pos[1] > matrixSize - 1) {
-            return;
-        }
-        return [position[0] + pos[0], position[1] + pos[1]] as const;
-    }).filter(filterUndefined)
+    return matrixNeighbour
+        .map((pos) => {
+            if (
+                position[0] + pos[0] < 0 ||
+                position[1] + pos[1] < 0 ||
+                position[0] + pos[0] > matrixSize - 1 ||
+                position[1] + pos[1] > matrixSize - 1
+            ) {
+                return;
+            }
+            return [position[0] + pos[0], position[1] + pos[1]] as const;
+        })
+        .filter(filterUndefined);
 }
-
 
 function filterUndefined<T>(value: T | undefined): value is T {
     return value !== undefined;

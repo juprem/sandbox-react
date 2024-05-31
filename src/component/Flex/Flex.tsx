@@ -1,16 +1,22 @@
 import { ReactNode } from 'react';
-import { css } from '../../../styled-system/css';
+import { Measure } from '../../model/classnameModels.ts';
 
 interface FlexProps {
     children: ReactNode;
     flexDirection?: 'column' | 'row';
-    gap?: `${number}px` | `${number}rem` | 0;
+    gap?: Measure | 0;
+    height?: Measure | 'fit-content';
+    alignItems?: 'center' | 'none';
+    justifyContent?: 'space-between' | 'none';
 }
 
-export function Flex({ children, gap = 0, flexDirection = 'row' }: FlexProps) {
-    return (
-        <div className={css({ display: 'flex', flexDirection, gap })}>
-            {children}
-        </div>
-    );
+export function Flex({
+    children,
+    gap = 0,
+    height = 'fit-content',
+    flexDirection = 'row',
+    alignItems = 'none',
+    justifyContent = 'none',
+}: FlexProps) {
+    return <div style={{ display: 'flex', flexDirection, gap, height, alignItems, justifyContent }}>{children}</div>;
 }

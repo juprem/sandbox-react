@@ -1,7 +1,7 @@
 import { css } from '../../../styled-system/css';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { useState } from 'react';
-import { Centered } from '../Visualisation/Centered.tsx';
+import { Centered } from '../CodeBlock/Centered.tsx';
 
 export function EnhancedSwitch() {
     const [switchOn, setSwitchOn] = useState<boolean>(false);
