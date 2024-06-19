@@ -2,6 +2,7 @@
     "parser": "@typescript-eslint/parser",
     "extends": [
         "plugin:import/typescript",
+        "plugin:react-js-runtime",
         "eslint:recommended"
     ],
     "parserOptions": {

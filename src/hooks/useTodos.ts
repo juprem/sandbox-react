@@ -1,4 +1,4 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { queryOptions, useMutation, useQueryClient } from '@tanstack/react-query';
 import { todoService } from '../service/todoService.ts';
 
 export const todoKeys = {
@@ -7,23 +7,23 @@ export const todoKeys = {
     detail: (id: string) => [...todoKeys.all, id] as const,
 };
 
-export function useTodos() {
+export const getTodosQueryOptions = () => {
     const { getTodos } = todoService();
 
-    return useQuery({
+    return queryOptions({
         queryFn: () => getTodos(),
         queryKey: todoKeys.list(),
     });
-}
+};
 
-export function useGetTodoById(id: string) {
+export const getTodoByIdQueryOptions = (id: string) => {
     const { getTodoById } = todoService();
 
-    return useQuery({
+    return queryOptions({
         queryFn: () => getTodoById(id),
         queryKey: todoKeys.detail(id),
     });
-}
+};
 
 export function useCreateTodo() {
     const queryClient = useQueryClient();

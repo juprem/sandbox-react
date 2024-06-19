@@ -1,8 +1,9 @@
-import { createRootRoute, FileRoutesByPath, Link, Outlet } from '@tanstack/react-router';
+import { createRootRouteWithContext, FileRoutesByPath, Link, Outlet } from '@tanstack/react-router';
 import { css } from '../../styled-system/css';
 import { Sidebar } from '../component/Layout/Sidebar.tsx';
 import { Content } from '../component/Layout/Content.tsx';
 import { motion } from 'framer-motion';
+import { QueryClient } from '@tanstack/react-query';
 
 const menu: { label: string; path: keyof FileRoutesByPath }[] = [
     { label: 'CrashTest', path: '/crash-test' },
@@ -14,8 +15,10 @@ const menu: { label: string; path: keyof FileRoutesByPath }[] = [
     { label: 'Mounting', path: '/mounting' },
 ];
 
-export const Route = createRootRoute({
-    component: () => <RootComponent />,
+export const Route = createRootRouteWithContext<{
+    queryClient: QueryClient;
+}>()({
+    component: RootComponent,
 });
 
 function RootComponent() {

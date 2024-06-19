@@ -1,11 +1,12 @@
-import { useTodos } from '../../hooks/useTodos.ts';
+import { getTodosQueryOptions } from '../../hooks/useTodos.ts';
 import { Card } from '../../component/Card/Card.tsx';
 import { Link } from '@tanstack/react-router';
 import { css } from '../../../styled-system/css';
 import { CreateTodoModal } from './CreateTodo/CreateTodoModal.tsx';
+import { useQuery } from '@tanstack/react-query';
 
 export function Todo() {
-    const { data } = useTodos();
+    const { data } = useQuery(getTodosQueryOptions());
 
     return (
         <>
