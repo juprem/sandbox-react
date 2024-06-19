@@ -1,11 +1,11 @@
 import { taskService } from '../service/taskService.ts';
 import { useMutation, useQuery } from '@tanstack/react-query';
 
-export const taskKey = {
+export const taskKeys = {
     all: ['task'] as const,
-    list: () => [...taskKey.all, 'list'] as const,
-    listByTodo: (id: string) => [...taskKey.all, 'todo', id] as const,
-    detail: (id: string) => [...taskKey.all, id] as const,
+    list: () => [...taskKeys.all, 'list'] as const,
+    listByTodo: (id: string) => [...taskKeys.all, 'todo', id] as const,
+    detail: (id: string) => [...taskKeys.all, id] as const,
 };
 
 export const useGetTasksByTodo = (id: string) => {
@@ -13,7 +13,7 @@ export const useGetTasksByTodo = (id: string) => {
 
     return useQuery({
         queryFn: () => getTaskByTodo(id),
-        queryKey: taskKey.listByTodo(id),
+        queryKey: taskKeys.listByTodo(id),
     });
 };
 
