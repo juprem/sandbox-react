@@ -1,11 +1,11 @@
-import { Todo } from '../../../model/TodoModel.ts';
-import { css } from '../../../../styled-system/css';
-import { useGetTasksByTodo } from '../../../hooks/useTasks.ts';
-import { WithSkeleton } from '../../../component/WithSkeleton/WithSkeleton.tsx';
-import { Task } from '../../../model/TaskModel.ts';
-import { useState } from 'react';
+import { Todo } from '@model/TodoModel.ts';
+import { css } from '@styled-system/css';
+import { useGetTasksByTodo } from '@hooks/useTasks.ts';
+import { WithSuspenseSkeleton } from '@component/WithSkeleton/WithSuspenseSkeleton.tsx';
+import { Task } from '@model/TaskModel.ts';
+import { Suspense, useState } from 'react';
 import { TodoDetailsTasks } from './TodoDetailsTasks.tsx';
-import { Flex } from '../../../component/Flex/Flex.tsx';
+import { Flex } from '@component/Flex/Flex.tsx';
 import { ShortTaskDisplay } from '../Task/ShortTaskDisplay.tsx';
 
 interface TodoDetailsDisplayProps {
@@ -14,7 +14,7 @@ interface TodoDetailsDisplayProps {
 }
 
 export function TodoDetailsDisplay({ todo, todoId }: TodoDetailsDisplayProps) {
-    const { data: tasks, isLoading: taskLoading } = useGetTasksByTodo(todoId);
+    const { data: tasks } = useGetTasksByTodo(todoId);
     const [task, setTask] = useState<Task>();
 
     if (!todo) return <></>;
@@ -24,7 +24,7 @@ export function TodoDetailsDisplay({ todo, todoId }: TodoDetailsDisplayProps) {
             <div className={css({ flex: 1 })}>
                 <div className={css({ fontSize: '25px', fontWeight: 'bold' })}>{todo.name}</div>
                 <div>{todo.description}</div>
-                <WithSkeleton loading={taskLoading} width="200px" height="30px">
+                <Suspense fallback={<WithSuspenseSkeleton width="200px" height="30px" />}>
                     <div
                         className={css({
                             display: 'flex',
@@ -35,7 +35,7 @@ export function TodoDetailsDisplay({ todo, todoId }: TodoDetailsDisplayProps) {
                         {tasks &&
                             tasks.map((it) => <ShortTaskDisplay onClick={() => setTask(it)} key={it.id} task={it} />)}
                     </div>
-                </WithSkeleton>
+                </Suspense>
             </div>
             {task && (
                 <>

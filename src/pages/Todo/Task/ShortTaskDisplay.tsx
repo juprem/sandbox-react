@@ -12,7 +12,6 @@ interface ShortTaskDisplayProps {
 export function ShortTaskDisplay({ task, onClick }: ShortTaskDisplayProps) {
     const postTask = usePostTask();
     const [check, setCheck] = useState(task.done);
-    console.log('update', task.name);
 
     return (
         <div className={flex()}>

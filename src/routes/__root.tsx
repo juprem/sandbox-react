@@ -1,9 +1,10 @@
 import { createRootRouteWithContext, FileRoutesByPath, Link, Outlet } from '@tanstack/react-router';
-import { css } from '../../styled-system/css';
-import { Sidebar } from '../component/Layout/Sidebar.tsx';
-import { Content } from '../component/Layout/Content.tsx';
+import { css } from '@styled-system/css';
+import { Sidebar } from '@component/Layout/Sidebar.tsx';
+import { Content } from '@component/Layout/Content.tsx';
 import { motion } from 'framer-motion';
 import { QueryClient } from '@tanstack/react-query';
+import { Breadcrumbs } from '@component/Layout/Breadcrumbs.tsx';
 
 const menu: { label: string; path: keyof FileRoutesByPath }[] = [
     { label: 'CrashTest', path: '/crash-test' },
@@ -18,10 +19,16 @@ const menu: { label: string; path: keyof FileRoutesByPath }[] = [
 export const Route = createRootRouteWithContext<{
     queryClient: QueryClient;
 }>()({
+    meta: () => [
+        {
+            title: '/',
+        },
+    ],
     component: RootComponent,
 });
 
 function RootComponent() {
+
     return (
         <>
             <Sidebar>
@@ -45,6 +52,7 @@ function RootComponent() {
                         DocsPers
                     </div>
                 </Link>
+                <Breadcrumbs />
                 <div className={css({ display: 'flex', flexDirection: 'column', color: 'wheat' })}>
                     {menu.map((item) => (
                         <Link
