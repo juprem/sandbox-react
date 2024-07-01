@@ -3,4 +3,9 @@ import { CrashTest } from '../component/crashTest/CrashTest.tsx';
 
 export const Route = createFileRoute('/crash-test')({
     component: CrashTest,
-})
+    meta: () => [
+        {
+            title: 'crash-test',
+        },
+    ],
+});

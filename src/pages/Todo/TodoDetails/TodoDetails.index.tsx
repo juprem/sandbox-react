@@ -1,12 +1,12 @@
-import { Route } from '../../../routes/todo_.$todoId.tsx';
-import { getTodoByIdQueryOptions } from '../../../hooks/useTodos.ts';
-import { WithSkeleton } from '../../../component/WithSkeleton/WithSkeleton.tsx';
+import { Route } from '@routes/todo_.$todoId.tsx';
+import { WithSkeleton } from '@component/WithSkeleton/WithSkeleton.tsx';
 import { TodoDetailsDisplay } from './TodoDetailsDisplay.tsx';
-import { useQuery } from '@tanstack/react-query';
+import { useGetTodo } from '@hooks/useTodos.ts';
 
 export function TodoDetailsIndex() {
     const { todoId } = Route.useParams();
-    const { data: todo, isLoading, isError } = useQuery(getTodoByIdQueryOptions(todoId));
+    const { data: todo, isError, isLoading } = useGetTodo(todoId);
+
 
     if (isError) return <>Error</>;
 

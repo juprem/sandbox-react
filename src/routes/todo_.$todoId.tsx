@@ -3,4 +3,9 @@ import { TodoDetailsIndex } from '../pages/Todo/TodoDetails/TodoDetails.index.ts
 
 export const Route = createFileRoute('/todo/$todoId')({
     component: TodoDetailsIndex,
+    meta: () => [
+        {
+            title: 'détail',
+        },
+    ],
 });
