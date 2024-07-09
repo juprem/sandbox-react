@@ -6,9 +6,9 @@ export function Breadcrumbs() {
     const router = useRouter();
 
     const breadcrumbs = router.state.matches.map((match): BreadcrumbsModel => {
-        const { meta, pathname } = match;
+        const { pathname, context } = match;
         return {
-            title: meta?.find((it) => it.title)?.title ?? '',
+            title: context.breadcrumbs,
             path: pathname,
         };
     });

@@ -9,6 +9,10 @@ export const Route = createFileRoute('/todo')({
             title: 'todos',
         },
     ],
+    beforeLoad: ({ context }) => ({
+        queryClient: context.queryClient,
+        breadcrumbs: 'todos',
+    }),
     loader: ({ context }) => context.queryClient.ensureQueryData(getTodosQueryOptions()),
-    errorComponent: (Error) => <div>Il y a une erreur : {String(Error.error)}</div>,
+    errorComponent: (Error) => <div>Il y a une erreur : {String(Error.error).toString()}</div>,
 });
