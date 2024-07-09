@@ -18,12 +18,8 @@ const menu: { label: string; path: keyof FileRoutesByPath }[] = [
 
 export const Route = createRootRouteWithContext<{
     queryClient: QueryClient;
+    breadcrumbs: string;
 }>()({
-    meta: () => [
-        {
-            title: '/',
-        },
-    ],
     component: RootComponent,
 });
 
