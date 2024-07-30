@@ -1,18 +1,21 @@
-import { FormAntdWrapper } from '@component/FormAntdWrapper/FormAntdWrapper.tsx';
-import { Form, Input } from 'antd';
+import { ErrorBoundary } from 'react-error-boundary';
+import { UsingCustomTanstackQuery } from '@component/CustomFetch/UsingCustomTanstackQuery';
 
-interface CrashTestProps {
-    to: number;
-}
-
-export function CrashTest({ to }: CrashTestProps) {
-    console.log(to);
+function Fallback({ error }: { error: Error }) {
+    // Call resetErrorBoundary() to reset the error boundary and retry the render.
 
     return (
-        <FormAntdWrapper name="basicForm" onValuesChange={(e) => console.log(e)}>
-            <Form.Item rules={[{required: true, message: "Mandart"}]} name={['fullName', 'firstName']}>
-                <Input />
-            </Form.Item>
-        </FormAntdWrapper>
+        <div role="alert">
+            <p>Something went wrong:</p>
+            <pre style={{ color: 'red' }}>{error.message}</pre>
+        </div>
+    );
+}
+
+export function CrashTest() {
+    return (
+        <ErrorBoundary onError={(err) => console.log(err)} FallbackComponent={Fallback}>
+            <UsingCustomTanstackQuery />
+        </ErrorBoundary>
     );
 }

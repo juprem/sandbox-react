@@ -1,9 +1,12 @@
 import { queryOptions, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { todoService } from '../service/todoService.ts';
+import { Todo, TodoSchema } from '@model/TodoModel.ts';
+import dayjs from 'dayjs';
 
 export const todoKeys = {
     all: ['todo'] as const,
-    list: () => [...todoKeys.all, 'list'] as const,
+    lists: () => [...todoKeys.all, 'list'] as const,
+    list: (search: string) => [...todoKeys.all, 'list', search] as const,
     detail: (id: string) => [...todoKeys.all, id] as const,
 };
 
@@ -12,7 +15,7 @@ export const getTodosQueryOptions = () => {
 
     return queryOptions({
         queryFn: () => getTodos(),
-        queryKey: todoKeys.list(),
+        queryKey: todoKeys.lists(),
     });
 };
 
@@ -40,8 +43,56 @@ export function useCreateTodo() {
     return useMutation({
         mutationFn: postTodo,
         onSuccess: (todo) => {
-            queryClient.invalidateQueries({ queryKey: todoKeys.list() });
+            queryClient.invalidateQueries({ queryKey: todoKeys.lists() });
             console.log('ajout de %s avec succès', todo.name);
         },
     });
 }
+
+//demo clé
+
+export function useUpdateTodo() {
+    const queryClient = useQueryClient();
+    const updateTodo = (): Promise<Todo> =>
+        new Promise((resolve) =>
+            resolve(
+                TodoSchema.parse({
+                    id: 'a',
+                    name: 'todo number 1',
+                    createdTime: dayjs().format(),
+                }),
+            ),
+        );
+
+    return useMutation({
+        mutationFn: updateTodo,
+        onSuccess: (todo) => {
+            queryClient.invalidateQueries({ queryKey: todoKeys.lists() });
+            queryClient.invalidateQueries({ queryKey: todoKeys.detail(todo.id) });
+            console.log('ajout de %s avec succès', todo.name);
+        },
+    });
+}
+
+enum TodoKey {
+    DETAILS,
+    LIST
+}
+
+export const getTodoByIdQueryOptionss = (id: string) => {
+    const { getTodoById } = todoService();
+
+    return queryOptions({
+        queryFn: () => getTodoById(id),
+        queryKey: ["details", id],
+    });
+};
+
+export const getTodoByIdQueryOptionsss = (id: string) => {
+    const { getTodoById } = todoService();
+
+    return queryOptions({
+        queryFn: () => getTodoById(id),
+        queryKey: [TodoKey.DETAILS, id],
+    });
+};
