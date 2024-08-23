@@ -1,7 +1,7 @@
 // interface DataDisplayProps {}
 
 import { Table } from 'antd';
-import { FakeData, listFakeData } from './fakeData.ts';
+import { FakeData, listFakeData } from './fakeData';
 import { ColumnsType } from 'antd/es/table';
 
 export function DataDisplay() {

@@ -1,6 +1,6 @@
-import { Measure } from '../../model/classnameModels.ts';
+import { Measure } from '../../model/classnameModels';
 import { ReactNode } from 'react';
-import { Skeleton } from './Skeleton.tsx';
+import { Skeleton } from './Skeleton';
 
 interface WithSkeletonProps {
     loading: boolean;

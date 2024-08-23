@@ -1,4 +1,4 @@
-import { Task } from '../../../model/TaskModel.ts';
+import { Task } from '../../../model/TaskModel';
 import { css } from '../../../../styled-system/css';
 
 interface TodoDetailsTasksProps {

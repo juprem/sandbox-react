@@ -1,4 +1,4 @@
-import { CellStatus } from './LifeGame.tsx';
+import { CellStatus } from './LifeGame';
 
 export function calculateNextIteration(cells: CellStatus[][]): CellStatus[][] {
     return cells.map((it) =>

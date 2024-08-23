@@ -1,9 +1,9 @@
 import { Button, Form, Input } from 'antd';
-import { CustomModal } from '@component/CustomModal/CustomModal.tsx';
+import { CustomModal } from '@component/CustomModal/CustomModal';
 import { useState } from 'react';
 import TextArea from 'antd/es/input/TextArea';
-import { TodoCreateSchema } from '@model/TodoModel.ts';
-import { useCreateTodo } from '@hooks/useTodos.ts';
+import { TodoCreateSchema } from '@model/TodoModel';
+import { useCreateTodo } from '@hooks/useTodos';
 
 export function CreateTodoModal() {
     const [open, setOpen] = useState(false);

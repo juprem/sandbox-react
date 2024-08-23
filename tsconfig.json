@@ -9,7 +9,7 @@
 
     /* Bundler mode, permet de mettre directement les extensions */
     "moduleResolution": "bundler",
-    "allowImportingTsExtensions": true,
+    "allowImportingTsExtensions": false,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,

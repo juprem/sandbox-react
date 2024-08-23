@@ -1,12 +1,12 @@
-import { Todo } from '@model/TodoModel.ts';
+import { Todo } from '@model/TodoModel';
 import { css } from '@styled-system/css';
-import { useGetTasksByTodo } from '@hooks/useTasks.ts';
-import { WithSuspenseSkeleton } from '@component/WithSkeleton/WithSuspenseSkeleton.tsx';
-import { Task } from '@model/TaskModel.ts';
+import { useGetTasksByTodo } from '@hooks/useTasks';
+import { WithSuspenseSkeleton } from '@component/WithSkeleton/WithSuspenseSkeleton';
+import { Task } from '@model/TaskModel';
 import { Suspense, useState } from 'react';
-import { TodoDetailsTasks } from './TodoDetailsTasks.tsx';
-import { Flex } from '@component/Flex/Flex.tsx';
-import { ShortTaskDisplay } from '../Task/ShortTaskDisplay.tsx';
+import { TodoDetailsTasks } from './TodoDetailsTasks';
+import { Flex } from '@component/Flex/Flex';
+import { ShortTaskDisplay } from '../Task/ShortTaskDisplay';
 
 interface TodoDetailsDisplayProps {
     todo?: Todo;

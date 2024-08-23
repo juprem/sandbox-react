@@ -1,6 +1,6 @@
 import { ReactNode, useState } from 'react';
 import { Button } from 'antd';
-import { WithBasicContext } from '../../hooks/WithBasicContext.tsx';
+import { WithBasicContext } from '@hooks/WithBasicContext';
 
 interface RenderTestingProps {
     children: ReactNode;

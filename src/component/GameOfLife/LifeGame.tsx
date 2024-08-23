@@ -1,7 +1,7 @@
 import { css } from '../../../styled-system/css';
-import { Cell } from './Cell.tsx';
+import { Cell } from './Cell';
 import { useEffect, useState } from 'react';
-import { calculateNextIteration, cleanUp, init } from './calculation.ts';
+import { calculateNextIteration, cleanUp, init } from './calculation';
 import { Button } from 'antd';
 
 interface LifeGameProps {

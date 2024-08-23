@@ -1,10 +1,10 @@
 import { motion, useMotionValue, useTransform } from 'framer-motion';
-import { basicShape, TRContainer } from '../../styles/GlobalStyle.ts';
+import { basicShape, TRContainer } from '../../styles/GlobalStyle';
 import { useState } from 'react';
 import { Switch } from 'antd';
-import { SliderMotion } from './Settings/SliderMotion.tsx';
+import { SliderMotion } from './Settings/SliderMotion';
 import { css } from '../../../styled-system/css';
-import { Centered } from '../CodeBlock/Centered.tsx';
+import { Centered } from '../CodeBlock/Centered';
 
 export function DraggableMotion() {
     const [elastic, setElastic] = useState<number>(0);

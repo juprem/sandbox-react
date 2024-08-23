@@ -1,21 +1,13 @@
-import { ErrorBoundary } from 'react-error-boundary';
-import { UsingCustomTanstackQuery } from '@component/CustomFetch/UsingCustomTanstackQuery';
-
-function Fallback({ error }: { error: Error }) {
-    // Call resetErrorBoundary() to reset the error boundary and retry the render.
-
-    return (
-        <div role="alert">
-            <p>Something went wrong:</p>
-            <pre style={{ color: 'red' }}>{error.message}</pre>
-        </div>
-    );
-}
+import { Tetris } from '@component/Tetris/Tetris';
 
 export function CrashTest() {
     return (
-        <ErrorBoundary onError={(err) => console.log(err)} FallbackComponent={Fallback}>
-            <UsingCustomTanstackQuery />
-        </ErrorBoundary>
+        <Tetris />
     );
 }
+
+/*
+background color #242424
+card color #2e2e2e
+border color #3b3b3b
+ */

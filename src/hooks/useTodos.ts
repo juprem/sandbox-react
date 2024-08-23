@@ -1,6 +1,6 @@
 import { queryOptions, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { todoService } from '../service/todoService.ts';
-import { Todo, TodoSchema } from '@model/TodoModel.ts';
+import { todoService } from '../service/todoService';
+import { Todo, TodoSchema } from '@model/TodoModel';
 import dayjs from 'dayjs';
 
 export const todoKeys = {
@@ -73,26 +73,3 @@ export function useUpdateTodo() {
         },
     });
 }
-
-enum TodoKey {
-    DETAILS,
-    LIST
-}
-
-export const getTodoByIdQueryOptionss = (id: string) => {
-    const { getTodoById } = todoService();
-
-    return queryOptions({
-        queryFn: () => getTodoById(id),
-        queryKey: ["details", id],
-    });
-};
-
-export const getTodoByIdQueryOptionsss = (id: string) => {
-    const { getTodoById } = todoService();
-
-    return queryOptions({
-        queryFn: () => getTodoById(id),
-        queryKey: [TodoKey.DETAILS, id],
-    });
-};

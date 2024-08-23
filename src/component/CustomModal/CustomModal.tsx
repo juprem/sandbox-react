@@ -1,8 +1,8 @@
 import { ReactNode, useRef } from 'react';
 import styles from './CustomModal.module.scss';
-import { Flex } from '../Flex/Flex.tsx';
-import { CustomModalHeader } from './CustomModalHeader.tsx';
-import { useEventListener } from '../../hooks/useEventListener.ts';
+import { Flex } from '../Flex/Flex';
+import { CustomModalHeader } from './CustomModalHeader';
+import { useEventListener } from '@hooks/useEventListener';
 
 interface CustomModalProps {
     children: ReactNode;
@@ -16,12 +16,16 @@ export function CustomModal({ children, open, onClose, destroyOnClose = false, t
     const ref = useRef<HTMLDialogElement>(null);
     useEventListener({
         htmlId: 'dialog',
-        eventType: 'keypress',
-        listener: (event) => {
-            if (event.key === 'echap') {
-                ref.current?.close();
-            }
-        },
+        eventListeners: [
+            {
+                eventType: 'keypress',
+                listener: (event) => {
+                    if (event.key === 'echap') {
+                        ref.current?.close();
+                    }
+                },
+            },
+        ],
     });
 
     if (open) {

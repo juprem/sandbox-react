@@ -1,4 +1,4 @@
-import { InputFormType } from '@model/FormWrapperModel.ts';
+import { InputFormType } from '@model/FormWrapperModel';
 import { ReactNode } from 'react';
 import { Input, SelectProps } from 'antd';
 

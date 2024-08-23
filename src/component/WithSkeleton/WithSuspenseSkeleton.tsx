@@ -1,5 +1,5 @@
-import { Measure } from '../../model/classnameModels.ts';
-import { Skeleton } from './Skeleton.tsx';
+import { Measure } from '../../model/classnameModels';
+import { Skeleton } from './Skeleton';
 
 interface WithSkeletonProps {
     height?: Measure;

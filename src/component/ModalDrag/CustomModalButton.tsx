@@ -1,7 +1,7 @@
-import { css } from '../../../styled-system/css';
-import { Button } from '../crashTest/Button.tsx';
+import { css } from '@styled-system/css';
 import { ReactNode } from 'react';
-import { ActionMode } from './DraggableModal.tsx';
+import { Button } from 'antd';
+import { ActionMode } from '@hooks/useActionMode';
 
 interface CustomModalButtonProps {
     children: ReactNode;

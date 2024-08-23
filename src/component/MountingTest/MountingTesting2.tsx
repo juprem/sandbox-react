@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { basicShape } from '../../styles/GlobalStyle.ts';
+import { basicShape } from '../../styles/GlobalStyle';
 
 interface MountingTestingProps {
     content: string;

@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import Cross from '../../assets/cross.svg';
 import { Button } from 'antd';
-import { Flex } from '../Flex/Flex.tsx';
+import { Flex } from '../Flex/Flex';
 
 interface CustomModalHeaderProps {
     children: ReactNode;
