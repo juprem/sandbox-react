@@ -1,5 +1,5 @@
 import { Slider } from 'antd/lib';
-import { flex } from '../../../styles/GlobalStyle.ts';
+import { flex } from '../../../styles/GlobalStyle';
 import { css } from '../../../../styled-system/css';
 
 interface ElasticSliderProps {

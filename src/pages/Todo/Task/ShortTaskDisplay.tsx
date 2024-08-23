@@ -1,7 +1,7 @@
-import { Task } from '../../../model/TaskModel.ts';
+import { Task } from '../../../model/TaskModel';
 import { css } from '../../../../styled-system/css';
-import { flex } from '../../../styles/GlobalStyle.ts';
-import { usePostTask } from '../../../hooks/useTasks.ts';
+import { flex } from '../../../styles/GlobalStyle';
+import { usePostTask } from '../../../hooks/useTasks';
 import { useState } from 'react';
 
 interface ShortTaskDisplayProps {

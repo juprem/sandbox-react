@@ -107,15 +107,27 @@ interface MappedEvent {
 type EventTypeName = keyof MappedEvent;
 
 interface useEventListenerProps<T extends EventTypeName> {
-    eventType: T;
-    listener: (event: MappedEvent[T]) => void;
-    htmlId: string;
+    eventListeners: {
+        eventType: T;
+        listener: (event: MappedEvent[T]) => void;
+    }[];
+    htmlId?: string;
 }
 
-export function useEventListener<T extends EventTypeName>({ htmlId, eventType, listener }: useEventListenerProps<T>) {
+export function useEventListener<T extends EventTypeName>({ htmlId, eventListeners }: useEventListenerProps<T>) {
     useEffect(() => {
-        document.getElementById(htmlId)?.addEventListener(eventType, listener);
+        const abortController = new AbortController();
 
-        return document.getElementById(htmlId)?.removeEventListener(eventType, listener);
+        eventListeners.forEach(({eventType, listener}) => {
+            htmlId
+                ? document
+                      .getElementById(htmlId)
+                      ?.addEventListener(eventType, listener, { signal: abortController.signal })
+                : addEventListener(eventType, listener, { signal: abortController.signal });
+        });
+
+        return () => {
+            abortController.abort();
+        };
     });
 }

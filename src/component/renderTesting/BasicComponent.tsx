@@ -1,4 +1,4 @@
-import { basicShape } from '../../styles/GlobalStyle.ts';
+import { basicShape } from '../../styles/GlobalStyle';
 
 interface BasicComponentProps {
     id: string;

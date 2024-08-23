@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Button } from 'antd';
-import { MountingTesting } from './MountingTesting.tsx';
-import { MountingTesting2 } from './MountingTesting2.tsx';
+import { MountingTesting } from './MountingTesting';
+import { MountingTesting2 } from './MountingTesting2';
 import { css } from '../../../styled-system/css';
-import { CenteredBlock } from '../CodeBlock/CenteredBlock.tsx';
-import { TextSection } from '../TextSection/TextSection.tsx';
-import { CodeBlock } from '../CodeBlock/CodeBlock.tsx';
+import { CenteredBlock } from '../CodeBlock/CenteredBlock';
+import { TextSection } from '../TextSection/TextSection';
+import { CodeBlock } from '../CodeBlock/CodeBlock';
 
 export function MountingTestBase() {
     const [switching, setSwitching] = useState<boolean>(true);

@@ -1,6 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router';
-import { Todo } from '../pages/Todo/Todo.tsx';
-import { getTodosQueryOptions } from '../hooks/useTodos.ts';
+import { Todo } from '@pages/Todo/Todo';
+import { getTodosQueryOptions } from '@hooks/useTodos';
 
 export const Route = createFileRoute('/todo')({
     component: Todo,

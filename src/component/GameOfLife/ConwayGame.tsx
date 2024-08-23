@@ -1,9 +1,9 @@
 import { css } from '../../../styled-system/css';
-import { LifeGame } from './LifeGame.tsx';
+import { LifeGame } from './LifeGame';
 import { Button, Input } from 'antd';
 import { useState } from 'react';
-import { Flex } from '../Flex/Flex.tsx';
-import { Rules } from './Rules.tsx';
+import { Flex } from '../Flex/Flex';
+import { Rules } from './Rules';
 
 export function ConwayGame() {
     const [start, setStart] = useState(false);

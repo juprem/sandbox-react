@@ -11,7 +11,7 @@ export const flex = cva({
             row: {},
             column: {
                 flexDirection: 'column',
-                width: "100%"
+                width: '100%',
             },
         },
     },
@@ -66,8 +66,34 @@ export const textSection = cva({
     variants: {
         visual: {
             top: {
-                paddingTop: "5%"
-            }
-        }
-    }
-})
+                paddingTop: '5%',
+            },
+        },
+    },
+});
+
+export const lightItUp = cva({
+    base: {
+        width: '100px',
+        height: '100px',
+        backgroundColor: 'white',
+        borderRadius: '5px',
+    },
+    variants: {
+        visual: {
+            none: {},
+            smooth: {
+                boxShadow: '0 0 8px 0 white',
+            },
+            medium: {
+                boxShadow: '0 0 32px 8px white',
+            },
+            big: {
+                boxShadow: '0 0 128px 32px white',
+            },
+        },
+    },
+    defaultVariants: {
+        visual: 'none',
+    },
+});

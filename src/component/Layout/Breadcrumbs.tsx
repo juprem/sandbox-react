@@ -1,4 +1,4 @@
-import { BreadcrumbsModel } from '@model/BreadcrumbsModel.ts';
+import { BreadcrumbsModel } from '@model/BreadcrumbsModel';
 import { css } from '@styled-system/css';
 import { useRouter } from '@tanstack/react-router';
 

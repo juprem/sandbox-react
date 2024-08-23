@@ -1,7 +1,7 @@
 import { useEffect, useReducer, useState } from 'react';
-import { todoService } from '@service/todoService.ts';
+import { todoService } from '@service/todoService';
 import { queryOptions, useQuery } from '@tanstack/react-query';
-import { todoKeys } from '@hooks/useTodos.ts';
+import { todoKeys } from '@hooks/useTodos';
 
 interface customFetchProps {
     url: string;
@@ -44,21 +44,35 @@ export function useCustomFetch<T>({ url }: customFetchProps) {
     });
 
     useEffect(() => {
+        let ignore = false;
+
         if (state.status === 'pending') {
             dispatch({ action: 'loading' });
         }
 
-        fetch(url)
-            .then((data) => {
-                if (data.status >= 400) {
-                    dispatch({ action: 'error', error: 'Une erreur lors du fetch' });
-                    Promise.reject();
-                }
-                return data.json();
-            })
-            .then((data) => {
-                dispatch({ action: 'success', data: data });
-            });
+        async function customFetch() {
+            return await fetch(url)
+                .then((data) => {
+                    if (!ignore) {
+                        if (data.status >= 400) {
+                            dispatch({ action: 'error', error: 'Une erreur lors du fetch' });
+                            Promise.reject();
+                        }
+                        return data.json();
+                    }
+                })
+                .then((data) => {
+                    if (!ignore) {
+                        dispatch({ action: 'success', data: data });
+                    }
+                });
+        }
+
+        customFetch();
+
+        return () => {
+            ignore = true;
+        };
     }, [refetch]);
 
     if (state.status === 'error') {
@@ -71,6 +85,8 @@ export function useCustomFetch<T>({ url }: customFetchProps) {
 
     return { ...state, data: state.data as T | undefined, refetching } as const;
 }
+
+
 
 export const getTodoByIdQueryOptions = (id: string) => {
     const { getTodoById } = todoService();

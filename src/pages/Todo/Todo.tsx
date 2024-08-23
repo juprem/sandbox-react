@@ -1,8 +1,8 @@
-import { useGetAllTodo } from '../../hooks/useTodos.ts';
-import { Card } from '../../component/Card/Card.tsx';
+import { useGetAllTodo } from '@hooks/useTodos';
+import { Card } from '@component/Card/Card';
 import { Link } from '@tanstack/react-router';
-import { css } from '../../../styled-system/css';
-import { CreateTodoModal } from './CreateTodo/CreateTodoModal.tsx';
+import { css } from '@styled-system/css';
+import { CreateTodoModal } from './CreateTodo/CreateTodoModal';
 
 export function Todo() {
     const { data } = useGetAllTodo();

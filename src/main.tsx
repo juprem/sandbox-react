@@ -4,9 +4,9 @@ import './index.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ZodError } from 'zod';
-import { css } from '../styled-system/css';
+import { css } from '@styled-system/css';
 import { createRouter, RouterProvider } from '@tanstack/react-router';
-import { routeTree } from './routeTree.gen.ts';
+import { routeTree } from './routeTree.gen';
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -19,6 +19,7 @@ const queryClient = new QueryClient({
             },
             throwOnError: (error: Error) => error instanceof ZodError,
             refetchOnWindowFocus: false,
+            staleTime: 300000,
         },
     },
 });
@@ -27,7 +28,7 @@ const router = createRouter({
     routeTree,
     context: {
         queryClient: queryClient,
-        breadcrumbs: '/',
+        breadcrumbs: '',
     },
 });
 

@@ -1,4 +1,4 @@
-import { taskService } from '../service/taskService.ts';
+import { taskService } from '../service/taskService';
 import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
 
 export const taskKeys = {

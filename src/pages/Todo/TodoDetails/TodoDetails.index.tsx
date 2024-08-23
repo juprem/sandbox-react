@@ -1,7 +1,7 @@
-import { Route } from '@routes/todo_.$todoId.tsx';
-import { WithSkeleton } from '@component/WithSkeleton/WithSkeleton.tsx';
-import { TodoDetailsDisplay } from './TodoDetailsDisplay.tsx';
-import { useGetTodo } from '@hooks/useTodos.ts';
+import { Route } from '@routes/todo_.$todoId';
+import { WithSkeleton } from '@component/WithSkeleton/WithSkeleton';
+import { TodoDetailsDisplay } from './TodoDetailsDisplay';
+import { useGetTodo } from '@hooks/useTodos';
 
 export function TodoDetailsIndex() {
     const { todoId } = Route.useParams();

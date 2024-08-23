@@ -1,5 +1,5 @@
 import { css } from '../../../styled-system/css';
-import { CellStatus } from './LifeGame.tsx';
+import { CellStatus } from './LifeGame';
 interface CellProps extends Omit<CellStatus, 'position' | 'neighbour'> {
     setCellTab: () => void;
 }

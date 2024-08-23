@@ -1,6 +1,6 @@
 import { Form } from 'antd';
-import { InputForm } from '@component/FormAntdWrapper/InputForm.tsx';
-import { InputFormType } from '@model/FormWrapperModel.ts';
+import { InputForm } from '@component/FormAntdWrapper/InputForm';
+import { InputFormType } from '@model/FormWrapperModel';
 
 interface FormItemWrapperProps {}
 

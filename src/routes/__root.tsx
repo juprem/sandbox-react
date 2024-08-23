@@ -1,10 +1,10 @@
 import { createRootRouteWithContext, FileRoutesByPath, Link, Outlet } from '@tanstack/react-router';
 import { css } from '@styled-system/css';
-import { Sidebar } from '@component/Layout/Sidebar.tsx';
-import { Content } from '@component/Layout/Content.tsx';
+import { Sidebar } from '@component/Layout/Sidebar';
+import { Content } from '@component/Layout/Content';
 import { motion } from 'framer-motion';
 import { QueryClient } from '@tanstack/react-query';
-import { Breadcrumbs } from '@component/Layout/Breadcrumbs.tsx';
+import { Breadcrumbs } from '@component/Layout/Breadcrumbs';
 
 const menu: { label: string; path: keyof FileRoutesByPath }[] = [
     { label: 'CrashTest', path: '/crash-test' },

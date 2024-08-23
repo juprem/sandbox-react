@@ -1,8 +1,8 @@
 import classnames from 'classnames';
 import React, { ReactNode } from 'react';
 import styles from './Card.module.scss';
-import { CardTitle } from './CardTitle.tsx';
-import { CardContent } from './CardContent.tsx';
+import { CardTitle } from './CardTitle';
+import { CardContent } from './CardContent';
 interface CardProps {
     children: ReactNode;
     className?: string;

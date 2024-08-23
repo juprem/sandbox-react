@@ -1,0 +1,11 @@
+.label {
+  --selected: 0;
+  width: calc(30px + (var(--selected) * 20px));
+  height: fit-content;
+  background-color: #1ea7fd;
+  cursor: pointer;
+}
+
+.label:hover {
+  --selected: 1;
+}

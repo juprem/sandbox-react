@@ -1,9 +1,9 @@
-import { css } from '../../../styled-system/css';
+import { css } from '@styled-system/css';
 import Resize from '../../assets/resize.svg?react';
 import Dragging from '../../assets/dragging.svg?react';
-import { CustomModalButton } from './CustomModalButton.tsx';
-import { flex } from '../../styles/GlobalStyle.ts';
-import { ActionMode } from '../../hooks/useActionMode.ts';
+import { CustomModalButton } from './CustomModalButton';
+import { flex } from '../../styles/GlobalStyle';
+import { ActionMode } from '@hooks/useActionMode';
 import { ReactNode } from 'react';
 
 interface TitleRenderProps {

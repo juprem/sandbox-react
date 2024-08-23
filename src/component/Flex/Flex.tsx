@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { Measure } from '../../model/classnameModels.ts';
+import { Measure } from '../../model/classnameModels';
 
 interface FlexProps {
     children: ReactNode;

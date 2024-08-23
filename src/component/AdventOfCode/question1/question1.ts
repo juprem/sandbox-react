@@ -1,4 +1,4 @@
-import { firstQuestion } from './r.ts';
+import { firstQuestion } from './r';
 
 const numberString = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
 

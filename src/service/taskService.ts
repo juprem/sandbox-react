@@ -1,5 +1,5 @@
-import { fetchService } from './fetchService.ts';
-import { Task, TaskSchema, TasksSchema } from '../model/TaskModel.ts';
+import { fetchService } from './fetchService';
+import { Task, TaskSchema, TasksSchema } from '../model/TaskModel';
 
 export function taskService() {
     const { getQuery, putQuery } = fetchService();
