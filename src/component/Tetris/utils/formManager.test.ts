@@ -140,12 +140,3 @@ test('function hasHitDown should return true on form hit', () => {
 
     expect(hasHitFormOrBottomOnDown(xyPos, [[0, 0]], bigGridWithForm)).toBeTruthy;
 });
-
-function sum(a: number, b: number) {
-    return a + b;
-}
-
-test('sum should sum correctly', () => {
-    const result = sum(1,2)
-    expect(result).toBe(3)
-})
