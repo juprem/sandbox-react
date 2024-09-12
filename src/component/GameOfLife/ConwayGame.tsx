@@ -11,7 +11,7 @@ export function ConwayGame() {
     const [speed, setSpeed] = useState(1000);
 
     return (
-        <div className={css({ color: 'black', margin: '1rem', overflow: 'auto' })}>
+        <div className={css({ color: 'white', margin: '1rem', overflow: 'auto' })}>
             <Flex gap="1rem">
                 <div>Temps de résolu :</div>
                 <Input

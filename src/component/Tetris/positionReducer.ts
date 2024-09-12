@@ -17,27 +17,48 @@ interface PositionDown {
     form: Form;
 }
 
-type PositionAction = PositionMoving | PositionReiniti | PositionDown;
+interface LastTick {
+    action: 'lastTick';
+}
 
-function action(state: readonly [number, number], actionRed: PositionAction): readonly [number, number] {
+type PositionAction = PositionMoving | PositionReiniti | PositionDown | LastTick;
+
+type StateType = Readonly<{
+    position: [number, number];
+    lastTick: boolean;
+}>;
+
+function action(state: StateType, actionRed: PositionAction): StateType {
     const { action } = actionRed;
+    const { position, lastTick } = state;
+
     switch (action) {
         case 'down': {
-            const formInGrid = actionRed.form.matrix.map((it) => [state[0] + it[0], state[1] + it[1] + 1] as const);
+            if (lastTick) return state;
 
-            if (formInGrid.some((cell) => cell[1] >= 20)) return state
+            const formInGrid = actionRed.form.matrix.map(
+                (it) => [position[0] + it[0], position[1] + it[1] + 1] as const,
+            );
 
-            return [state[0], state[1] + 1] as const;
+            if (formInGrid.some((cell) => cell[1] >= 20)) return state;
+
+            return { position: [position[0], position[1] + 1], lastTick };
         }
         case 'left':
-            return canGoLeft(state, actionRed.form.matrix, actionRed.grid) ? [state[0] - 1, state[1]] : state;
+            return canGoLeft(position, actionRed.form.matrix, actionRed.grid)
+                ? { position: [position[0] - 1, position[1]], lastTick }
+                : state;
         case 'right':
-            return canGoRight(state, actionRed.form.matrix, actionRed.grid) ? [state[0] + 1, state[1]] : state;
+            return canGoRight(position, actionRed.form.matrix, actionRed.grid)
+                ? { position: [position[0] + 1, position[1]], lastTick }
+                : state;
         case 'initial':
-            return [7, 0];
+            return { position: [7, 0], lastTick: false };
+        case 'lastTick':
+            return { position, lastTick: true };
     }
 }
 
 export function usePositionReducer() {
-    return useReducer(action, [7, 0] as const);
+    return useReducer(action, { position: [7, 0], lastTick: false } as const);
 }

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import TextArea from 'antd/es/input/TextArea';
 import { TodoCreateSchema } from '@model/TodoModel';
 import { useCreateTodo } from '@hooks/useTodos';
+import { css } from '@styled-system/css';
 
 export function CreateTodoModal() {
     const [open, setOpen] = useState(false);
@@ -17,8 +18,8 @@ export function CreateTodoModal() {
                     onFinish={(values) => {
                         const todoCreate = TodoCreateSchema.parse(values);
                         todoMutation.mutate(todoCreate, {
-                            onSuccess: () => setOpen(false)
-                        })
+                            onSuccess: () => setOpen(false),
+                        });
                     }}
                 >
                     <Form.Item
@@ -34,7 +35,9 @@ export function CreateTodoModal() {
                     <Button htmlType="submit">Ajouter</Button>
                 </Form>
             </CustomModal>
-            <Button onClick={() => setOpen(true)}>Ajouter un Todo</Button>
+            <Button className={css({ width: 'fit-content', marginBottom: '1rem' })} onClick={() => setOpen(true)}>
+                Ajouter un Todo
+            </Button>
         </>
     );
 }

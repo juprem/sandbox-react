@@ -9,6 +9,7 @@ export function Todo() {
 
     return (
         <>
+            <CreateTodoModal />
             <div className={css({ display: 'flex', gap: '1rem' })}>
                 {data?.map((it) => (
                     <Link key={it.id} to={`/todo/$todoId`} params={{ todoId: it.id }}>
@@ -16,7 +17,6 @@ export function Todo() {
                     </Link>
                 ))}
             </div>
-            <CreateTodoModal />
         </>
     );
 }
