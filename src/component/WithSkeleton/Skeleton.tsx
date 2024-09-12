@@ -1,6 +1,6 @@
-import { css } from '../../../styled-system/css';
+import { css } from '@styled-system/css';
 import { motion } from 'framer-motion';
-import { Measure } from '../../model/classnameModels';
+import { Measure } from '@model/classnameModels';
 
 interface SkeletonProps {
     height: Measure;

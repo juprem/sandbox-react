@@ -24,7 +24,7 @@ export const basicShape = cva({
     base: {
         width: '50px',
         height: '50px',
-        backgroundColor: 'wheat',
+        backgroundColor: 'black',
     },
     variants: {
         visual: {

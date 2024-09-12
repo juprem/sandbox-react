@@ -61,9 +61,9 @@ export function TetrisGrid() {
         return () => clearInterval(intervalId);
     }, [speed, stop]);
 
-    const gridWithForm = displayForm(grid, forms.current, state);
+    const gridWithForm = displayForm(grid, forms.current, state.position);
 
-    if (!stop && hasHitFormOrBottomOnDown(state, forms.current.matrix, grid)) {
+    if (!stop && hasHitFormOrBottomOnDown(state.position, forms.current.matrix, grid)) {
         setGrid(gridWithForm);
         if (gameOver(gridWithForm)) {
             setStop(true);

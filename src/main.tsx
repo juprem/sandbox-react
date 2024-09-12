@@ -7,6 +7,7 @@ import { ZodError } from 'zod';
 import { css } from '@styled-system/css';
 import { createRouter, RouterProvider } from '@tanstack/react-router';
 import { routeTree } from './routeTree.gen';
+import { ConfigProvider } from 'antd';
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -41,11 +42,19 @@ declare module '@tanstack/react-router' {
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <StrictMode>
-        <QueryClientProvider client={queryClient}>
-            <div className={css({ height: '100vh', backgroundColor: '#dadada' })}>
-                <RouterProvider router={router} />
-            </div>
-            <ReactQueryDevtools initialIsOpen={false} />
-        </QueryClientProvider>
+        <ConfigProvider
+            theme={{
+                token: {
+                    fontFamily: 'monospace',
+                },
+            }}
+        >
+            <QueryClientProvider client={queryClient}>
+                <div className={css({ height: '100vh' })}>
+                    <RouterProvider router={router} />
+                </div>
+                <ReactQueryDevtools initialIsOpen={false} />
+            </QueryClientProvider>
+        </ConfigProvider>
     </StrictMode>,
 );
