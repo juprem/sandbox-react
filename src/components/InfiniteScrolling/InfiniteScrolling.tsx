@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import InfiniteScroll from 'react-infinite-scroll-component';
+import InfiniteScroll from 'react-infinite-scroll-components';
 
 // interface InfiniteScrollingProps {}
 

@@ -46,6 +46,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
             theme={{
                 token: {
                     fontFamily: 'monospace',
+                    colorText: 'white',
+                    colorBgBase: '#2e2e2e'
                 },
             }}
         >

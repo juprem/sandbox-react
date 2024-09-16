@@ -1,15 +1,9 @@
 import { css } from '@styled-system/css';
-import {
-    displayForm,
-    gameOver,
-    getNewForm,
-    GridCell,
-    hasHitFormOrBottomOnDown,
-} from '@component/Tetris/utils/formManager';
+import { displayForm, gameOver, getNewForm, GridCell, hasHitFormOrBottomOnDown, rotate } from './utils/formManager';
 import { useEffect, useState } from 'react';
 import { useEventListener } from '@hooks/useEventListener';
-import { usePositionReducer } from '@component/Tetris/positionReducer';
-import { NextFormGrid } from '@component/Tetris/NextFormGrid';
+import { usePositionReducer } from './positionReducer';
+import { NextFormGrid } from './NextFormGrid';
 import { Button } from 'antd';
 
 const bigGrid = Array.from(
@@ -51,19 +45,22 @@ export function TetrisGrid() {
                     if (event.key === 'ArrowDown') {
                         setSpeed(100);
                     }
+                    if (event.key === 'r') {
+                        setForms((prev) => ({ ...prev, current: rotate(prev.current, state.position) }));
+                    }
                 },
             },
         ],
     });
     useEffect(() => {
-        const intervalId = stop ? 0 : movingForm(() => dispatch({ action: 'down', form: forms.current }), speed);
+        const intervalId = stop ? 0 : movingForm(() => dispatch({ action: 'down', form: forms.current, grid }), speed);
 
         return () => clearInterval(intervalId);
     }, [speed, stop]);
 
     const gridWithForm = displayForm(grid, forms.current, state.position);
 
-    if (!stop && hasHitFormOrBottomOnDown(state.position, forms.current.matrix, grid)) {
+    if (!stop && hasHitFormOrBottomOnDown(state.position, forms.current.matrix, grid) && state.lastTick === 2) {
         setGrid(gridWithForm);
         if (gameOver(gridWithForm)) {
             setStop(true);

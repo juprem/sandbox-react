@@ -64,4 +64,4 @@ export function MountingTestBase() {
 //     ...
 // }
 // ]
-// React see 2 differents component so it triggers the unmount of MountingTesting and the mount of MountingTesting2
+// React see 2 differents components so it triggers the unmount of MountingTesting and the mount of MountingTesting2

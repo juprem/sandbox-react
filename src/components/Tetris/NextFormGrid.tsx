@@ -1,6 +1,6 @@
 import { css } from '@styled-system/css';
-import { Form } from '@component/Tetris/formModel/formModel';
-import { displayForm, GridCell } from '@component/Tetris/utils/formManager';
+import { Form } from '../Tetris/formModel/formModel';
+import { displayForm, GridCell } from '../Tetris/utils/formManager';
 import { memo } from 'react';
 
 const littleGrid = Array.from({ length: 16 }, (_, i): GridCell => [i % 4, Math.trunc(i / 4), 'whitesmoke'] as const);

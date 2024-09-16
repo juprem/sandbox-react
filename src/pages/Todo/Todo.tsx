@@ -1,5 +1,5 @@
 import { useGetAllTodo } from '@hooks/useTodos';
-import { Card } from '@component/Card/Card';
+import { Card } from '../../components/Card/Card';
 import { Link } from '@tanstack/react-router';
 import { css } from '@styled-system/css';
 import { CreateTodoModal } from './CreateTodo/CreateTodoModal';

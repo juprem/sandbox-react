@@ -4,7 +4,7 @@ import { useGetTasksByTodo } from '@hooks/useTasks';
 import { Task } from '@model/TaskModel';
 import { useState } from 'react';
 import { TodoDetailsTasks } from './TodoDetailsTasks';
-import { Flex } from '@component/Flex/Flex';
+import { Flex } from '../../../components/Flex/Flex';
 import { ShortTaskDisplay } from '../Task/ShortTaskDisplay';
 
 interface TodoDetailsDisplayProps {

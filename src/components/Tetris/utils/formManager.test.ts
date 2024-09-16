@@ -4,8 +4,8 @@ import {
     GridCell,
     hasHitFormOrBottomOnDown,
     includePosition,
-} from '@component/Tetris/utils/formManager';
-import { l, line, reverseS, s, square, t } from '@component/Tetris/formModel/formModel';
+} from '../../Tetris/utils/formManager';
+import { l, line, reverseS, s, square, t } from '../../Tetris/formModel/formModel';
 
 const bigGrid = Array.from(
     { length: 20 * 15 },

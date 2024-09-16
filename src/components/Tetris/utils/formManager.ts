@@ -1,12 +1,8 @@
-import { allForm, Form } from '@component/Tetris/formModel/formModel';
+import { allForm, Form } from '../formModel/formModel';
 
 export type GridCell = readonly [number, number, string];
 
-export function displayForm(
-    grid: GridCell[],
-    form: Form,
-    startingPosition: readonly [number, number],
-) {
+export function displayForm(grid: GridCell[], form: Form, startingPosition: readonly [number, number]) {
     const formPosition = form.matrix.map((it) => [startingPosition[0] + it[0], startingPosition[1] + it[1]] as const);
 
     return grid.map((it) => {
@@ -28,7 +24,10 @@ export function hasHitFormOrBottomOnDown(
 
     if (formInGrid.some((cell) => cell[1] > 19)) return true;
 
-    return formInGrid.map((it) => grid[it[0] + it[1] * 15]).some((it) => it[2] !== 'whitesmoke');
+    return formInGrid
+        .map((it) => grid[it[0] + it[1] * 15])
+        .filter((it) => it?.length > 2)
+        .some((it) => it[2] !== 'whitesmoke');
 }
 
 export function canGoLeft(
@@ -63,4 +62,15 @@ export function getNewForm() {
 export function gameOver(grid: GridCell[]) {
     const topLine = grid.slice(0, 14);
     return topLine.some((cell) => cell[2] !== 'whitesmoke');
+}
+
+export function rotate(form: Form, position: readonly [number, number]): Form {
+    const newMatrix = form.matrix.map((position) => [position[1], -position[0]] as const);
+    const formPosition = newMatrix.map((it) => [position[0] + it[0], position[1] + it[1]] as const);
+
+    if (formPosition.some((it) => it[0] < 0 || it[1] < 0 || it[0] > 15 || it[1] > 20)) {
+        return form;
+    }
+
+    return { ...form, matrix: form.matrix.map((position) => [position[1], -position[0]] as const) };
 }
