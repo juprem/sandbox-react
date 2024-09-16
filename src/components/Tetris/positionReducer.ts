@@ -1,6 +1,6 @@
 import { useReducer } from 'react';
-import { Form } from '@component/Tetris/formModel/formModel';
-import { canGoLeft, canGoRight, GridCell } from '@component/Tetris/utils/formManager';
+import { Form } from './formModel/formModel';
+import { canGoLeft, canGoRight, GridCell, hasHitFormOrBottomOnDown } from './utils/formManager';
 
 interface PositionMoving {
     form: Form;
@@ -15,17 +15,14 @@ interface PositionReiniti {
 interface PositionDown {
     action: 'down';
     form: Form;
+    grid: GridCell[];
 }
 
-interface LastTick {
-    action: 'lastTick';
-}
-
-type PositionAction = PositionMoving | PositionReiniti | PositionDown | LastTick;
+type PositionAction = PositionMoving | PositionReiniti | PositionDown;
 
 type StateType = Readonly<{
     position: [number, number];
-    lastTick: boolean;
+    lastTick: number;
 }>;
 
 function action(state: StateType, actionRed: PositionAction): StateType {
@@ -34,7 +31,12 @@ function action(state: StateType, actionRed: PositionAction): StateType {
 
     switch (action) {
         case 'down': {
-            if (lastTick) return state;
+            if (hasHitFormOrBottomOnDown(position, actionRed.form.matrix, actionRed.grid) && lastTick === 1)
+                return { ...state, lastTick: 2 };
+
+            if (hasHitFormOrBottomOnDown(position, actionRed.form.matrix, actionRed.grid)) {
+                return { position, lastTick: 1 };
+            }
 
             const formInGrid = actionRed.form.matrix.map(
                 (it) => [position[0] + it[0], position[1] + it[1] + 1] as const,
@@ -42,7 +44,7 @@ function action(state: StateType, actionRed: PositionAction): StateType {
 
             if (formInGrid.some((cell) => cell[1] >= 20)) return state;
 
-            return { position: [position[0], position[1] + 1], lastTick };
+            return { position: [position[0], position[1] + 1], lastTick: 0 };
         }
         case 'left':
             return canGoLeft(position, actionRed.form.matrix, actionRed.grid)
@@ -53,12 +55,10 @@ function action(state: StateType, actionRed: PositionAction): StateType {
                 ? { position: [position[0] + 1, position[1]], lastTick }
                 : state;
         case 'initial':
-            return { position: [7, 0], lastTick: false };
-        case 'lastTick':
-            return { position, lastTick: true };
+            return { position: [7, 0], lastTick: 0 };
     }
 }
 
 export function usePositionReducer() {
-    return useReducer(action, { position: [7, 0], lastTick: false } as const);
+    return useReducer(action, { position: [7, 0], lastTick: 0 } as const);
 }

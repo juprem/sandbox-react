@@ -1,8 +1,8 @@
-import { LayoutWithTopContent } from '@component/LayoutWithTopContent';
+import { Tetris } from '../Tetris/Tetris';
 
 export function CrashTest() {
    return (
-       <LayoutWithTopContent />
+       <Tetris />
    )
 }
 

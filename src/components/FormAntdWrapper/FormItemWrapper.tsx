@@ -1,5 +1,5 @@
 import { Form } from 'antd';
-import { InputForm } from '@component/FormAntdWrapper/InputForm';
+import { InputForm } from '../FormAntdWrapper/InputForm';
 import { InputFormType } from '@model/FormWrapperModel';
 
 interface FormItemWrapperProps {}

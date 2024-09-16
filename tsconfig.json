@@ -27,7 +27,8 @@
       "@pages/*": ["./src/pages/*"],
       "@routes/*": ["./src/routes/*"],
       "@styled-system/*": ["./styled-system/*"],
-      "@service/*": ["./src/service/*"]
+      "@service/*": ["./src/service/*"],
+      "@assets/*": ["./src/assets/*"]
     }
   },
   "include": ["src"],
