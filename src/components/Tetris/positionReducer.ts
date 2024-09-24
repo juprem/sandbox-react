@@ -1,64 +1,81 @@
 import { useReducer } from 'react';
 import { Form } from './formModel/formModel';
-import { canGoLeft, canGoRight, GridCell, hasHitFormOrBottomOnDown } from './utils/formManager';
+import { canGoLeft, canGoRight, getNewForm, GridCell, hasHitFormOrBottomOnDown, rotate } from './utils/formManager';
+
+const bigGrid = Array.from(
+    { length: 20 * 15 },
+    (_, i): GridCell => [i % 15, Math.trunc(i / 15), 'whitesmoke'] as const,
+);
 
 interface PositionMoving {
-    form: Form;
-    grid: GridCell[];
     action: 'left' | 'right';
 }
 
 interface PositionReiniti {
     action: 'initial';
+    newGrid: GridCell[];
 }
 
 interface PositionDown {
     action: 'down';
-    form: Form;
-    grid: GridCell[];
 }
 
-type PositionAction = PositionMoving | PositionReiniti | PositionDown;
+interface Rotation {
+    action: 'rotate';
+}
 
-type StateType = Readonly<{
+type PositionAction = PositionMoving | PositionReiniti | PositionDown | Rotation;
+
+export type StateType = Readonly<{
     position: [number, number];
+    grid: GridCell[];
     lastTick: number;
+    currentForm: Form;
+    nextForm: Form;
 }>;
 
-function action(state: StateType, actionRed: PositionAction): StateType {
+export function action(state: StateType, actionRed: PositionAction): StateType {
     const { action } = actionRed;
-    const { position, lastTick } = state;
+    const { position, lastTick, grid, currentForm } = state;
 
     switch (action) {
         case 'down': {
-            if (hasHitFormOrBottomOnDown(position, actionRed.form.matrix, actionRed.grid) && lastTick === 1)
-                return { ...state, lastTick: 2 };
+            if (hasHitFormOrBottomOnDown(position, currentForm.matrix, grid))
+                return { ...state, lastTick: lastTick + 1 };
 
-            if (hasHitFormOrBottomOnDown(position, actionRed.form.matrix, actionRed.grid)) {
-                return { position, lastTick: 1 };
-            }
-
-            const formInGrid = actionRed.form.matrix.map(
-                (it) => [position[0] + it[0], position[1] + it[1] + 1] as const,
-            );
+            const formInGrid = currentForm.matrix.map((it) => [position[0] + it[0], position[1] + it[1] + 1] as const);
 
             if (formInGrid.some((cell) => cell[1] >= 20)) return state;
 
-            return { position: [position[0], position[1] + 1], lastTick: 0 };
+            return {...state, position: [position[0], position[1] + 1], lastTick: 0 };
         }
         case 'left':
-            return canGoLeft(position, actionRed.form.matrix, actionRed.grid)
-                ? { position: [position[0] - 1, position[1]], lastTick }
+            return canGoLeft(position, currentForm.matrix, grid)
+                ? {...state, position: [position[0] - 1, position[1]]}
                 : state;
         case 'right':
-            return canGoRight(position, actionRed.form.matrix, actionRed.grid)
-                ? { position: [position[0] + 1, position[1]], lastTick }
+            return canGoRight(position, currentForm.matrix, grid)
+                ? {...state, position: [position[0] + 1, position[1]] }
                 : state;
         case 'initial':
-            return { position: [7, 0], lastTick: 0 };
+            return {
+                position: [7, 0],
+                lastTick: 0,
+                grid: actionRed.newGrid,
+                currentForm: state.nextForm,
+                nextForm: getNewForm(),
+            };
+        case 'rotate':
+            return { ...state, currentForm: rotate(currentForm, position) };
     }
 }
 
 export function usePositionReducer() {
-    return useReducer(action, { position: [7, 0], lastTick: 0 } as const);
+    return useReducer(action, {
+        position: [7, 0],
+        lastTick: 0,
+        grid: bigGrid,
+        currentForm: getNewForm(),
+        nextForm: getNewForm(),
+    } as const);
 }

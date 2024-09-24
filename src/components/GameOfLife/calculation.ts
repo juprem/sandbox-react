@@ -37,8 +37,10 @@ export function init(matrixSize: number): CellStatus[][] {
     });
 }
 
-function getAllNeighbour(position: [number, number], matrixSize: number) {
-    const matrixNeighbour = [
+export function getAllNeighbour(
+    position: [number, number],
+    matrixSize: number,
+    matrixNeighbour: [number, number][] = [
         [1, 1],
         [1, 0],
         [0, 1],
@@ -47,8 +49,8 @@ function getAllNeighbour(position: [number, number], matrixSize: number) {
         [0, -1],
         [1, -1],
         [-1, 1],
-    ];
-
+    ],
+) {
     return matrixNeighbour
         .map((pos) => {
             if (
