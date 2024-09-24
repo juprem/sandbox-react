@@ -1,9 +1,11 @@
-import { Tetris } from '../Tetris/Tetris';
+import { HasSelector } from '../CSSAmusement/HasSelector';
 
 export function CrashTest() {
-   return (
-       <Tetris />
-   )
+    return (
+        <>
+            <HasSelector />
+        </>
+    );
 }
 
 /*

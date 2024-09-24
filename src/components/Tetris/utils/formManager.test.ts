@@ -1,11 +1,7 @@
-import { expect, test } from 'vitest';
-import {
-    displayForm,
-    GridCell,
-    hasHitFormOrBottomOnDown,
-    includePosition,
-} from '../../Tetris/utils/formManager';
-import { l, line, reverseS, s, square, t } from '../../Tetris/formModel/formModel';
+import { describe, expect, test } from 'vitest';
+import { displayForm, getNewForm, GridCell, hasHitFormOrBottomOnDown, includePosition } from './formManager';
+import { l, line, reverseS, s, square, t } from '../formModel/formModel';
+import { action } from '../positionReducer';
 
 const bigGrid = Array.from(
     { length: 20 * 15 },
@@ -14,6 +10,11 @@ const bigGrid = Array.from(
 const bigGridWithForm = Array.from(
     { length: 20 * 15 },
     (_, i): GridCell => [i % 15, Math.trunc(i / 15), i === 5 ? 'red' : 'whitesmoke'] as const,
+);
+
+const bigGridWithLastLineFull = Array.from(
+    { length: 20 * 15 },
+    (_, i): GridCell => [i % 15, Math.trunc(i / 15), Math.trunc(i / 15) === 19 ? 'red' : 'whitesmoke'] as const,
 );
 const startingPos = [7, 0] as const;
 
@@ -139,4 +140,62 @@ test('function hasHitDown should return true on form hit', () => {
     const xyPos = [1, 0] as const;
 
     expect(hasHitFormOrBottomOnDown(xyPos, [[0, 0]], bigGridWithForm)).toBeTruthy;
+});
+
+describe('action reducer', () => {
+    test('should go to initial', () => {
+        const result = action(
+            { position: [10, 18], grid: bigGrid, lastTick: 0, currentForm: getNewForm(), nextForm: getNewForm() },
+            { action: 'initial', newGrid: bigGridWithForm },
+        );
+
+        expect(result.position).toStrictEqual(startingPos);
+        expect(result.lastTick).toBe(0);
+        expect(result.grid).toStrictEqual(bigGridWithForm);
+    });
+
+    test('should not go down and lastick = 1', () => {
+        const result = action(
+            { position: [10, 18], grid: bigGrid, lastTick: 0, currentForm: getNewForm(), nextForm: getNewForm() },
+            { action: 'down' },
+        );
+
+        expect(result.lastTick).toBe(1);
+        expect(result.grid).toStrictEqual(bigGrid);
+        expect(result.position).toStrictEqual([10, 18]);
+    });
+
+    test('should go down', () => {
+        const result = action(
+            {
+                position: [10, 18],
+                grid: bigGrid,
+                lastTick: 0,
+                currentForm: line,
+                nextForm: getNewForm(),
+            },
+            { action: 'down' },
+        );
+
+        expect(result.lastTick).toBe(0);
+        expect(result.grid).toStrictEqual(bigGrid);
+        expect(result.position).toStrictEqual([10, 19]);
+    });
+
+    test('should not go down with form last line', () => {
+        const result = action(
+            {
+                position: [10, 18],
+                grid: bigGridWithLastLineFull,
+                lastTick: 0,
+                currentForm: getNewForm(),
+                nextForm: getNewForm(),
+            },
+            { action: 'down' },
+        );
+
+        expect(result.lastTick).toBe(1);
+        expect(result.grid).toStrictEqual(bigGridWithLastLineFull);
+        expect(result.position).toStrictEqual([10, 18]);
+    });
 });

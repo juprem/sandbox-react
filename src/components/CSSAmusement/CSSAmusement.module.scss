@@ -9,3 +9,15 @@
 .label:hover {
   --selected: 1;
 }
+
+
+.hasSelector {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  background-color: #858484;
+}
+
+.hasSelector:has(div) {
+  border: 1px solid orange;
+}
