@@ -3,8 +3,8 @@ import { basicShape, TRContainer } from '../../styles/GlobalStyle';
 import { useState } from 'react';
 import { Switch } from 'antd';
 import { SliderMotion } from './Settings/SliderMotion';
-import { css } from '../../../styled-system/css';
-import { Centered } from '../CodeBlock/Centered';
+import { css } from '@styled-system/css';
+import { Centered } from '../LayoutBlock/Centered';
 
 export function DraggableMotion() {
     const [elastic, setElastic] = useState<number>(0);

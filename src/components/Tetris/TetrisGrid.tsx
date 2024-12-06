@@ -14,34 +14,30 @@ export function TetrisGrid() {
     const [speed, setSpeed] = useState(1000);
 
     useEventListener({
-        eventListeners: [
-            {
-                eventType: 'keyup',
-                listener: (event) => {
-                    if (event.key === 'ArrowDown') {
-                        setSpeed(1000);
-                    }
-                },
-            },
-            {
-                eventType: 'keydown',
-                listener: (event) => {
-                    if (event.key === 'ArrowLeft') {
-                        dispatch({ action: 'left' });
-                    }
-                    if (event.key === 'ArrowRight') {
-                        dispatch({ action: 'right' });
-                    }
-                    if (event.key === 'ArrowDown') {
-                        setSpeed(100);
-                    }
-                    if (event.key === 'r') {
-                        dispatch({ action: 'rotate' });
-                    }
-                },
-            },
-        ],
+        eventType: 'keyup',
+        listener: (event) => {
+            if (event.key === 'ArrowDown') {
+                setSpeed(1000);
+            }
+        },
     });
+    useEventListener({
+        eventType: 'keydown',
+        listener: (event) => {
+            if (event.key === 'ArrowLeft') {
+                dispatch({ action: 'left' });
+            }
+            if (event.key === 'ArrowRight') {
+                dispatch({ action: 'right' });
+            }
+            if (event.key === 'ArrowDown') {
+                setSpeed(100);
+            }
+            if (event.key === 'r') {
+                dispatch({ action: 'rotate' });
+            }
+        },
+    })
     useEffect(() => {
         const intervalId = stop ? 0 : movingForm(() => dispatch({ action: 'down' }), speed);
 

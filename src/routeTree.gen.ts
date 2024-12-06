@@ -19,6 +19,7 @@ import { Route as EnhancedSwitchImport } from './routes/enhanced-switch'
 import { Route as DraggableMotionImport } from './routes/draggable-motion'
 import { Route as CrashTestImport } from './routes/crash-test'
 import { Route as ConwayGameImport } from './routes/conway-game'
+import { Route as CodeDisplayImport } from './routes/code-display'
 import { Route as BasicAnimationImport } from './routes/basic-animation'
 import { Route as TodoTodoIdImport } from './routes/todo_.$todoId'
 
@@ -58,6 +59,11 @@ const ConwayGameRoute = ConwayGameImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const CodeDisplayRoute = CodeDisplayImport.update({
+  path: '/code-display',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const BasicAnimationRoute = BasicAnimationImport.update({
   path: '/basic-animation',
   getParentRoute: () => rootRoute,
@@ -83,6 +89,10 @@ declare module '@tanstack/react-router' {
     }
     '/basic-animation': {
       preLoaderRoute: typeof BasicAnimationImport
+      parentRoute: typeof rootRoute
+    }
+    '/code-display': {
+      preLoaderRoute: typeof CodeDisplayImport
       parentRoute: typeof rootRoute
     }
     '/conway-game': {
@@ -121,6 +131,7 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren([
   IndexLazyRoute,
   BasicAnimationRoute,
+  CodeDisplayRoute,
   ConwayGameRoute,
   CrashTestRoute,
   DraggableMotionRoute,

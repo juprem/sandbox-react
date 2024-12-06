@@ -12,6 +12,7 @@ export function Breadcrumbs() {
             path: pathname,
         };
     });
+    console.log("breadcrumbs", router);
 
     return (
         <div className={css({ display: 'flex', gap: '0.2rem', marginBottom: '1rem', marginLeft: '5px', color: 'white' })}>

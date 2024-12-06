@@ -2,10 +2,9 @@ import { useState } from 'react';
 import { Button } from 'antd';
 import { MountingTesting } from './MountingTesting';
 import { MountingTesting2 } from './MountingTesting2';
-import { css } from '../../../styled-system/css';
-import { CenteredBlock } from '../CodeBlock/CenteredBlock';
+import { css } from '@styled-system/css';
 import { TextSection } from '../TextSection/TextSection';
-import { CodeBlock } from '../CodeBlock/CodeBlock';
+import { CenteredBlock } from '../LayoutBlock/CenteredBlock';
 
 export function MountingTestBase() {
     const [switching, setSwitching] = useState<boolean>(true);
@@ -17,9 +16,9 @@ export function MountingTestBase() {
         <>
             <div style={{ display: 'flex', gap: '10px' }}>
                 <Button onClick={() => setSwitching(!switching)}>Switch same component</Button>
-                {/*doesn't render on switch change*/}
+                {/*doesn't recreate on switch change*/}
                 {switching ? <MountingTesting content="first" /> : <MountingTesting content="second" />}
-                {/*does render on switch change*/}
+                {/*does recreate on switch change*/}
                 <Button onClick={() => setSwitching2(!switching2)}>Switch with different component</Button>
                 {switching2 ? <MountingTesting content="first" /> : <MountingTesting2 content="second" />}
             </div>
@@ -28,7 +27,7 @@ export function MountingTestBase() {
             </TextSection>
             <CenteredBlock>
                 <div className={css({ width: 'fit-content' })}>
-                    <CodeBlock codeString={first} />
+                    CodeBlock
                 </div>
             </CenteredBlock>
         </>

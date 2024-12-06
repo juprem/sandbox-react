@@ -16,16 +16,12 @@ export function CustomModal({ children, open, onClose, destroyOnClose = false, t
     const ref = useRef<HTMLDialogElement>(null);
     useEventListener({
         htmlId: 'dialog',
-        eventListeners: [
-            {
-                eventType: 'keypress',
-                listener: (event) => {
-                    if (event.key === 'echap') {
-                        ref.current?.close();
-                    }
-                },
-            },
-        ],
+        eventType: 'keypress',
+        listener: (event) => {
+            if (event.key === 'echap') {
+                ref.current?.close();
+            }
+        },
     });
 
     if (open) {

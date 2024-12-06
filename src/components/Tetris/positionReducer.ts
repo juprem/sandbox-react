@@ -1,6 +1,14 @@
 import { useReducer } from 'react';
 import { Form } from './formModel/formModel';
-import { canGoLeft, canGoRight, getNewForm, GridCell, hasHitFormOrBottomOnDown, rotate } from './utils/formManager';
+import {
+    canGoLeft,
+    canGoRight,
+    canRotate,
+    getNewForm,
+    GridCell, hasFullLine,
+    hasHitFormOrBottomOnDown,
+    rotate,
+} from './utils/formManager';
 
 const bigGrid = Array.from(
     { length: 20 * 15 },
@@ -47,15 +55,17 @@ export function action(state: StateType, actionRed: PositionAction): StateType {
 
             if (formInGrid.some((cell) => cell[1] >= 20)) return state;
 
-            return {...state, position: [position[0], position[1] + 1], lastTick: 0 };
+            console.log(hasFullLine(grid));
+
+            return { ...state, position: [position[0], position[1] + 1], lastTick: 0 };
         }
         case 'left':
             return canGoLeft(position, currentForm.matrix, grid)
-                ? {...state, position: [position[0] - 1, position[1]]}
+                ? { ...state, position: [position[0] - 1, position[1]] }
                 : state;
         case 'right':
             return canGoRight(position, currentForm.matrix, grid)
-                ? {...state, position: [position[0] + 1, position[1]] }
+                ? { ...state, position: [position[0] + 1, position[1]] }
                 : state;
         case 'initial':
             return {
@@ -65,8 +75,10 @@ export function action(state: StateType, actionRed: PositionAction): StateType {
                 currentForm: state.nextForm,
                 nextForm: getNewForm(),
             };
-        case 'rotate':
-            return { ...state, currentForm: rotate(currentForm, position) };
+        case 'rotate': {
+            if (canRotate(grid, currentForm, position)) return { ...state, currentForm: rotate(currentForm) };
+            return state;
+        }
     }
 }
 
