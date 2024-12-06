@@ -8,6 +8,7 @@ import { css } from '@styled-system/css';
 import { createRouter, RouterProvider } from '@tanstack/react-router';
 import { routeTree } from './routeTree.gen';
 import { ConfigProvider } from 'antd';
+import dayjs from 'dayjs';
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -39,6 +40,8 @@ declare module '@tanstack/react-router' {
         router: typeof router;
     }
 }
+
+dayjs.locale('fr')
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <StrictMode>

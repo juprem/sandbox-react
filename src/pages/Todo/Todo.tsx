@@ -1,8 +1,8 @@
 import { useGetAllTodo } from '@hooks/useTodos';
-import { Card } from '../../components/Card/Card';
 import { Link } from '@tanstack/react-router';
 import { css } from '@styled-system/css';
 import { CreateTodoModal } from './CreateTodo/CreateTodoModal';
+import { TodoCard } from '../../components/Card/TodoCard';
 
 export function Todo() {
     const { data } = useGetAllTodo();
@@ -11,9 +11,9 @@ export function Todo() {
         <>
             <CreateTodoModal />
             <div className={css({ display: 'flex', gap: '1rem' })}>
-                {data?.map((it) => (
-                    <Link key={it.id} to={`/todo/$todoId`} params={{ todoId: it.id }}>
-                        <Card title={it.name}>{it.description}</Card>
+                {data?.map((todo) => (
+                    <Link key={todo.id} to={`/todo/$todoId`} params={{ todoId: todo.id }}>
+                        <TodoCard todo={todo} />
                     </Link>
                 ))}
             </div>

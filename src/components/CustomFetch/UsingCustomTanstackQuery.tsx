@@ -1,5 +1,5 @@
-import { useCustomFetch } from '@service/useCustomFetch';
 import { Button } from 'antd';
+import { useCustomFetch } from '@hooks/useCustomFetch';
 
 export function UsingCustomTanstackQuery() {
     const { data, status, loading, refetching } = useCustomFetch<{ id: number; text: string }[]>({

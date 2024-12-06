@@ -64,13 +64,26 @@ export function gameOver(grid: GridCell[]) {
     return topLine.some((cell) => cell[2] !== 'whitesmoke');
 }
 
-export function rotate(form: Form, position: readonly [number, number]): Form {
-    const newMatrix = form.matrix.map((position) => [position[1], -position[0]] as const);
-    const formPosition = newMatrix.map((it) => [position[0] + it[0], position[1] + it[1]] as const);
+export function rotate(form: Form): Form {
+    return { ...form, matrix: form.matrix.map((matrixCoor) => [matrixCoor[1], -matrixCoor[0]] as const) };
+}
+
+export function canRotate(grid: GridCell[], form: Form, position: readonly [number, number]) {
+    const rotatedForm = rotate(form);
+
+    const formPosition = rotatedForm.matrix.map((it) => [position[0] + it[0], position[1] + it[1]] as const);
 
     if (formPosition.some((it) => it[0] < 0 || it[1] < 0 || it[0] > 15 || it[1] > 20)) {
-        return form;
+        return false;
     }
 
-    return { ...form, matrix: form.matrix.map((position) => [position[1], -position[0]] as const) };
+    return !formPosition.some((pos) => grid[pos[0] + pos[1] * 15][2] !== 'whitesmoke');
+}
+
+export function hasFullLine(grid: GridCell[]) {
+    const lined = Array.from({ length: 20 }, (_, i) => {
+        return { y: i, line: grid.filter((cell) => cell[1] === i).map((cell) => cell[2]) };
+    });
+
+    return lined.filter((line) => !line.line.some((it) => it === 'whitesmoke')).map((it) => it.y);
 }

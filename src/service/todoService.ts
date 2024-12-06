@@ -1,5 +1,5 @@
 import { fetchService } from './fetchService';
-import { TodoCreate, TodoSchema, TodosSchema } from '../model/TodoModel';
+import { TodoCreate, TodoSchema, TodosSchema } from '@model/TodoModel';
 
 export function todoService() {
     const { getQuery, postQuery } = fetchService();

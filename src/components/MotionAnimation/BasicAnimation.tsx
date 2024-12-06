@@ -2,7 +2,8 @@ import { basicShape, TRContainer } from '../../styles/GlobalStyle';
 import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { useState } from 'react';
 import { SliderMotion } from './Settings/SliderMotion';
-import { Centered } from '../CodeBlock/Centered';
+import { Centered } from '../LayoutBlock/Centered';
+
 export function BasicAnimation() {
     const [rotation, setRotation] = useState<number>(0);
     const [x, setX] = useState<number>(0);

@@ -1,12 +1,12 @@
-import { Button, DatePicker, Form, Input, Modal, Select } from 'antd';
+import { Button, DatePicker, Form, Input, Modal, Select, Tag } from 'antd';
 import { useState } from 'react';
 import TextArea from 'antd/es/input/TextArea';
-import { Priority, TodoCreateSchema } from '@model/TodoModel';
+import { Priority, TodoCreate, TodoCreateSchema } from '@model/TodoModel';
 import { useCreateTodo } from '@hooks/useTodos';
 import { css } from '@styled-system/css';
 import Cross from '@assets/cross.svg';
 import Plus from '@assets/plus.svg';
-import { CustomTags } from '../../../components/CustomTags/CustomTags';
+import dayjs from 'dayjs';
 
 export function CreateTodoModal() {
     const [open, setOpen] = useState(false);
@@ -24,8 +24,11 @@ export function CreateTodoModal() {
             >
                 <Form
                     name="create todo"
-                    onFinish={(values) => {
-                        const todoCreate = TodoCreateSchema.parse(values);
+                    onFinish={(values: TodoCreate) => {
+                        const todoCreate = TodoCreateSchema.parse({
+                            ...values,
+                            dueDate: dayjs(values.dueDate).format('YYYY-MM-DDTHH:mm:ss[Z]'),
+                        });
                         todoMutation.mutate(todoCreate, {
                             onSuccess: () => setOpen(false),
                         });
@@ -50,7 +53,7 @@ export function CreateTodoModal() {
                     <Form.Item name="tags" label="Labels">
                         <Select
                             mode="tags"
-                            tagRender={(props) => <CustomTags text={props.label} onClose={props.onClose} />}
+                            tagRender={(props) => <Tag color="blue" onClose={props.onClose}>{props.label}</Tag>}
                         />
                     </Form.Item>
                     <Button htmlType="submit">Ajouter</Button>

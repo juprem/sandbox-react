@@ -23,7 +23,7 @@ export const TodosSchema = z.array(TodoSchema);
 export const TodoCreateSchema = z.object({
     name: z.string(),
     description: z.string().optional(),
-    dueDate: z.string(),
+    dueDate: z.string().datetime(),
     priority: z.enum(['LOW', 'MEDIUM', 'HIGH']),
     tags: z.array(z.string()),
 });
