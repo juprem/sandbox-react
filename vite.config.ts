@@ -9,6 +9,7 @@ import { nodePolyfills } from 'vite-plugin-node-polyfills'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+    base: "/sandbox-react/",
     server: {
         port: 3000,
         strictPort: true,

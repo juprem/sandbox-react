@@ -1,30 +1,20 @@
-import { motion, useMotionValue } from 'framer-motion';
-import { FunctionRef } from '../DomManipulation/FunctionRef';
-import { forwardRef, useEffect, useRef, useState } from 'react';
-import { Button, Input, InputRef, Select } from 'antd';
-import { css } from '@styled-system/css';
-import { useMutation } from '@tanstack/react-query';
 import { Canvas } from '../Canvas/Canvas';
-
-const t = async () =>
-    await new Promise<string>((resolve, reject) => {
-        const ta = Math.random();
-        console.log(ta);
-        if (ta < 0.5) return resolve('yes');
-        return reject;
-    });
+import useFormInstance from 'antd/es/form/hooks/useFormInstance';
+import { Button, Form, Input } from 'antd';
 
 export function CrashTest() {
-    const x = useMotionValue(0);
+    const [form] = Form.useForm();
 
     return (
-        <Canvas />
+        <Form form={form} name="jojo" onFinish={() => form.resetFields()} initialValues={{ name: 'COucou' }}>
+            <Form.Item name="name">
+                <Input />
+            </Form.Item>
+            <Button htmlType="submit" />
+        </Form>
     );
 }
 
-const MyInput = forwardRef<InputRef>(function MyInput(props, ref) {
-    return <Input ref={ref} />;
-});
 /*
 background color #242424
 card color #2e2e2e

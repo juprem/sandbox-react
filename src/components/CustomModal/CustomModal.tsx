@@ -3,6 +3,7 @@ import styles from './CustomModal.module.scss';
 import { Flex } from '../Flex/Flex';
 import { CustomModalHeader } from './CustomModalHeader';
 import { useEventListener } from '@hooks/useEventListener';
+import { createPortal } from 'react-dom';
 
 interface CustomModalProps {
     children: ReactNode;
@@ -32,7 +33,7 @@ export function CustomModal({ children, open, onClose, destroyOnClose = false, t
         ref.current?.close();
     }
 
-    return (
+    return createPortal(
         <dialog onClick={(e) => e.stopPropagation()} id="dialog" ref={ref} className={styles.dialog}>
             {(!destroyOnClose || open) && (
                 <Flex height="100%" gap="1.5rem" flexDirection="column">
@@ -40,6 +41,7 @@ export function CustomModal({ children, open, onClose, destroyOnClose = false, t
                     <div>{children}</div>
                 </Flex>
             )}
-        </dialog>
+        </dialog>,
+        document.body,
     );
 }
