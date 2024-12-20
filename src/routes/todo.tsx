@@ -4,11 +4,6 @@ import { getTodosQueryOptions } from '@hooks/useTodos';
 
 export const Route = createFileRoute('/todo')({
     component: Todo,
-    meta: () => [
-        {
-            title: 'todos',
-        },
-    ],
     beforeLoad: ({ context }) => ({
         queryClient: context.queryClient,
         breadcrumbs: 'todos',

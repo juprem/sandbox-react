@@ -1,6 +1,6 @@
 import { css } from '@styled-system/css';
-import Resize from '../../assets/resize.svg?react';
-import Dragging from '../../assets/dragging.svg?react';
+import Resize from '../../assets/resize.svg';
+import Dragging from '../../assets/dragging.svg';
 import { CustomModalButton } from './CustomModalButton';
 import { flex } from '../../styles/GlobalStyle';
 import { ActionMode } from '@hooks/useActionMode';
