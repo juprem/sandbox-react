@@ -1,5 +1,3 @@
-import { Canvas } from '../Canvas/Canvas';
-import useFormInstance from 'antd/es/form/hooks/useFormInstance';
 import { Button, Form, Input } from 'antd';
 
 export function CrashTest() {
