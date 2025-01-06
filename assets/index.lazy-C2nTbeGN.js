@@ -1,0 +1,1 @@
+import{c as o,j as r}from"./index-BnPZZ2NI.js";const i=o("/")({component:t,beforeLoad:({context:e})=>({queryClient:e.queryClient,breadcrumbs:"/Home"})});function t(){return r.jsx("div",{children:"Hello world"})}export{i as Route};
