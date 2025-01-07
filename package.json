@@ -2,6 +2,7 @@
   "name": "sandbox-react",
   "private": true,
   "version": "0.0.0",
+  "homepage": "https://juprem.github.io/sandbox-react",
   "type": "module",
   "scripts": {
     "prepare": "panda codegen",
@@ -59,6 +60,7 @@
     "eslint-plugin-react-compiler": "19.0.0-beta-0dec889-20241115",
     "eslint-plugin-react-hooks": "4.6.0",
     "eslint-plugin-react-refresh": "0.4.5",
+    "gh-pages": "^6.3.0",
     "prettier": "3.2.5",
     "shiki": "1.22.2",
     "storybook": "8.1.10",
