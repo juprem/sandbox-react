@@ -2,7 +2,7 @@
   "name": "sandbox-react",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://juprem.github.io/sandbox-react",
+  "homepage": "https://juprem.github.io/sandbox-react/#",
   "type": "module",
   "scripts": {
     "prepare": "panda codegen",
