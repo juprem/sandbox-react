@@ -14,6 +14,7 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as TodoImport } from './routes/todo'
+import { Route as TetrisImport } from './routes/tetris'
 import { Route as MountingImport } from './routes/mounting'
 import { Route as EnhancedSwitchImport } from './routes/enhanced-switch'
 import { Route as DraggableMotionImport } from './routes/draggable-motion'
@@ -31,6 +32,11 @@ const IndexLazyImport = createFileRoute('/')()
 
 const TodoRoute = TodoImport.update({
   path: '/todo',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const TetrisRoute = TetrisImport.update({
+  path: '/tetris',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -115,6 +121,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MountingImport
       parentRoute: typeof rootRoute
     }
+    '/tetris': {
+      preLoaderRoute: typeof TetrisImport
+      parentRoute: typeof rootRoute
+    }
     '/todo': {
       preLoaderRoute: typeof TodoImport
       parentRoute: typeof rootRoute
@@ -137,6 +147,7 @@ export const routeTree = rootRoute.addChildren([
   DraggableMotionRoute,
   EnhancedSwitchRoute,
   MountingRoute,
+  TetrisRoute,
   TodoRoute,
   TodoTodoIdRoute,
 ])
