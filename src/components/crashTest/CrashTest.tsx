@@ -1,15 +1,9 @@
-import { Button, Form, Input } from 'antd';
 
 export function CrashTest() {
-    const [form] = Form.useForm();
-
     return (
-        <Form form={form} name="jojo" onFinish={() => form.resetFields()} initialValues={{ name: 'COucou' }}>
-            <Form.Item name="name">
-                <Input />
-            </Form.Item>
-            <Button htmlType="submit" />
-        </Form>
+        <div>
+
+        </div>
     );
 }
 
