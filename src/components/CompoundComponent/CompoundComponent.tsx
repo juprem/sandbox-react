@@ -2,8 +2,8 @@ import { PropsWithChildren, ReactNode } from 'react';
 import styles from './CompoundComponent.module.scss';
 
 interface WithSectionContentProps {
-    children: ReactNode;
-    disable?: boolean;
+    readonly children: ReactNode;
+    readonly disable?: boolean;
 }
 
 export function WithSection({ children }: PropsWithChildren) {

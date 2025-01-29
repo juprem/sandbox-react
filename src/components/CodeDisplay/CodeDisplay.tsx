@@ -3,6 +3,7 @@ import { codeToHast } from 'shiki';
 import { Fragment, useEffect, useState } from 'react';
 import { toJsxRuntime } from 'hast-util-to-jsx-runtime';
 import { jsx, jsxs } from 'react/jsx-runtime';
+import { PreviewCode } from './PreviewCode';
 
 const middle = '    if (state) {\n' + '        return <div>Bonjour</div>\n' + '    }\n';
 const bottom = '    \n' + '    return <Button onClick={() => setState(false)}>Bonsoir</Button>\n' + '}';
@@ -61,22 +62,13 @@ export function CodeDisplay() {
             <div>
                 {code
                     ? toJsxRuntime(code, {
-                        Fragment,
-                        jsx,
-                        jsxs,
-                        components: {
-                            pre: (props) => (
-                                <pre
-                                    {...props}
-                                    className={css({
-                                        backgroundColor: 'gray',
-                                        padding: '5px 10px',
-                                        borderRadius: '10px',
-                                    })}
-                                />
-                            ),
-                        },
-                    })
+                          Fragment,
+                          jsx,
+                          jsxs,
+                          components: {
+                              pre: (props) => <PreviewCode props={props} />,
+                          },
+                      })
                     : null}
             </div>
         </>

@@ -3,7 +3,7 @@ import { ReactNode, useLayoutEffect, useRef } from 'react';
 const MAXIMUM_DIFFERENCE = 1;
 
 interface Props {
-    children: ReactNode;
+    readonly children: ReactNode;
 }
 
 // from sentry team
