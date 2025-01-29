@@ -1,6 +1,6 @@
-import { createFileRoute } from '@tanstack/react-router';
-import { TodoDetailsIndex } from '@pages/Todo/TodoDetails/TodoDetails.index';
+import { createFileRoute } from '@tanstack/react-router'
+import { TodoDetailsIndex } from '@pages/Todo/TodoDetails/TodoDetails.index'
 
-export const Route = createFileRoute('/todo/$todoId')({
-    component: TodoDetailsIndex,
-});
+export const Route = createFileRoute('/todo_/$todoId')({
+  component: TodoDetailsIndex,
+})

@@ -1,13 +1,13 @@
-import { createFileRoute } from '@tanstack/react-router';
+import { createLazyFileRoute } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/')({
-    component: Index,
-    beforeLoad: ({ context }) => ({
-        queryClient: context.queryClient,
-        breadcrumbs: '/Home',
-    }),
-});
+export const Route = createLazyFileRoute('/')({
+  component: Index,
+  beforeLoad: ({ context }) => ({
+    queryClient: context.queryClient,
+    breadcrumbs: '/Home',
+  }),
+})
 
 function Index() {
-    return <div>Hello world</div>;
+  return <div>Hello world</div>
 }

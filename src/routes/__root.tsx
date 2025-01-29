@@ -16,6 +16,7 @@ const menu: { label: string; path: keyof FileRoutesByPath }[] = [
     { label: 'Mounting', path: '/mounting' },
     { label: 'Code Display', path: '/code-display' },
     { label: 'Tetris', path: '/tetris' },
+    { label: 'XState', path: '/x-state' },
 ];
 
 export const Route = createRootRouteWithContext<{
