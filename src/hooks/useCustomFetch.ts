@@ -56,7 +56,7 @@ export function useCustomFetch<T>({ url }: customFetchProps) {
                     if (!ignore) {
                         if (data.status >= 400) {
                             dispatch({ action: 'error', error: 'Une erreur lors du fetch' });
-                            Promise.reject();
+                            Promise.reject(new Error('Une erreur lors du fetch'));
                         }
                         return data.json();
                     }
@@ -85,8 +85,6 @@ export function useCustomFetch<T>({ url }: customFetchProps) {
 
     return { ...state, data: state.data as T | undefined, refetching } as const;
 }
-
-
 
 export const getTodoByIdQueryOptions = (id: string) => {
     const { getTodoById } = todoService();

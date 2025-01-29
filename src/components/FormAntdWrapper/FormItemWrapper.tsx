@@ -1,10 +1,8 @@
 import { Form } from 'antd';
-import { InputForm } from '../FormAntdWrapper/InputForm';
+import { InputForm } from './InputForm';
 import { InputFormType } from '@model/FormWrapperModel';
 
-interface FormItemWrapperProps {}
-
-export function FormItemWrapper({}: FormItemWrapperProps) {
+export function FormItemWrapper() {
     return (
         <Form.Item>
             <InputForm type={InputFormType.INPUT} />

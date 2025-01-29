@@ -23,6 +23,7 @@ export function FunctionRef() {
         <>
             {showDiv ? (
                 <div
+                    role="button"
                     className={css({
                         border: '1px wheat solid',
                         borderRadius: '5px',

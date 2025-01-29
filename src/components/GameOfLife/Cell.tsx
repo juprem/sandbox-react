@@ -16,6 +16,7 @@ const colorMap = new Map([
 export function Cell({ isAlive, setCellTab, age }: CellProps) {
     return (
         <div
+            role="button"
             className={css({
                 height: '10px',
                 width: '10px',
