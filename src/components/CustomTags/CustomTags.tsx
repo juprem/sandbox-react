@@ -1,6 +1,7 @@
 import Cross from '@assets/cross.svg';
 import { css } from '@styled-system/css';
 import { ReactNode } from 'react';
+import { Button } from 'antd';
 
 interface CustomTagsProps {
     text: ReactNode;
@@ -12,10 +13,18 @@ export function CustomTags({ text, onClose }: CustomTagsProps) {
     return (
         <div
             style={{ backgroundColor: colors[text ? text.toString().length % 3 : 0] }}
-            className={css({ display: 'flex', gap: '0.25rem', borderRadius: '5px', marginRight: '0.5rem', padding: '0 2px' })}
+            className={css({
+                display: 'flex',
+                gap: '0.25rem',
+                borderRadius: '5px',
+                marginRight: '0.5rem',
+                padding: '0 2px',
+            })}
         >
             {text}
-            <img onClick={onClose} className={css({ cursor: 'pointer' })} src={Cross} alt="close" />
+            <Button ghost onClick={onClose}>
+                <img src={Cross} alt="close" />
+            </Button>
         </div>
     );
 }

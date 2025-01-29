@@ -5,7 +5,7 @@ import { Input, SelectProps } from 'antd';
 export interface MyInputProps<Tvalue> {
     value?: Tvalue;
     onChange?: (...event: unknown[]) => void;
-    options?: SelectProps["options"];
+    options?: SelectProps['options'];
 }
 
 type IRenderByInputType<T> = {
@@ -17,9 +17,10 @@ export const RenderByInputTypeString = {
 } satisfies IRenderByInputType<string>;
 
 interface InputFormProps {
-    type: InputFormType
+    type: InputFormType;
 }
 
-export function InputForm({}: InputFormProps) {
+export function InputForm({ type }: InputFormProps) {
+    console.log(type);
     return <></>;
 }

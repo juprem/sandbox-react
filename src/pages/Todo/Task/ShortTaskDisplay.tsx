@@ -29,7 +29,7 @@ export function ShortTaskDisplay({ task, onClick }: ShortTaskDisplayProps) {
                     );
                 }}
             />
-            <div onClick={onClick} className={css({ cursor: 'pointer' })}>
+            <div role="button" onClick={onClick} className={css({ cursor: 'pointer' })}>
                 {task.name}
             </div>
         </div>

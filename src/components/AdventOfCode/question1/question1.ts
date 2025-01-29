@@ -16,7 +16,7 @@ const parse = new Map([
 
 function parseNumber(word: string) {
     let number: number[] = [];
-    [...word].reduce((prev, next) => {
+    const result = [...word].reduce((prev, next) => {
         if (Number(next)) {
             number.push(Number(next));
             return '';
@@ -31,6 +31,8 @@ function parseNumber(word: string) {
         }
         return current;
     }, '');
+
+    console.log(result);
 
     return number;
 }
