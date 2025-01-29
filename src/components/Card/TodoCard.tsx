@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 import styles from './Card.module.scss';
 
 interface CardProps {
-    todo: Todo;
+    readonly todo: Todo;
 }
 
 export function TodoCard({ todo }: CardProps) {

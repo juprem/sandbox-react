@@ -1,8 +1,9 @@
+import { Canvas } from '../Canvas/Canvas';
 
 export function CrashTest() {
     return (
         <div>
-
+            <Canvas />
         </div>
     );
 }

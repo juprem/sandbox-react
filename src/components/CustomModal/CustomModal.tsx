@@ -2,7 +2,6 @@ import { ReactNode, useRef } from 'react';
 import styles from './CustomModal.module.scss';
 import { Flex } from '../Flex/Flex';
 import { CustomModalHeader } from './CustomModalHeader';
-import { useEventListener } from '@hooks/useEventListener';
 import { createPortal } from 'react-dom';
 
 interface CustomModalProps {
@@ -25,23 +24,18 @@ export function CustomModal({ children, open, onClose, destroyOnClose = false, t
     }
 
     return createPortal(
-        <div
-            onClick={(e) => e.stopPropagation()}
-            onKeyDown={(e) => {
-                if (e.key === 'echap') {
-                    ref.current?.close();
-                }
-            }}
+        <dialog
+            id="dialog"
+            ref={ref}
+            className={styles.dialog}
         >
-            <dialog id="dialog" ref={ref} className={styles.dialog}>
-                {(!destroyOnClose || open) && (
-                    <Flex height="100%" gap="1.5rem" flexDirection="column">
-                        <CustomModalHeader onClose={onClose}>{title}</CustomModalHeader>
-                        <div>{children}</div>
-                    </Flex>
-                )}
-            </dialog>
-        </div>,
+            {(!destroyOnClose || open) && (
+                <Flex height="100%" gap="1.5rem" flexDirection="column">
+                    <CustomModalHeader onClose={onClose}>{title}</CustomModalHeader>
+                    <div>{children}</div>
+                </Flex>
+            )}
+        </dialog>,
         document.body,
     );
 }
