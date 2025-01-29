@@ -8,6 +8,19 @@ function drawRect(x: number, y: number, color: string, ctx: CanvasRenderingConte
     ctx.fillRect(x, y, 10, 10);
 }
 
+const buf = new Uint8Array(1);
+
+function get3random() {
+    crypto.getRandomValues(buf);
+    const rand1 = buf[0];
+    crypto.getRandomValues(buf);
+    const rand2 = buf[0];
+    crypto.getRandomValues(buf);
+    const rand3 = buf[0];
+
+    return [rand1, rand2, rand3] as const;
+}
+
 const color = ['red', 'blue', 'green', 'purple', 'yellow', 'white'];
 
 export function Canvas() {
@@ -24,23 +37,20 @@ export function Canvas() {
             currentCtx.fillRect(140, 140, 20, 20);
         }
         const intervalId = setInterval(() => {
-            drawRect(
-                Math.trunc(Math.random() * 300),
-                Math.trunc(Math.random() * 300),
-                color[Math.trunc(Math.random() * 6)],
-                canvas!.getContext('2d')!,
-            );
+            const [r1, r2, r3] = get3random();
+            drawRect(Math.trunc(r1 * 300), Math.trunc(r2 * 300), color[Math.trunc(r3 * 6)], canvas!.getContext('2d')!);
         }, 10);
 
         return () => {
-            clearInterval(intervalId)
-        }
+            clearInterval(intervalId);
+        };
     }, []);
     useEventListener({
         eventType: 'keydown',
         listener: (event) => {
             if (event.key == 'z') {
-                drawRect(Math.trunc(Math.random() * 300), Math.trunc(Math.random() * 300), 'red', ctx.current!);
+                const [r1, r2] = get3random();
+                drawRect(Math.trunc(r1 * 300), Math.trunc(r2 * 300), 'red', ctx.current!);
             }
         },
     });
