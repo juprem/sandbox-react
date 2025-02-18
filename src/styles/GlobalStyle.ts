@@ -11,7 +11,7 @@ export const flex = cva({
             row: {},
             column: {
                 flexDirection: 'column',
-                width: '100%',
+                width: 'fit-content',
             },
         },
     },

@@ -14,7 +14,6 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as XStateImport } from './routes/x-state'
-import { Route as TodoImport } from './routes/todo'
 import { Route as TetrisImport } from './routes/tetris'
 import { Route as MountingImport } from './routes/mounting'
 import { Route as EnhancedSwitchImport } from './routes/enhanced-switch'
@@ -23,7 +22,8 @@ import { Route as CrashTestImport } from './routes/crash-test'
 import { Route as ConwayGameImport } from './routes/conway-game'
 import { Route as CodeDisplayImport } from './routes/code-display'
 import { Route as BasicAnimationImport } from './routes/basic-animation'
-import { Route as TodoTodoIdImport } from './routes/todo_.$todoId'
+import { Route as TodoIndexImport } from './routes/todo/index'
+import { Route as TodoTodoIdImport } from './routes/todo/$todoId'
 
 // Create Virtual Routes
 
@@ -34,12 +34,6 @@ const IndexLazyImport = createFileRoute('/')()
 const XStateRoute = XStateImport.update({
   id: '/x-state',
   path: '/x-state',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const TodoRoute = TodoImport.update({
-  id: '/todo',
-  path: '/todo',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -97,8 +91,14 @@ const IndexLazyRoute = IndexLazyImport.update({
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
 
+const TodoIndexRoute = TodoIndexImport.update({
+  id: '/todo/',
+  path: '/todo/',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const TodoTodoIdRoute = TodoTodoIdImport.update({
-  id: '/todo_/$todoId',
+  id: '/todo/$todoId',
   path: '/todo/$todoId',
   getParentRoute: () => rootRoute,
 } as any)
@@ -170,13 +170,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TetrisImport
       parentRoute: typeof rootRoute
     }
-    '/todo': {
-      id: '/todo'
-      path: '/todo'
-      fullPath: '/todo'
-      preLoaderRoute: typeof TodoImport
-      parentRoute: typeof rootRoute
-    }
     '/x-state': {
       id: '/x-state'
       path: '/x-state'
@@ -184,11 +177,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof XStateImport
       parentRoute: typeof rootRoute
     }
-    '/todo_/$todoId': {
-      id: '/todo_/$todoId'
+    '/todo/$todoId': {
+      id: '/todo/$todoId'
       path: '/todo/$todoId'
       fullPath: '/todo/$todoId'
       preLoaderRoute: typeof TodoTodoIdImport
+      parentRoute: typeof rootRoute
+    }
+    '/todo/': {
+      id: '/todo/'
+      path: '/todo'
+      fullPath: '/todo'
+      preLoaderRoute: typeof TodoIndexImport
       parentRoute: typeof rootRoute
     }
   }
@@ -206,9 +206,9 @@ export interface FileRoutesByFullPath {
   '/enhanced-switch': typeof EnhancedSwitchRoute
   '/mounting': typeof MountingRoute
   '/tetris': typeof TetrisRoute
-  '/todo': typeof TodoRoute
   '/x-state': typeof XStateRoute
   '/todo/$todoId': typeof TodoTodoIdRoute
+  '/todo': typeof TodoIndexRoute
 }
 
 export interface FileRoutesByTo {
@@ -221,9 +221,9 @@ export interface FileRoutesByTo {
   '/enhanced-switch': typeof EnhancedSwitchRoute
   '/mounting': typeof MountingRoute
   '/tetris': typeof TetrisRoute
-  '/todo': typeof TodoRoute
   '/x-state': typeof XStateRoute
   '/todo/$todoId': typeof TodoTodoIdRoute
+  '/todo': typeof TodoIndexRoute
 }
 
 export interface FileRoutesById {
@@ -237,9 +237,9 @@ export interface FileRoutesById {
   '/enhanced-switch': typeof EnhancedSwitchRoute
   '/mounting': typeof MountingRoute
   '/tetris': typeof TetrisRoute
-  '/todo': typeof TodoRoute
   '/x-state': typeof XStateRoute
-  '/todo_/$todoId': typeof TodoTodoIdRoute
+  '/todo/$todoId': typeof TodoTodoIdRoute
+  '/todo/': typeof TodoIndexRoute
 }
 
 export interface FileRouteTypes {
@@ -254,9 +254,9 @@ export interface FileRouteTypes {
     | '/enhanced-switch'
     | '/mounting'
     | '/tetris'
-    | '/todo'
     | '/x-state'
     | '/todo/$todoId'
+    | '/todo'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -268,9 +268,9 @@ export interface FileRouteTypes {
     | '/enhanced-switch'
     | '/mounting'
     | '/tetris'
-    | '/todo'
     | '/x-state'
     | '/todo/$todoId'
+    | '/todo'
   id:
     | '__root__'
     | '/'
@@ -282,9 +282,9 @@ export interface FileRouteTypes {
     | '/enhanced-switch'
     | '/mounting'
     | '/tetris'
-    | '/todo'
     | '/x-state'
-    | '/todo_/$todoId'
+    | '/todo/$todoId'
+    | '/todo/'
   fileRoutesById: FileRoutesById
 }
 
@@ -298,9 +298,9 @@ export interface RootRouteChildren {
   EnhancedSwitchRoute: typeof EnhancedSwitchRoute
   MountingRoute: typeof MountingRoute
   TetrisRoute: typeof TetrisRoute
-  TodoRoute: typeof TodoRoute
   XStateRoute: typeof XStateRoute
   TodoTodoIdRoute: typeof TodoTodoIdRoute
+  TodoIndexRoute: typeof TodoIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -313,9 +313,9 @@ const rootRouteChildren: RootRouteChildren = {
   EnhancedSwitchRoute: EnhancedSwitchRoute,
   MountingRoute: MountingRoute,
   TetrisRoute: TetrisRoute,
-  TodoRoute: TodoRoute,
   XStateRoute: XStateRoute,
   TodoTodoIdRoute: TodoTodoIdRoute,
+  TodoIndexRoute: TodoIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -337,9 +337,9 @@ export const routeTree = rootRoute
         "/enhanced-switch",
         "/mounting",
         "/tetris",
-        "/todo",
         "/x-state",
-        "/todo_/$todoId"
+        "/todo/$todoId",
+        "/todo/"
       ]
     },
     "/": {
@@ -369,14 +369,14 @@ export const routeTree = rootRoute
     "/tetris": {
       "filePath": "tetris.tsx"
     },
-    "/todo": {
-      "filePath": "todo.tsx"
-    },
     "/x-state": {
       "filePath": "x-state.tsx"
     },
-    "/todo_/$todoId": {
-      "filePath": "todo_.$todoId.tsx"
+    "/todo/$todoId": {
+      "filePath": "todo/$todoId.tsx"
+    },
+    "/todo/": {
+      "filePath": "todo/index.tsx"
     }
   }
 }

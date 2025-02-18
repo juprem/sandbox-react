@@ -12,7 +12,7 @@ const menu: { label: string; path: keyof FileRoutesByPath }[] = [
     { label: 'Draggable', path: '/draggable-motion' },
     { label: 'Enhanced switch', path: '/enhanced-switch' },
     { label: 'Conway Game', path: '/conway-game' },
-    { label: 'Todo', path: '/todo' },
+    { label: 'Todo', path: '/todo/' },
     { label: 'Mounting', path: '/mounting' },
     { label: 'Code Display', path: '/code-display' },
     { label: 'Tetris', path: '/tetris' },

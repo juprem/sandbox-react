@@ -1,15 +1,9 @@
-import { Canvas } from '../Canvas/Canvas';
-
 export function CrashTest() {
-    return (
-        <div>
-            <Canvas />
-        </div>
-    );
+    return <input type="date" multiple />;
 }
 
 /*
-background color #242424
+background color #242424x
 card color #2e2e2e
 border color #3b3b3b
 

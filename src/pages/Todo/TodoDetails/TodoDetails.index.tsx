@@ -1,11 +1,10 @@
 import { WithSkeleton } from '../../../components/WithSkeleton/WithSkeleton';
 import { TodoDetailsDisplay } from './TodoDetailsDisplay';
 import { useGetTodo } from '@hooks/useTodos';
-import { Route } from '@routes/todo_.$todoId';
+import { Route } from '@routes/todo/$todoId';
 
 
 export function TodoDetailsIndex() {
-    // @ts-ignore
     const { todoId } = Route.useParams();
     const { data: todo, isError, isLoading } = useGetTodo(todoId);
 
