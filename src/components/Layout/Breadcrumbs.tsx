@@ -12,12 +12,14 @@ export function Breadcrumbs() {
             path: pathname,
         };
     });
-    console.log("breadcrumbs", router);
+    console.log('breadcrumbs', router);
 
     return (
-        <div className={css({ display: 'flex', gap: '0.2rem', marginBottom: '1rem', marginLeft: '5px', color: 'white' })}>
-            {breadcrumbs.map((it) => (
-                <div key={it.path}>{it.title}</div>
+        <div
+            className={css({ display: 'flex', gap: '0.2rem', marginBottom: '1rem', marginLeft: '5px', color: 'white' })}
+        >
+            {breadcrumbs.map((it, index) => (
+                <div key={it.path + index}>{it.title}</div>
             ))}
         </div>
     );
