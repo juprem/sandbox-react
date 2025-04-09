@@ -1,4 +1,4 @@
-import { css } from '../../../styled-system/css';
+import { css } from '@styled-system/css';
 import { Cell } from './Cell';
 import { useEffect, useState } from 'react';
 import { calculateNextIteration, cleanUp, init } from './calculation';
@@ -11,7 +11,7 @@ interface LifeGameProps {
 }
 
 export interface CellStatus {
-    isAlive: 1 | 0;
+    isAlive: boolean;
     position: [number, number];
     age: number;
     neighbour: (readonly [number, number])[];
@@ -47,7 +47,7 @@ export function LifeGame({ matrixSize, start, speedResolve }: LifeGameProps) {
                             setCellTab={() =>
                                 setCellTab((prev) => {
                                     prev[it.position[0]][it.position[1]] = {
-                                        isAlive: it.isAlive === 1 ? 0 : 1,
+                                        isAlive: !it.isAlive,
                                         position: it.position,
                                         age: 0,
                                         neighbour: it.neighbour

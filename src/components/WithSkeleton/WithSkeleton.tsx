@@ -1,4 +1,4 @@
-import { Measure } from '../../model/classnameModels';
+import { Measure } from '@model/classnameModels';
 import { ReactNode } from 'react';
 import { Skeleton } from './Skeleton';
 

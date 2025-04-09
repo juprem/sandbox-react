@@ -13,7 +13,7 @@ export function todoService() {
     }
 
     async function postTodo(todoCreate: TodoCreate) {
-        return await postQuery('/todos', todoCreate, TodoSchema)
+        return await postQuery('/todos', todoCreate, TodoSchema);
     }
 
     return { getTodoById, getTodos, postTodo };

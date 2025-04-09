@@ -10,9 +10,8 @@ export function Todo() {
     return (
         <>
             <CreateTodoModal />
-            <div className={css({ display: 'flex', gap: '1rem' })}>
+            <div className={css({ display: 'flex', gap: '1rem', color: 'black' })}>
                 {data?.map((todo) => (
-                    // @ts-ignore
                     <Link key={todo.id} to={`/todo/$todoId`} params={{ todoId: todo.id }}>
                         <TodoCard todo={todo} />
                     </Link>

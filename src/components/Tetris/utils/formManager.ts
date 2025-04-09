@@ -82,8 +82,8 @@ export function canRotate(grid: GridCell[], form: Form, position: readonly [numb
 
 export function hasFullLine(grid: GridCell[]) {
     const lined = Array.from({ length: 20 }, (_, i) => {
-        return { y: i, line: grid.filter((cell) => cell[1] === i).map((cell) => cell[2]) };
+        return { x: i, line: grid.filter((cell) => cell[1] === i).map((cell) => cell[2]) };
     });
 
-    return lined.filter((line) => !line.line.some((it) => it === 'whitesmoke')).map((it) => it.y);
+    return lined.filter((line) => !line.line.some((it) => it === 'whitesmoke')).map((it) => it.x);
 }

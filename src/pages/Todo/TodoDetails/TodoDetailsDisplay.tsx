@@ -8,7 +8,7 @@ import { Flex } from '../../../components/Flex/Flex';
 import { ShortTaskDisplay } from '../Task/ShortTaskDisplay';
 
 interface TodoDetailsDisplayProps {
-    todo?: Todo;
+    todo: Todo;
     todoId: string;
 }
 
@@ -16,7 +16,6 @@ export function TodoDetailsDisplay({ todo, todoId }: TodoDetailsDisplayProps) {
     const { data: tasks } = useGetTasksByTodo(todoId);
     const [task, setTask] = useState<Task>();
 
-    if (!todo) return <div>Coucou</div>;
 
     return (
         <Flex height="100%">

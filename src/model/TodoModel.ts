@@ -8,12 +8,13 @@ export const Priority = [
 
 export const TodoSchema = z.object({
     name: z.string(),
-    description: z.string().optional(),
+    description: z.string().optional().nullable(),
     id: z.string().readonly(),
     createdTime: z.string().readonly(),
     dueDate: z.string(),
     priority: z.enum(['LOW', 'MEDIUM', 'HIGH']),
     isArchived: z.boolean(),
+    isDone: z.boolean().readonly(),
     tags: z.array(z.string()),
 });
 
