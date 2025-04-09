@@ -1,5 +1,5 @@
-import { taskService } from '../service/taskService';
-import { useMutation, useSuspenseQuery } from '@tanstack/react-query';
+import { taskService } from '@service/taskService';
+import { useMutation, useQuery } from '@tanstack/react-query';
 
 export const taskKeys = {
     all: ['task'] as const,
@@ -11,7 +11,7 @@ export const taskKeys = {
 export const useGetTasksByTodo = (id: string) => {
     const { getTaskByTodo } = taskService();
 
-    return useSuspenseQuery({
+    return useQuery({
         queryFn: () => getTaskByTodo(id),
         queryKey: taskKeys.listByTodo(id),
     });

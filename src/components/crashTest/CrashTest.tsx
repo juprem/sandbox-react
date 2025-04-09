@@ -1,6 +1,7 @@
 export function CrashTest() {
-    return <input type="date" multiple />;
+    return <></>;
 }
+
 
 /*
 background color #242424x
@@ -14,6 +15,7 @@ const x = useMotionValue(0);
     "linear-gradient(180deg, #7700ff 0%, rgb(68, 0, 255) 100%)",
     "linear-gradient(180deg, rgb(230, 255, 0) 0%, rgb(3, 209, 0) 100%)"
   ]);
+
   const color = useTransform(x, xInput, [
     "rgb(211, 9, 225)",
     "rgb(68, 0, 255)",

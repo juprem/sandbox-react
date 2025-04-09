@@ -32,7 +32,8 @@ const memoryHistory = createMemoryHistory({
 
 const router = createRouter({
     routeTree,
-    history: memoryHistory,
+    basepath: "/sandbox-react/",
+    // history: memoryHistory,
     context: {
         queryClient: queryClient,
         breadcrumbs: '',
