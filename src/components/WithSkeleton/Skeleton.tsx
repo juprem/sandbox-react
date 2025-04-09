@@ -1,5 +1,5 @@
 import { css } from '@styled-system/css';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { Measure } from '@model/classnameModels';
 
 interface SkeletonProps {

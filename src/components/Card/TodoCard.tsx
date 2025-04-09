@@ -8,12 +8,22 @@ interface CardProps {
     readonly todo: Todo;
 }
 
+
+const priorityColor = {
+    LOW: '#52c44e',
+    MEDIUM: '#c4c24e',
+    HIGH: '#C44E4F',
+}
+
 export function TodoCard({ todo }: CardProps) {
     return (
         <div
+            style={{
+                border: `2px solid ${priorityColor[todo.priority]}`,
+            }}
             className={css({
                 borderRadius: '5px',
-                backgroundColor: '#C44E4F',
+                backgroundColor: 'whitesmoke',
                 width: '200px',
                 height: '150px',
                 padding: '5px',
@@ -22,8 +32,11 @@ export function TodoCard({ todo }: CardProps) {
                 justifyContent: 'space-between',
             })}
         >
+            <div>
             <div className={css({ fontSize: '11px' })}>{dayjs(todo.dueDate).format('DD MMM YYYY HH:mm:ss')}</div>
-            <div className={styles.titleText}>{todo.name}</div>
+
+            </div>
+                <div className={styles.titleText}>{todo.name}</div>
             <div className={css({
                 display: 'flex',
                 gap: '0.2rem',

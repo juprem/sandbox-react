@@ -2,7 +2,7 @@ import { createRootRouteWithContext, FileRoutesByPath, Link, Outlet } from '@tan
 import { css } from '@styled-system/css';
 import { Sidebar } from '../components/Layout/Sidebar';
 import { Content } from '../components/Layout/Content';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { QueryClient } from '@tanstack/react-query';
 import { Breadcrumbs } from '../components/Layout/Breadcrumbs';
 
@@ -27,7 +27,6 @@ export const Route = createRootRouteWithContext<{
 });
 
 function RootComponent() {
-
     return (
         <>
             <Sidebar>

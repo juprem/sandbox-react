@@ -44,16 +44,32 @@ export function CreateTodoModal() {
                     <Form.Item name="description" label="description">
                         <TextArea />
                     </Form.Item>
-                    <Form.Item name="priority" label="Priorité">
+                    <Form.Item
+                        name="priority"
+                        label="Priorité"
+                        rules={[{ required: true, message: 'Veuillez ajouter une priorité' }]}
+                    >
                         <Select options={Priority} />
                     </Form.Item>
-                    <Form.Item name="dueDate" label="Date d'exécution">
+                    <Form.Item
+                        name="dueDate"
+                        label="Date d'exécution"
+                        rules={[{ required: true, message: 'Veuillez ajouter une date' }]}
+                    >
                         <DatePicker showTime />
                     </Form.Item>
-                    <Form.Item name="tags" label="Labels">
+                    <Form.Item
+                        name="tags"
+                        label="Labels"
+                        rules={[{ required: true, message: 'Veuillez ajouter des labels' }]}
+                    >
                         <Select
                             mode="tags"
-                            tagRender={(props) => <Tag color="blue" onClose={props.onClose}>{props.label}</Tag>}
+                            tagRender={(props) => (
+                                <Tag color="blue" onClose={props.onClose}>
+                                    {props.label}
+                                </Tag>
+                            )}
                         />
                     </Form.Item>
                     <Button htmlType="submit">Ajouter</Button>

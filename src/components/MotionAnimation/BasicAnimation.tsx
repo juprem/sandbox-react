@@ -1,5 +1,5 @@
 import { basicShape, TRContainer } from '../../styles/GlobalStyle';
-import { motion, useMotionValue, useTransform } from 'framer-motion';
+import { motion, useMotionValue, useTransform } from 'motion/react';
 import { useState } from 'react';
 import { SliderMotion } from './Settings/SliderMotion';
 import { Centered } from '../LayoutBlock/Centered';

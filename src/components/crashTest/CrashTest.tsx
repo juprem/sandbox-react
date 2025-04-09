@@ -1,6 +1,32 @@
+import { motion } from 'motion/react';
+import ViteIcon from '../../assets/react.svg';
+import { css } from '@styled-system/css';
+import { useState } from 'react';
+
 export function CrashTest() {
-    return <input type="date" multiple />;
+    const [done, setDone] = useState(false);
+
+    return (
+        <motion.div
+            animate={done ? { rotateY: '360deg' } : { rotateY: 0 }}
+            transition={{
+                duration: '1s',
+                type: 'spring',
+            }}
+            whileHover={{
+                scale: 1.1,
+                transition: { duration: 0.2 },
+            }}
+            onClick={() => {
+                setDone(!done);
+            }}
+            className={css({ width: 'fit-content' })}
+        >
+            <img id="my-id" src={ViteIcon} alt="Vite icon" />
+        </motion.div>
+    );
 }
+
 
 /*
 background color #242424x
@@ -14,6 +40,7 @@ const x = useMotionValue(0);
     "linear-gradient(180deg, #7700ff 0%, rgb(68, 0, 255) 100%)",
     "linear-gradient(180deg, rgb(230, 255, 0) 0%, rgb(3, 209, 0) 100%)"
   ]);
+
   const color = useTransform(x, xInput, [
     "rgb(211, 9, 225)",
     "rgb(68, 0, 255)",

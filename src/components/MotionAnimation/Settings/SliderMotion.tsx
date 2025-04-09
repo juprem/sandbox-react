@@ -1,6 +1,6 @@
 import { Slider } from 'antd/lib';
 import { flex } from '../../../styles/GlobalStyle';
-import { css } from '../../../../styled-system/css';
+import { css } from '@styled-system/css';
 
 interface ElasticSliderProps {
     setter: (val: number) => void;
