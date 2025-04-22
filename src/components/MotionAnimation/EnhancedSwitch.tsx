@@ -1,5 +1,5 @@
 import { css } from '../../../styled-system/css';
-import { motion, useMotionValue, useTransform } from 'motion/react';
+import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { useState } from 'react';
 import { Centered } from '../LayoutBlock/Centered';
 

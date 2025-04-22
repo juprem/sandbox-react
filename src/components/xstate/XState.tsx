@@ -2,7 +2,7 @@ import { createActorContext } from '@xstate/react';
 import { Button } from 'antd';
 import { assign, setup } from 'xstate';
 import { basicShape, flex } from '../../styles/GlobalStyle';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 
 const countMachine = setup({
     types: {

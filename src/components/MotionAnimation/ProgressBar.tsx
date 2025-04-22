@@ -1,4 +1,4 @@
-import { motion, useMotionValue, useTransform } from 'motion/react';
+import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { css } from '@styled-system/css';
 import styles from './MotionAnimation.module.scss';
 

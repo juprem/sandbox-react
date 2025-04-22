@@ -1,4 +1,4 @@
-import { motion, useMotionValue, useTransform } from 'motion/react';
+import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { basicShape, TRContainer } from '../../styles/GlobalStyle';
 import { useState } from 'react';
 import { Switch } from 'antd';
