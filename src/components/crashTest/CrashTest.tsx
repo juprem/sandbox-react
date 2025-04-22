@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import ViteIcon from '../../assets/react.svg';
 import { css } from '@styled-system/css';
 import { useState } from 'react';
