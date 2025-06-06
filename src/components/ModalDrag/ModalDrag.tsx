@@ -27,7 +27,7 @@ export function ModalDrag({ x, y, onClose, open }: ModalDragProps) {
                 left: x,
             }}
             open={open}
-            onClose={onClose}
+            onCancel={onClose}
             className={styles.resizable}
             title={
                 <div {...attributes} {...listeners}>

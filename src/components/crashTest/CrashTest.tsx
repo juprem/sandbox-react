@@ -1,29 +1,11 @@
-import { motion } from 'framer-motion';
-import ViteIcon from '../../assets/react.svg';
-import { css } from '@styled-system/css';
-import { useState } from 'react';
+import styles from './CrashTest.module.scss'
+
 
 export function CrashTest() {
-    const [done, setDone] = useState(false);
-
     return (
-        <motion.div
-            animate={done ? { rotateY: '360deg' } : { rotateY: 0 }}
-            transition={{
-                duration: '1s',
-                type: 'spring',
-            }}
-            whileHover={{
-                scale: 1.1,
-                transition: { duration: 0.2 },
-            }}
-            onClick={() => {
-                setDone(!done);
-            }}
-            className={css({ width: 'fit-content' })}
-        >
-            <img id="my-id" src={ViteIcon} alt="Vite icon" />
-        </motion.div>
+        <div className={styles.border}>
+            COucou
+        </div>
     );
 }
 
