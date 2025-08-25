@@ -14,6 +14,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as XStateRouteImport } from './routes/x-state'
 import { Route as TetrisRouteImport } from './routes/tetris'
 import { Route as MountingRouteImport } from './routes/mounting'
+import { Route as MineSweeperRouteImport } from './routes/mine-sweeper'
 import { Route as EnhancedSwitchRouteImport } from './routes/enhanced-switch'
 import { Route as DraggableMotionRouteImport } from './routes/draggable-motion'
 import { Route as CrashTestRouteImport } from './routes/crash-test'
@@ -38,6 +39,11 @@ const TetrisRoute = TetrisRouteImport.update({
 const MountingRoute = MountingRouteImport.update({
   id: '/mounting',
   path: '/mounting',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MineSweeperRoute = MineSweeperRouteImport.update({
+  id: '/mine-sweeper',
+  path: '/mine-sweeper',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EnhancedSwitchRoute = EnhancedSwitchRouteImport.update({
@@ -94,6 +100,7 @@ export interface FileRoutesByFullPath {
   '/crash-test': typeof CrashTestRoute
   '/draggable-motion': typeof DraggableMotionRoute
   '/enhanced-switch': typeof EnhancedSwitchRoute
+  '/mine-sweeper': typeof MineSweeperRoute
   '/mounting': typeof MountingRoute
   '/tetris': typeof TetrisRoute
   '/x-state': typeof XStateRoute
@@ -108,6 +115,7 @@ export interface FileRoutesByTo {
   '/crash-test': typeof CrashTestRoute
   '/draggable-motion': typeof DraggableMotionRoute
   '/enhanced-switch': typeof EnhancedSwitchRoute
+  '/mine-sweeper': typeof MineSweeperRoute
   '/mounting': typeof MountingRoute
   '/tetris': typeof TetrisRoute
   '/x-state': typeof XStateRoute
@@ -123,6 +131,7 @@ export interface FileRoutesById {
   '/crash-test': typeof CrashTestRoute
   '/draggable-motion': typeof DraggableMotionRoute
   '/enhanced-switch': typeof EnhancedSwitchRoute
+  '/mine-sweeper': typeof MineSweeperRoute
   '/mounting': typeof MountingRoute
   '/tetris': typeof TetrisRoute
   '/x-state': typeof XStateRoute
@@ -139,6 +148,7 @@ export interface FileRouteTypes {
     | '/crash-test'
     | '/draggable-motion'
     | '/enhanced-switch'
+    | '/mine-sweeper'
     | '/mounting'
     | '/tetris'
     | '/x-state'
@@ -153,6 +163,7 @@ export interface FileRouteTypes {
     | '/crash-test'
     | '/draggable-motion'
     | '/enhanced-switch'
+    | '/mine-sweeper'
     | '/mounting'
     | '/tetris'
     | '/x-state'
@@ -167,6 +178,7 @@ export interface FileRouteTypes {
     | '/crash-test'
     | '/draggable-motion'
     | '/enhanced-switch'
+    | '/mine-sweeper'
     | '/mounting'
     | '/tetris'
     | '/x-state'
@@ -182,6 +194,7 @@ export interface RootRouteChildren {
   CrashTestRoute: typeof CrashTestRoute
   DraggableMotionRoute: typeof DraggableMotionRoute
   EnhancedSwitchRoute: typeof EnhancedSwitchRoute
+  MineSweeperRoute: typeof MineSweeperRoute
   MountingRoute: typeof MountingRoute
   TetrisRoute: typeof TetrisRoute
   XStateRoute: typeof XStateRoute
@@ -210,6 +223,13 @@ declare module '@tanstack/react-router' {
       path: '/mounting'
       fullPath: '/mounting'
       preLoaderRoute: typeof MountingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mine-sweeper': {
+      id: '/mine-sweeper'
+      path: '/mine-sweeper'
+      fullPath: '/mine-sweeper'
+      preLoaderRoute: typeof MineSweeperRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/enhanced-switch': {
@@ -286,6 +306,7 @@ const rootRouteChildren: RootRouteChildren = {
   CrashTestRoute: CrashTestRoute,
   DraggableMotionRoute: DraggableMotionRoute,
   EnhancedSwitchRoute: EnhancedSwitchRoute,
+  MineSweeperRoute: MineSweeperRoute,
   MountingRoute: MountingRoute,
   TetrisRoute: TetrisRoute,
   XStateRoute: XStateRoute,

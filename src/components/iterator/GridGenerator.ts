@@ -4,7 +4,7 @@ export type CellCoordinate = { x: number; y: number };
 
 export type BaseGridCell = { neighbors: CellCoordinate[] } & CellCoordinate;
 
-export class GridGenerator<T> {
+export class GridGenerator<T = BaseGridCell> {
     readonly size: number;
     readonly transformer: ({ x, y, neighbors }: BaseGridCell) => T;
 
@@ -22,9 +22,9 @@ export class GridGenerator<T> {
     }
 
     *[Symbol.iterator]() {
-        for (let y = 0; y < this.size; y++) {
-            const row = [];
-            for (let x = 0; x < this.size; x++) {
+        for (let x = 0; x < this.size; x++) {
+            const row: T[] = [];
+            for (let y = 0; y < this.size; y++) {
                 row.push({ ...this.transformer({ x, y, neighbors: getAllNeighbour([x, y], this.size) })});
             }
             yield row;

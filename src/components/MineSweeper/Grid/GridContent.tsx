@@ -17,7 +17,7 @@ export function GridContent() {
                 className={css({
                     display: 'grid',
                 })}
-                style={{ gridTemplateColumns: `repeat(${length}, 20px)` }}
+                style={{ gridTemplateColumns: `repeat(${length}, 50px)` }}
             >
                 {baseGrid.flat().map((cell) => (
                     <Cell x={cell.x} y={cell.y} key={`${cell.x}-${cell.y}`} />

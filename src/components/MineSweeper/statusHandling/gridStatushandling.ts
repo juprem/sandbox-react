@@ -1,36 +1,17 @@
 import { assign, setup } from 'xstate';
-import { BaseSweeperCell, CELL_STATUS, CellCoordinate } from '../models/cell';
+import { BaseSweeperCell } from '../models/cell';
 import { createActorContext } from '@xstate/react';
-import { produce } from 'immer';
 import { generateGrid } from '../generator/generator';
-
-interface ChangeCellStatus {
-    x: number;
-    y: number;
-    status: CELL_STATUS;
-}
+import { Difficulty, difficultyReference } from '../models/difficulty';
+import { ChangeCellStatus, GAME_STATUS, processToNextCell } from './changeStatus';
 
 function getGrid(length: number) {
     return generateGrid(Math.ceil(0.2 * length * length), length);
 }
 
-export type Difficulty = 'EASY' | 'MEDIUM' | 'HARD';
-
-export const difficultyOptions: Record<Difficulty, string> = {
-    EASY: 'facile',
-    MEDIUM: 'normal',
-    HARD: 'difficile',
-};
-
-const difficultyReference: Record<Difficulty, number> = {
-    HARD: 30,
-    EASY: 10,
-    MEDIUM: 20,
-};
-
 const gridMachine = setup({
     types: {
-        context: {} as { grid: BaseSweeperCell[][]; gridLength: number },
+        context: {} as { grid: BaseSweeperCell[][]; gridLength: number; gameStatus: GAME_STATUS },
         events: {} as
             | { type: 'changeStatus'; newCellStatus: ChangeCellStatus }
             | { type: 'reset' }
@@ -40,44 +21,14 @@ const gridMachine = setup({
               },
     },
     actions: {
-        changeStatus: assign({
-            grid: ({ context }, params: ChangeCellStatus) => {
-                const { x, y, type, status } = context.grid[params.x][params.y];
+        changeStatus: assign(({ context }, params: ChangeCellStatus) => {
+            const { newGrid, newGameStatus } = processToNextCell(context.grid, params, context.gameStatus);
 
-                if (status == 'REVEALED' || (params.status != 'FLAGGED' && status == 'FLAGGED')) {
-                    return context.grid;
-                }
-
-                if (params.status == 'FLAGGED') {
-                    return produce(context.grid, (draft) => {
-                        draft[params.x][params.y].status =
-                            draft[params.x][params.y].status == 'FLAGGED' ? 'HIDDEN' : 'FLAGGED';
-                    });
-                }
-
-                if (type == 'EMPTY') {
-                    const { neighbors } = context.grid[x][y];
-
-                    return produce(context.grid, (draft) => {
-                        const cellToUpdate = getEmptyCellsPropagationToReveal(
-                            neighbors,
-                            draft,
-                            new Set(`${x},${y}`),
-                            [],
-                        );
-                        draft[x][y].status = 'REVEALED';
-                        cellToUpdate.forEach((row) => (draft[row.x][row.y].status = 'REVEALED'));
-                    });
-                }
-
-                const newGrid = produce(context.grid, (draft) => {
-                    draft[params.x][params.y].status = params.status;
-                });
-                return newGrid;
-            },
+            return { grid: newGrid, gameStatus: newGameStatus };
         }),
         reset: assign({
             grid: ({ context }) => (context.grid = getGrid(context.gridLength)),
+            gameStatus: ({ context }) => (context.gameStatus = 'PLAYING' as GAME_STATUS),
         }),
         difficulty: assign({
             grid: ({ context }, params: number) => (context.grid = getGrid(params)),
@@ -85,7 +36,7 @@ const gridMachine = setup({
         }),
     },
 }).createMachine({
-    context: { grid: getGrid(10), gridLength: 10 },
+    context: { grid: getGrid(10), gridLength: 10, gameStatus: 'PLAYING' },
     on: {
         changeStatus: {
             actions: {
@@ -109,29 +60,3 @@ const gridMachine = setup({
 });
 
 export const GridActorContext = createActorContext(gridMachine);
-
-function getEmptyCellsPropagationToReveal(
-    neighbors: CellCoordinate[],
-    grid: BaseSweeperCell[][],
-    updatedCell: Set<string>,
-    result: CellCoordinate[],
-): CellCoordinate[] {
-    const hiddenCells = neighbors.filter((neighbour) => {
-        const { x: nx, y: ny } = neighbour;
-        const nkey = `${nx},${ny}`;
-        return grid[nx][ny].type == 'EMPTY' && grid[nx][ny].status == 'HIDDEN' && !updatedCell.has(nkey);
-    });
-
-    if (hiddenCells.length == 0) {
-        return result;
-    }
-
-    hiddenCells.forEach((hcell) => {
-        updatedCell.add(`${hcell.x},${hcell.y}`);
-        result.push({ x: hcell.x, y: hcell.y });
-    });
-
-    return hiddenCells.flatMap((neighbour) =>
-        getEmptyCellsPropagationToReveal(grid[neighbour.x][neighbour.y].neighbors, grid, updatedCell, result),
-    );
-}

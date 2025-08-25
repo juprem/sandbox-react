@@ -16,6 +16,7 @@ const menu: { label: string; path: keyof FileRoutesByPath }[] = [
     { label: 'Mounting', path: '/mounting' },
     { label: 'Code Display', path: '/code-display' },
     { label: 'Tetris', path: '/tetris' },
+    { label: 'MineSweeper', path: '/mine-sweeper' },
     { label: 'XState', path: '/x-state' },
 ];
 
@@ -69,7 +70,7 @@ function RootComponent() {
                         >
                             <motion.div
                                 whileHover={{
-                                    translateX: 5,
+                                    x: 5,
                                 }}
                             >
                                 {item.label}

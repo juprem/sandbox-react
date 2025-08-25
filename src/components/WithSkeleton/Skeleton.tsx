@@ -30,7 +30,7 @@ export function Skeleton({ width, height, getWidth }: SkeletonProps) {
                     width: getWidth * 0.2,
                 }}
                 animate={{
-                    translateX: [0, getWidth * 0.8, 0],
+                    x: [0, getWidth * 0.8, 0],
                 }}
                 transition={{
                     duration: 2,

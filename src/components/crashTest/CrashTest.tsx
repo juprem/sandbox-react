@@ -1,8 +1,15 @@
 import './CrashTest.module.scss';
 import { MineSweeper } from '../MineSweeper/MineSweeper';
+import { CanvasDrawing } from '../Canvas/CanvasDrawing';
 
 export function CrashTest() {
-    return <MineSweeper />;
+    return (
+        <>
+            <MineSweeper />
+
+            <CanvasDrawing />
+        </>
+    );
 }
 
 /*

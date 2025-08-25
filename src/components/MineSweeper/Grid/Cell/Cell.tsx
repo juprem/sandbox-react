@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { GridActorContext } from '../../statusHandling/gridStatushandling';
 import { CellContent } from './CellContent';
 import { useCellListener } from '../../hooks/useCellListener';
+import { log } from 'xstate';
 
 interface CellProps {
     x: number;
@@ -18,14 +19,14 @@ export function Cell({ x, y }: CellProps) {
     return (
         <motion.div
             className={css({
-                width: '20px',
-                height: '20px',
+                width: '50px',
+                height: '50px',
                 border: '1px solid gray',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 color: 'black',
-                fontSize: '10px',
+                fontSize: '20px',
             })}
             style={{ backgroundColor: status === 'REVEALED' ? '#faf8f8' : 'lightgray' }}
             whileHover={{
