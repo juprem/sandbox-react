@@ -3,7 +3,6 @@ import { motion } from 'framer-motion';
 import { GridActorContext } from '../../statusHandling/gridStatushandling';
 import { CellContent } from './CellContent';
 import { useCellListener } from '../../hooks/useCellListener';
-import { log } from 'xstate';
 
 interface CellProps {
     x: number;

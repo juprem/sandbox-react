@@ -32,8 +32,6 @@ function parseNumber(word: string) {
         return current;
     }, '');
 
-    console.log(result);
-
     return number;
 }
 

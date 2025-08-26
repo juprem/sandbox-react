@@ -8,17 +8,13 @@ function drawRect(x: number, y: number, color: string, ctx: CanvasRenderingConte
     ctx.fillRect(x, y, 10, 10);
 }
 
-const buf = new Uint32Array(1);
+function* getXRandom(nbRand: number) {
+    const buf = new Uint32Array(1);
 
-function get3random() {
-    crypto.getRandomValues(buf);
-    const rand1 = buf[0] / (0xffffffff + 1);
-    crypto.getRandomValues(buf);
-    const rand2 = buf[0] / (0xffffffff + 1);
-    crypto.getRandomValues(buf);
-    const rand3 = buf[0] / (0xffffffff + 1);
-
-    return [rand1, rand2, rand3] as const;
+    for (let i = 0; i < nbRand; i++) {
+        crypto.getRandomValues(buf);
+        yield buf[0] / (0xffffffff + 1);
+    }
 }
 
 const color = ['red', 'blue', 'green', 'purple', 'yellow', 'white'];
@@ -37,7 +33,7 @@ export function Canvas() {
             currentCtx.fillRect(140, 140, 20, 20);
         }
         const intervalId = setInterval(() => {
-            const [r1, r2, r3] = get3random();
+            const [r1, r2, r3] = getXRandom(3);
             drawRect(Math.floor(r1 * 300), Math.floor(r2 * 300), color[Math.floor(r3 * 6)], canvas!.getContext('2d')!);
         }, 100);
 
@@ -49,7 +45,7 @@ export function Canvas() {
         eventType: 'keydown',
         listener: (event) => {
             if (event.key == 'z') {
-                const [r1, r2] = get3random();
+                const [r1, r2] = getXRandom(3);
                 if (ctx.current) {
                     drawRect(Math.trunc(r1 * 300), Math.trunc(r2 * 300), 'red', ctx.current);
                 }

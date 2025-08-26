@@ -55,8 +55,6 @@ export function action(state: StateType, actionRed: PositionAction): StateType {
 
             if (formInGrid.some((cell) => cell[1] >= 20)) return state;
 
-            console.log(hasFullLine(grid));
-
             return { ...state, position: [position[0], position[1] + 1], lastTick: 0 };
         }
         case 'left':

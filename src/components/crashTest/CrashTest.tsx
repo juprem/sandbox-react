@@ -1,16 +1,10 @@
 import './CrashTest.module.scss';
-import { MineSweeper } from '../MineSweeper/MineSweeper';
-import { CanvasDrawing } from '../Canvas/CanvasDrawing';
+import { InfiniteQueryPage } from '../InfiniteScrolling/InfiniteQueryPage';
 
 export function CrashTest() {
-    return (
-        <>
-            <MineSweeper />
-
-            <CanvasDrawing />
-        </>
-    );
+    return <InfiniteQueryPage />;
 }
+
 
 /*
 background color #242424x

@@ -14,9 +14,11 @@ const menu: { label: string; path: keyof FileRoutesByPath }[] = [
     { label: 'Conway Game', path: '/conway-game' },
     { label: 'Todo', path: '/todo/' },
     { label: 'Mounting', path: '/mounting' },
+    { label: 'Canvas Filler', path: '/canvas-filler' },
     { label: 'Code Display', path: '/code-display' },
     { label: 'Tetris', path: '/tetris' },
     { label: 'MineSweeper', path: '/mine-sweeper' },
+    { label: 'InfiniteQuery', path: '/infinite-loading' },
     { label: 'XState', path: '/x-state' },
 ];
 

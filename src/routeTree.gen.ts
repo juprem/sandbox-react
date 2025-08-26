@@ -15,11 +15,13 @@ import { Route as XStateRouteImport } from './routes/x-state'
 import { Route as TetrisRouteImport } from './routes/tetris'
 import { Route as MountingRouteImport } from './routes/mounting'
 import { Route as MineSweeperRouteImport } from './routes/mine-sweeper'
+import { Route as InfiniteLoadingRouteImport } from './routes/infinite-loading'
 import { Route as EnhancedSwitchRouteImport } from './routes/enhanced-switch'
 import { Route as DraggableMotionRouteImport } from './routes/draggable-motion'
 import { Route as CrashTestRouteImport } from './routes/crash-test'
 import { Route as ConwayGameRouteImport } from './routes/conway-game'
 import { Route as CodeDisplayRouteImport } from './routes/code-display'
+import { Route as CanvasFillerRouteImport } from './routes/canvas-filler'
 import { Route as BasicAnimationRouteImport } from './routes/basic-animation'
 import { Route as TodoIndexRouteImport } from './routes/todo/index'
 import { Route as TodoTodoIdRouteImport } from './routes/todo/$todoId'
@@ -44,6 +46,11 @@ const MountingRoute = MountingRouteImport.update({
 const MineSweeperRoute = MineSweeperRouteImport.update({
   id: '/mine-sweeper',
   path: '/mine-sweeper',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InfiniteLoadingRoute = InfiniteLoadingRouteImport.update({
+  id: '/infinite-loading',
+  path: '/infinite-loading',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EnhancedSwitchRoute = EnhancedSwitchRouteImport.update({
@@ -71,6 +78,11 @@ const CodeDisplayRoute = CodeDisplayRouteImport.update({
   path: '/code-display',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CanvasFillerRoute = CanvasFillerRouteImport.update({
+  id: '/canvas-filler',
+  path: '/canvas-filler',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BasicAnimationRoute = BasicAnimationRouteImport.update({
   id: '/basic-animation',
   path: '/basic-animation',
@@ -95,11 +107,13 @@ const TodoTodoIdRoute = TodoTodoIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexLazyRoute
   '/basic-animation': typeof BasicAnimationRoute
+  '/canvas-filler': typeof CanvasFillerRoute
   '/code-display': typeof CodeDisplayRoute
   '/conway-game': typeof ConwayGameRoute
   '/crash-test': typeof CrashTestRoute
   '/draggable-motion': typeof DraggableMotionRoute
   '/enhanced-switch': typeof EnhancedSwitchRoute
+  '/infinite-loading': typeof InfiniteLoadingRoute
   '/mine-sweeper': typeof MineSweeperRoute
   '/mounting': typeof MountingRoute
   '/tetris': typeof TetrisRoute
@@ -110,11 +124,13 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexLazyRoute
   '/basic-animation': typeof BasicAnimationRoute
+  '/canvas-filler': typeof CanvasFillerRoute
   '/code-display': typeof CodeDisplayRoute
   '/conway-game': typeof ConwayGameRoute
   '/crash-test': typeof CrashTestRoute
   '/draggable-motion': typeof DraggableMotionRoute
   '/enhanced-switch': typeof EnhancedSwitchRoute
+  '/infinite-loading': typeof InfiniteLoadingRoute
   '/mine-sweeper': typeof MineSweeperRoute
   '/mounting': typeof MountingRoute
   '/tetris': typeof TetrisRoute
@@ -126,11 +142,13 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexLazyRoute
   '/basic-animation': typeof BasicAnimationRoute
+  '/canvas-filler': typeof CanvasFillerRoute
   '/code-display': typeof CodeDisplayRoute
   '/conway-game': typeof ConwayGameRoute
   '/crash-test': typeof CrashTestRoute
   '/draggable-motion': typeof DraggableMotionRoute
   '/enhanced-switch': typeof EnhancedSwitchRoute
+  '/infinite-loading': typeof InfiniteLoadingRoute
   '/mine-sweeper': typeof MineSweeperRoute
   '/mounting': typeof MountingRoute
   '/tetris': typeof TetrisRoute
@@ -143,11 +161,13 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/basic-animation'
+    | '/canvas-filler'
     | '/code-display'
     | '/conway-game'
     | '/crash-test'
     | '/draggable-motion'
     | '/enhanced-switch'
+    | '/infinite-loading'
     | '/mine-sweeper'
     | '/mounting'
     | '/tetris'
@@ -158,11 +178,13 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/basic-animation'
+    | '/canvas-filler'
     | '/code-display'
     | '/conway-game'
     | '/crash-test'
     | '/draggable-motion'
     | '/enhanced-switch'
+    | '/infinite-loading'
     | '/mine-sweeper'
     | '/mounting'
     | '/tetris'
@@ -173,11 +195,13 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/basic-animation'
+    | '/canvas-filler'
     | '/code-display'
     | '/conway-game'
     | '/crash-test'
     | '/draggable-motion'
     | '/enhanced-switch'
+    | '/infinite-loading'
     | '/mine-sweeper'
     | '/mounting'
     | '/tetris'
@@ -189,11 +213,13 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexLazyRoute: typeof IndexLazyRoute
   BasicAnimationRoute: typeof BasicAnimationRoute
+  CanvasFillerRoute: typeof CanvasFillerRoute
   CodeDisplayRoute: typeof CodeDisplayRoute
   ConwayGameRoute: typeof ConwayGameRoute
   CrashTestRoute: typeof CrashTestRoute
   DraggableMotionRoute: typeof DraggableMotionRoute
   EnhancedSwitchRoute: typeof EnhancedSwitchRoute
+  InfiniteLoadingRoute: typeof InfiniteLoadingRoute
   MineSweeperRoute: typeof MineSweeperRoute
   MountingRoute: typeof MountingRoute
   TetrisRoute: typeof TetrisRoute
@@ -232,6 +258,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MineSweeperRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/infinite-loading': {
+      id: '/infinite-loading'
+      path: '/infinite-loading'
+      fullPath: '/infinite-loading'
+      preLoaderRoute: typeof InfiniteLoadingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/enhanced-switch': {
       id: '/enhanced-switch'
       path: '/enhanced-switch'
@@ -265,6 +298,13 @@ declare module '@tanstack/react-router' {
       path: '/code-display'
       fullPath: '/code-display'
       preLoaderRoute: typeof CodeDisplayRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/canvas-filler': {
+      id: '/canvas-filler'
+      path: '/canvas-filler'
+      fullPath: '/canvas-filler'
+      preLoaderRoute: typeof CanvasFillerRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/basic-animation': {
@@ -301,11 +341,13 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexLazyRoute: IndexLazyRoute,
   BasicAnimationRoute: BasicAnimationRoute,
+  CanvasFillerRoute: CanvasFillerRoute,
   CodeDisplayRoute: CodeDisplayRoute,
   ConwayGameRoute: ConwayGameRoute,
   CrashTestRoute: CrashTestRoute,
   DraggableMotionRoute: DraggableMotionRoute,
   EnhancedSwitchRoute: EnhancedSwitchRoute,
+  InfiniteLoadingRoute: InfiniteLoadingRoute,
   MineSweeperRoute: MineSweeperRoute,
   MountingRoute: MountingRoute,
   TetrisRoute: TetrisRoute,

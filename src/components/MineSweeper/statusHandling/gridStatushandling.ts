@@ -41,19 +41,14 @@ const gridMachine = setup({
         changeStatus: {
             actions: {
                 type: 'changeStatus',
-                params: ({ event }) => {
-                    const { x, status, y } = event.newCellStatus;
-                    return { x, y, status };
-                },
+                params: ({ event }) => event.newCellStatus,
             },
         },
         reset: { actions: 'reset' },
         difficulty: {
             actions: {
                 type: 'difficulty',
-                params: ({ event }) => {
-                    return difficultyReference[event.difficulty];
-                },
+                params: ({ event }) => difficultyReference[event.difficulty],
             },
         },
     },

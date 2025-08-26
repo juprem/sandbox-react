@@ -27,7 +27,7 @@ const queryClient = new QueryClient({
 });
 
 const memoryHistory = createMemoryHistory({
-    initialEntries: ['/'], // Pass your initial url
+    initialEntries: ['/crash-test'], // Pass your initial url
 });
 
 const router = createRouter({
