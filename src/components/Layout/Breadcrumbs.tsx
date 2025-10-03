@@ -12,7 +12,6 @@ export function Breadcrumbs() {
             path: pathname,
         };
     });
-    console.log('breadcrumbs', router);
 
     return (
         <div

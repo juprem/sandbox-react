@@ -10,9 +10,11 @@ export const getRouter = () => {
         routeTree,
         context: {
             ...rqContext,
-            breadcrumbs: "",
+            breadcrumbs: '',
         },
-
+        Wrap: (props: { children: React.ReactNode }) => {
+            return <TanstackQuery.Provider>{props.children}</TanstackQuery.Provider>;
+        },
         scrollRestoration: true,
         defaultPreloadStaleTime: 0,
     });

@@ -1,0 +1,12 @@
+.modalContainer {
+  height: 70vh;
+  overflow: auto;
+}
+
+.active {
+  flex-shrink: 0;
+  background-color: #a8a8a8;
+  border: 2px solid #b5c8c8;
+  border-radius: 10px 0;
+  height: fit-content;
+}

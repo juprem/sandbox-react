@@ -34,6 +34,7 @@ export default defineConfig({
                 global: true,
                 process: true,
             },
+            exclude: ['path'],
         }),
     ],
     build: {

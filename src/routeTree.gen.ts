@@ -26,6 +26,7 @@ import { Route as CanvasFillerRouteImport } from './routes/canvas-filler'
 import { Route as BasicAnimationRouteImport } from './routes/basic-animation'
 import { Route as TodoIndexRouteImport } from './routes/todo/index'
 import { Route as TodoTodoIdRouteImport } from './routes/todo/$todoId'
+import { Route as ApiTrpcSplatRouteImport } from './routes/api/trpc.$'
 
 const IndexLazyRouteImport = createFileRoute('/')()
 
@@ -109,6 +110,11 @@ const TodoTodoIdRoute = TodoTodoIdRouteImport.update({
   path: '/todo/$todoId',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiTrpcSplatRoute = ApiTrpcSplatRouteImport.update({
+  id: '/api/trpc/$',
+  path: '/api/trpc/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexLazyRoute
@@ -127,6 +133,7 @@ export interface FileRoutesByFullPath {
   '/x-state': typeof XStateRoute
   '/todo/$todoId': typeof TodoTodoIdRoute
   '/todo': typeof TodoIndexRoute
+  '/api/trpc/$': typeof ApiTrpcSplatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexLazyRoute
@@ -145,6 +152,7 @@ export interface FileRoutesByTo {
   '/x-state': typeof XStateRoute
   '/todo/$todoId': typeof TodoTodoIdRoute
   '/todo': typeof TodoIndexRoute
+  '/api/trpc/$': typeof ApiTrpcSplatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -164,6 +172,7 @@ export interface FileRoutesById {
   '/x-state': typeof XStateRoute
   '/todo/$todoId': typeof TodoTodoIdRoute
   '/todo/': typeof TodoIndexRoute
+  '/api/trpc/$': typeof ApiTrpcSplatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -184,6 +193,7 @@ export interface FileRouteTypes {
     | '/x-state'
     | '/todo/$todoId'
     | '/todo'
+    | '/api/trpc/$'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -202,6 +212,7 @@ export interface FileRouteTypes {
     | '/x-state'
     | '/todo/$todoId'
     | '/todo'
+    | '/api/trpc/$'
   id:
     | '__root__'
     | '/'
@@ -220,6 +231,7 @@ export interface FileRouteTypes {
     | '/x-state'
     | '/todo/$todoId'
     | '/todo/'
+    | '/api/trpc/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -239,6 +251,7 @@ export interface RootRouteChildren {
   XStateRoute: typeof XStateRoute
   TodoTodoIdRoute: typeof TodoTodoIdRoute
   TodoIndexRoute: typeof TodoIndexRoute
+  ApiTrpcSplatRoute: typeof ApiTrpcSplatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -355,6 +368,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TodoTodoIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/trpc/$': {
+      id: '/api/trpc/$'
+      path: '/api/trpc/$'
+      fullPath: '/api/trpc/$'
+      preLoaderRoute: typeof ApiTrpcSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -375,6 +395,7 @@ const rootRouteChildren: RootRouteChildren = {
   XStateRoute: XStateRoute,
   TodoTodoIdRoute: TodoTodoIdRoute,
   TodoIndexRoute: TodoIndexRoute,
+  ApiTrpcSplatRoute: ApiTrpcSplatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

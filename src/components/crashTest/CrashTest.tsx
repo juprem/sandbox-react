@@ -1,6 +1,5 @@
-import styles from './CrashTest.module.scss';
-import { ReactCssTree } from '../ReactCssTree/ReactCssTree';
+import { Sudoku } from '../Sudoku/Sudoku';
 
 export function CrashTest() {
-    return <ReactCssTree />;
+    return <Sudoku />;
 }

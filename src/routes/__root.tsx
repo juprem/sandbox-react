@@ -1,5 +1,12 @@
 /// <reference types="vite/client" />
-import { createRootRouteWithContext, FileRoutesByPath, HeadContent, Link, Outlet } from '@tanstack/react-router';
+import {
+    createRootRouteWithContext,
+    FileRoutesByPath,
+    HeadContent,
+    Link,
+    Outlet,
+    Scripts,
+} from '@tanstack/react-router';
 import { css } from '@styled-system/css';
 import { Sidebar } from '../components/Layout/Sidebar';
 import { Content } from '../components/Layout/Content';
@@ -8,9 +15,9 @@ import { QueryClient } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Breadcrumbs } from '../components/Layout/Breadcrumbs';
 import { ConfigProvider } from 'antd';
-import { Scripts } from '@tanstack/react-router';
-import type { ReactNode } from 'react';
+import { ReactNode, StrictMode } from 'react';
 import dayjs from 'dayjs';
+import 'dayjs/locale/fr';
 import '../index.css';
 
 dayjs.locale('fr');
@@ -105,20 +112,21 @@ function RootDocument({ children }: { children: ReactNode }) {
                 <HeadContent />
             </head>
             <body>
-
-                <ConfigProvider
-                    theme={{
-                        token: {
-                            fontFamily: 'monospace',
-                            colorText: 'white',
-                            colorBgBase: '#2e2e2e',
-                        },
-                    }}
-                >
-                    <div className={css({ height: '100vh' })}>{children}</div>
-                    <ReactQueryDevtools initialIsOpen={false} />
-                </ConfigProvider>
-                <Scripts />
+                <StrictMode>
+                    <ConfigProvider
+                        theme={{
+                            token: {
+                                fontFamily: 'monospace',
+                                colorText: 'white',
+                                colorBgBase: '#2e2e2e',
+                            },
+                        }}
+                    >
+                        <div className={css({ height: '100vh' })}>{children}</div>
+                        <ReactQueryDevtools initialIsOpen={false} />
+                    </ConfigProvider>
+                    <Scripts />
+                </StrictMode>
             </body>
         </html>
     );

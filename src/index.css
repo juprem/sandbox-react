@@ -10,3 +10,7 @@
 }
 
 @layer reset, base, tokens, recipes, utilities;
+
+button {
+  cursor: pointer
+}

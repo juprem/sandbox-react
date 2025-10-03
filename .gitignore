@@ -28,3 +28,6 @@ dist-ssr
 ## Panda
 styled-system
 styled-system-studio
+/generated/prisma
+
+/generated/prisma

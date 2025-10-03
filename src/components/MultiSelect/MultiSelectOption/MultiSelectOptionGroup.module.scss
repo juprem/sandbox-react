@@ -1,0 +1,20 @@
+.group {
+  padding: 0;
+}
+
+.groupLabel {
+  padding: 8px 12px;
+  color: rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+  font-size: 12px;
+
+  &:hover {
+    background-color: #f0f0f0;
+  }
+}
+
+.groupOptions {
+  list-style: none;
+  padding-left: 20px;
+  margin: 0;
+}

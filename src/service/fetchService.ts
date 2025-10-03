@@ -16,6 +16,13 @@ export function fetchService() {
             .then((res) => schema.parse(res));
     }
 
+    async function getQueryAny(path: string): Promise<any> {
+        return await superagent
+            .get(path)
+            .set('Authorization', authHeader)
+            .then((res) => res.body);
+    }
+
     async function postQuery<T extends object, U>(path: string, body: T, schema: z.ZodType<U>): Promise<U> {
         return await superagent
             .post(`http://localhost:8080/api${path}`)
@@ -34,5 +41,5 @@ export function fetchService() {
             .then((res) => schema.parse(res));
     }
 
-    return { getQuery, postQuery, putQuery };
+    return { getQuery, postQuery, putQuery, getQueryAny };
 }

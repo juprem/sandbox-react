@@ -1,0 +1,56 @@
+.container {
+    display: flex;
+}
+
+.selectControl {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 13px 0 3px;
+    border: 1px solid #d9d9d9;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: #fff;
+    min-height: 30px;
+
+    &:hover {
+        border-color: #4096ff;
+    }
+
+    &.open {
+        border-color: #4096ff;
+        box-shadow: 0 0 0 2px rgba(5, 145, 255, 0.1);
+    }
+}
+
+.selectedValue {
+    flex-grow: 1;
+    overflow: hidden;
+}
+
+.placeholder {
+    color: rgba(0, 0, 0, 0.25);
+    margin-left: 9px;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1px;
+    width: 100%;
+}
+
+.arrow {
+    color: rgba(0, 0, 0, 0.25);
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 12px;
+    height: 12px;
+}
+
+.arrowIcon {
+    display: inline-block;
+    transform: scale(0.75);
+}
