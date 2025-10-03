@@ -2,7 +2,7 @@ import { BaseSweeperCell, EmptyCell, NumberOfMineCell } from '../models/cell';
 import { BaseGridCell, CellCoordinate, GridGenerator } from '../../iterator/GridGenerator';
 
 function generateMines(nbMine: number, gridSize: number): CellCoordinate[] {
-    let mines: { x: number; y: number }[] = [];
+    const mines: { x: number; y: number }[] = [];
 
     for (let i = 0; i < nbMine; i++) {
         let randomMine: { x: number; y: number };

@@ -18,6 +18,8 @@ export interface CellStatus {
     neighbour: CellCoordinate[];
 }
 
+//TODO - passer en mode canva + utiliser des for loop dans calculation
+
 export function LifeGame({ matrixSize, start, speedResolve }: LifeGameProps) {
     const [cellTab, setCellTab] = useState(init(matrixSize));
 
@@ -51,7 +53,7 @@ export function LifeGame({ matrixSize, start, speedResolve }: LifeGameProps) {
                                         isAlive: !it.isAlive,
                                         position: it.position,
                                         age: 0,
-                                        neighbour: it.neighbour
+                                        neighbour: it.neighbour,
                                     };
                                     return prev.map((it) => it);
                                 })

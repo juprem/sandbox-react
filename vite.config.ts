@@ -20,7 +20,11 @@ export default defineConfig({
     },
     plugins: [
         TanStackRouterVite({ autoCodeSplitting: true }),
-        react(),
+        react({
+            babel: {
+                plugins: ['babel-plugin-react-compiler'],
+            },
+        }),
         svgr(),
         eslintPlugin(),
         tsconfigPaths(),

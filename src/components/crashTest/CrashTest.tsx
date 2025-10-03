@@ -1,10 +1,21 @@
 import './CrashTest.module.scss';
-import { InfiniteQueryPage } from '../InfiniteScrolling/InfiniteQueryPage';
+import { RPGCanvas } from '../RPG/RPGCanvas';
 
 export function CrashTest() {
-    return <InfiniteQueryPage />;
+    return <TheKeyList />;
 }
 
+const listOfTodos = ['First todo', 'Second todo'];
+
+export function TheKeyList() {
+    return (
+        <>
+            {listOfTodos.map((todo) => (
+                <div>{todo}</div>
+            ))}
+        </>
+    );
+}
 
 /*
 background color #242424x
