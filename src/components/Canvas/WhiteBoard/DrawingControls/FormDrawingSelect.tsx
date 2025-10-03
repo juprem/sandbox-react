@@ -1,9 +1,9 @@
 import { Select } from 'antd';
-import { formOptions } from '../models/CanvasModel';
+import { FormDrawing, formOptions } from '../models/CanvasModel';
 import { WhiteBoardStateContext } from '../stateManager/WhiteBoardState';
 import { css } from '@styled-system/css';
 
-export function FormDrawing() {
+export function FormDrawingSelect() {
     const actorRef = WhiteBoardStateContext.useActorRef();
 
     return (
@@ -13,7 +13,7 @@ export function FormDrawing() {
             })}
             defaultValue="LINE"
             options={formOptions}
-            onChange={(value) => actorRef.send({ type: 'form', newForm: value })}
+            onChange={(value: FormDrawing) => actorRef.send({ type: 'form', newForm: value })}
         />
     );
 }

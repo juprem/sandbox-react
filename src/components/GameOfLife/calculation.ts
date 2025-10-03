@@ -42,7 +42,8 @@ export function init(matrixSize: number): CellStatus[][] {
 
 export function getAllNeighbour(
     position: [number, number],
-    matrixSize: number,
+    matrixWidth: number,
+    matrixHeight?: number,
     matrixNeighbour: [number, number][] = [
         [1, 1],
         [1, 0],
@@ -59,8 +60,8 @@ export function getAllNeighbour(
             const outBoundsCell =
                 position[0] + pos[0] < 0 ||
                 position[1] + pos[1] < 0 ||
-                position[0] + pos[0] > matrixSize - 1 ||
-                position[1] + pos[1] > matrixSize - 1;
+                position[0] + pos[0] > matrixWidth - 1 ||
+                position[1] + pos[1] > (matrixHeight ?? matrixWidth) - 1;
 
             if (outBoundsCell) {
                 return;

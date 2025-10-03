@@ -1,0 +1,79 @@
+.tree {
+  > li {
+    padding-top: 0;
+
+    &::before,
+    &::after {
+      display: none;
+    }
+  }
+
+  ol {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    padding-top: 2vh;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      border-left: 1px solid;
+      height: 2vh;
+    }
+  }
+
+  li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding-left: 0.5vw;
+    padding-right: 0.5vw;
+
+    position: relative;
+    padding-top: 2vh;
+    //border: 1px solid orange;
+
+    // [connector] child-to-parent
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      border-left: 1px solid red;
+      height: 2vh;
+      //border-color: red;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      border-top: 1px solid orange;
+      //border-color: blue
+    }
+    // [connector] sibling-to-sibling:last-child
+    &:last-of-type::after {
+      width: 50%;
+      left: 0;
+    }
+    // [connector] sibling-to-sibling:first-child
+    &:first-of-type::after {
+      width: 50%;
+      right: 0;
+    }
+    // [connector] sibling-to-sibling:middle-child(ren)
+    &:not(:first-of-type):not(:last-of-type)::after {
+      width: 100%;
+    }
+  }
+
+  span {
+    border: 1px solid;
+    text-align: center;
+    padding: 0.33rm 0.66rm;
+  }
+}

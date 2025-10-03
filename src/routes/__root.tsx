@@ -1,10 +1,19 @@
-import { createRootRouteWithContext, FileRoutesByPath, Link, Outlet } from '@tanstack/react-router';
+/// <reference types="vite/client" />
+import { createRootRouteWithContext, FileRoutesByPath, HeadContent, Link, Outlet } from '@tanstack/react-router';
 import { css } from '@styled-system/css';
 import { Sidebar } from '../components/Layout/Sidebar';
 import { Content } from '../components/Layout/Content';
 import { motion } from 'framer-motion';
 import { QueryClient } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Breadcrumbs } from '../components/Layout/Breadcrumbs';
+import { ConfigProvider } from 'antd';
+import { Scripts } from '@tanstack/react-router';
+import type { ReactNode } from 'react';
+import dayjs from 'dayjs';
+import '../index.css';
+
+dayjs.locale('fr');
 
 const menu: { label: string; path: keyof FileRoutesByPath }[] = [
     { label: 'CrashTest', path: '/crash-test' },
@@ -12,6 +21,7 @@ const menu: { label: string; path: keyof FileRoutesByPath }[] = [
     { label: 'Draggable', path: '/draggable-motion' },
     { label: 'Enhanced switch', path: '/enhanced-switch' },
     { label: 'Conway Game', path: '/conway-game' },
+    { label: 'Conway Game2', path: '/conway-game2' },
     { label: 'Todo', path: '/todo/' },
     { label: 'Mounting', path: '/mounting' },
     { label: 'Canvas Filler', path: '/canvas-filler' },
@@ -31,7 +41,7 @@ export const Route = createRootRouteWithContext<{
 
 function RootComponent() {
     return (
-        <>
+        <RootDocument>
             <Sidebar>
                 <Link
                     to="/"
@@ -84,6 +94,32 @@ function RootComponent() {
             <Content>
                 <Outlet />
             </Content>
-        </>
+        </RootDocument>
+    );
+}
+
+function RootDocument({ children }: { children: ReactNode }) {
+    return (
+        <html>
+            <head>
+                <HeadContent />
+            </head>
+            <body>
+
+                <ConfigProvider
+                    theme={{
+                        token: {
+                            fontFamily: 'monospace',
+                            colorText: 'white',
+                            colorBgBase: '#2e2e2e',
+                        },
+                    }}
+                >
+                    <div className={css({ height: '100vh' })}>{children}</div>
+                    <ReactQueryDevtools initialIsOpen={false} />
+                </ConfigProvider>
+                <Scripts />
+            </body>
+        </html>
     );
 }

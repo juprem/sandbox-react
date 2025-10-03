@@ -6,7 +6,10 @@ const formTranslate: Record<FormDrawing, string> = {
     STRAIGHT_LINE: 'Straight Line',
 };
 
-export const formOptions = Object.entries(formTranslate).map(([key, value]) => ({ value: key, label: value }));
+export const formOptions = Object.entries(formTranslate).map(([key, value]) => ({
+    value: key,
+    label: value,
+}));
 
 export type WhiteBoardState = {
     color: string;

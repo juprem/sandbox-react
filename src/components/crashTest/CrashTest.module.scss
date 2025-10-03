@@ -1,80 +1,15 @@
-.blur {
-  backdrop-filter: blur(20px);
-  height: 30px;
-  background-color: rgba(36, 36, 36, 0.7);
-  width: 100%;
-  position: fixed;
-  top: 0;
-  z-index: 1;
-}
-
-.circle {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: red;
-}
-//
-//.container {
-//  width: 300px;
-//  height: 300px;
-//  position: absolute;
-//  top: 50%;
-//  left: 50%;
-//  border: 1px solid blue;
-//}
-
 .container {
-  perspective: 800px;
-  width: 200px;
-  height: 200px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-}
-
-.cube {
-  width: 200px;
-  height: 200px;
+  border: 1px solid red;
+  padding: 1rem;
+  width: fit-content;
   position: relative;
-  transform-style: preserve-3d;
-}
 
-@mixin side {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-color: red;
-  opacity: 0.6;
-}
-
-.front {
-  transform: rotateY(0deg) translateZ(100px);
-  background-color: var(--hue-1-transparent);
-  @include side
-}
-.right {
-  transform: rotateY(90deg) translateZ(100px);
-  background-color: var(--hue-2-transparent);
-  @include side
-}
-.back {
-  transform: rotateY(180deg) translateZ(100px);
-  background-color: var(--hue-3-transparent);
-  @include side
-}
-.left {
-  transform: rotateY(-90deg) translateZ(100px);
-  background-color: var(--hue-4-transparent);
-  @include side
-}
-.top {
-  transform: rotateX(90deg) translateZ(100px);
-  background-color: var(--hue-5-transparent);
-  @include side
-}
-.bottom {
-  transform: rotateX(-90deg) translateZ(100px);
-  background-color: var(--hue-6-transparent);
-  @include side
+  &::before {
+    content: '';
+    position: absolute;
+    border-top: solid 1px orange;
+    width: 50%;
+    top:0;
+    left:50%;
+  }
 }

@@ -19,6 +19,7 @@ import { Route as InfiniteLoadingRouteImport } from './routes/infinite-loading'
 import { Route as EnhancedSwitchRouteImport } from './routes/enhanced-switch'
 import { Route as DraggableMotionRouteImport } from './routes/draggable-motion'
 import { Route as CrashTestRouteImport } from './routes/crash-test'
+import { Route as ConwayGame2RouteImport } from './routes/conway-game2'
 import { Route as ConwayGameRouteImport } from './routes/conway-game'
 import { Route as CodeDisplayRouteImport } from './routes/code-display'
 import { Route as CanvasFillerRouteImport } from './routes/canvas-filler'
@@ -68,6 +69,11 @@ const CrashTestRoute = CrashTestRouteImport.update({
   path: '/crash-test',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ConwayGame2Route = ConwayGame2RouteImport.update({
+  id: '/conway-game2',
+  path: '/conway-game2',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ConwayGameRoute = ConwayGameRouteImport.update({
   id: '/conway-game',
   path: '/conway-game',
@@ -110,6 +116,7 @@ export interface FileRoutesByFullPath {
   '/canvas-filler': typeof CanvasFillerRoute
   '/code-display': typeof CodeDisplayRoute
   '/conway-game': typeof ConwayGameRoute
+  '/conway-game2': typeof ConwayGame2Route
   '/crash-test': typeof CrashTestRoute
   '/draggable-motion': typeof DraggableMotionRoute
   '/enhanced-switch': typeof EnhancedSwitchRoute
@@ -127,6 +134,7 @@ export interface FileRoutesByTo {
   '/canvas-filler': typeof CanvasFillerRoute
   '/code-display': typeof CodeDisplayRoute
   '/conway-game': typeof ConwayGameRoute
+  '/conway-game2': typeof ConwayGame2Route
   '/crash-test': typeof CrashTestRoute
   '/draggable-motion': typeof DraggableMotionRoute
   '/enhanced-switch': typeof EnhancedSwitchRoute
@@ -145,6 +153,7 @@ export interface FileRoutesById {
   '/canvas-filler': typeof CanvasFillerRoute
   '/code-display': typeof CodeDisplayRoute
   '/conway-game': typeof ConwayGameRoute
+  '/conway-game2': typeof ConwayGame2Route
   '/crash-test': typeof CrashTestRoute
   '/draggable-motion': typeof DraggableMotionRoute
   '/enhanced-switch': typeof EnhancedSwitchRoute
@@ -164,6 +173,7 @@ export interface FileRouteTypes {
     | '/canvas-filler'
     | '/code-display'
     | '/conway-game'
+    | '/conway-game2'
     | '/crash-test'
     | '/draggable-motion'
     | '/enhanced-switch'
@@ -181,6 +191,7 @@ export interface FileRouteTypes {
     | '/canvas-filler'
     | '/code-display'
     | '/conway-game'
+    | '/conway-game2'
     | '/crash-test'
     | '/draggable-motion'
     | '/enhanced-switch'
@@ -198,6 +209,7 @@ export interface FileRouteTypes {
     | '/canvas-filler'
     | '/code-display'
     | '/conway-game'
+    | '/conway-game2'
     | '/crash-test'
     | '/draggable-motion'
     | '/enhanced-switch'
@@ -216,6 +228,7 @@ export interface RootRouteChildren {
   CanvasFillerRoute: typeof CanvasFillerRoute
   CodeDisplayRoute: typeof CodeDisplayRoute
   ConwayGameRoute: typeof ConwayGameRoute
+  ConwayGame2Route: typeof ConwayGame2Route
   CrashTestRoute: typeof CrashTestRoute
   DraggableMotionRoute: typeof DraggableMotionRoute
   EnhancedSwitchRoute: typeof EnhancedSwitchRoute
@@ -286,6 +299,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CrashTestRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/conway-game2': {
+      id: '/conway-game2'
+      path: '/conway-game2'
+      fullPath: '/conway-game2'
+      preLoaderRoute: typeof ConwayGame2RouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/conway-game': {
       id: '/conway-game'
       path: '/conway-game'
@@ -344,6 +364,7 @@ const rootRouteChildren: RootRouteChildren = {
   CanvasFillerRoute: CanvasFillerRoute,
   CodeDisplayRoute: CodeDisplayRoute,
   ConwayGameRoute: ConwayGameRoute,
+  ConwayGame2Route: ConwayGame2Route,
   CrashTestRoute: CrashTestRoute,
   DraggableMotionRoute: DraggableMotionRoute,
   EnhancedSwitchRoute: EnhancedSwitchRoute,
@@ -358,3 +379,12 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { createStart } from '@tanstack/react-start'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+  }
+}
