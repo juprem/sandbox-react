@@ -26,7 +26,6 @@ export default defineConfig({
             },
         }),
         svgr(),
-        eslintPlugin(),
         tsconfigPaths(),
         nodePolyfills({
             globals: {

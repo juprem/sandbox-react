@@ -1,0 +1,17 @@
+.settings {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 350px
+}
+
+.colors-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem
+}
+
+.color {
+  padding: 4px;
+  border-radius: 3px;
+}

@@ -5,3 +5,59 @@
   overflow: hidden;
   background-color: whitesmoke;
 }
+
+.list {
+  display: flex;
+  border: 1px solid red;
+  width: fit-content;
+  padding: 1rem 0;
+  gap: 4rem;
+}
+
+.background {
+  background-color: #1ea7fd;
+  position: absolute;
+  height: 40px;
+  border-radius: 5px;
+}
+
+.slicesLayout {
+  block-size: 100vb;
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: 50cqh;
+}
+
+.slice {
+  background: linear-gradient(
+                  to top in lch,
+                  color(display-p3 25% 25% 100%),
+                  color(display-p3 100% 85% 30%)
+  );
+  position: sticky;
+  top: 25vh;
+
+  &:nth-child(2),
+  &:nth-child(10) {
+    top: 20vh;
+  }
+
+  &:nth-child(3),
+  &:nth-child(9) {
+    top: 15vh;
+  }
+
+  &:nth-child(4),
+  &:nth-child(8) {
+    top: 10vh;
+  }
+
+  &:nth-child(5),
+  &:nth-child(7) {
+    top: 5vh;
+  }
+
+  &:nth-child(6) {
+    top: 0;
+  }
+}

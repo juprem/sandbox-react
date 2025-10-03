@@ -12,6 +12,7 @@ const menu: { label: string; path: keyof FileRoutesByPath }[] = [
     { label: 'Draggable', path: '/draggable-motion' },
     { label: 'Enhanced switch', path: '/enhanced-switch' },
     { label: 'Conway Game', path: '/conway-game' },
+    { label: 'Conway Game2', path: '/conway-game2' },
     { label: 'Todo', path: '/todo/' },
     { label: 'Mounting', path: '/mounting' },
     { label: 'Canvas Filler', path: '/canvas-filler' },

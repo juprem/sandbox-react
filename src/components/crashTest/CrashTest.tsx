@@ -1,20 +1,8 @@
-import './CrashTest.module.scss';
-import { RPGCanvas } from '../RPG/RPGCanvas';
+import { ConwayDashboard } from '../GameOfLife/GameOfLifeV2/ConwayDashboard';
 
 export function CrashTest() {
-    return <TheKeyList />;
-}
-
-const listOfTodos = ['First todo', 'Second todo'];
-
-export function TheKeyList() {
-    return (
-        <>
-            {listOfTodos.map((todo) => (
-                <div>{todo}</div>
-            ))}
-        </>
-    );
+    // return <ConwayDashboard />;
+    return <></>
 }
 
 /*

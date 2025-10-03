@@ -20,7 +20,7 @@ const bigGrid = () => {
             x: i % size,
             y: Math.trunc(i / size),
             piles: 0,
-            neighbor: getAllNeighbour([i % size, Math.trunc(i / size)], size, [
+            neighbor: getAllNeighbour([i % size, Math.trunc(i / size)], size, size, [
                 [1, 0],
                 [-1, 0],
                 [0, -1],
