@@ -1,72 +1,99 @@
-import { GridSudoku, isAllowedNumber, isViableNumber, SudokuAllowedNumber } from './createGrid';
-import { CellCoordinate } from '../../iterator/GridGenerator';
-import { sleep } from '../../../utils/sleep';
+import { CellSudoku, createGrid, isViableNumber } from './createGrid';
 
-export function gridCalculator(
-    x: number,
-    y: number,
-    grid: GridSudoku[][],
-) {
-    if (x > 8 && y > 8) {
-        return;
+export interface SetUpCell {
+  x: number;
+  y: number;
+  cellNumber: number;
+}
+
+export function setUpBis(baseGrid: SetUpCell[], size: number) {
+  const newGrid = createGrid(size).map((row) =>
+    row.map((cell) => {
+      const isSetUp = baseGrid.find(({ x, y, cellNumber }) => x === cell.x && y === cell.y && cellNumber != 0);
+
+      if (isSetUp) {
+        cell.cellNumber = isSetUp.cellNumber;
+        cell.isManualSet = true;
+        return cell;
+      }
+
+      return cell;
+    }),
+  );
+
+  return gridBacktrackingCalculator(newGrid);
+}
+
+export function gridBacktrackingCalculator(grid: CellSudoku[][]) {
+  let isNotSolved = true;
+  let x = 0;
+  let y = 0;
+  let cellNumber = 1;
+  let iteration = 0;
+
+  let isCellCalculating = 'iteration';
+
+  while (isNotSolved) {
+    if (iteration > 20000) {
+      console.log('not solved', iteration);
+      isNotSolved = false;
+
+      continue;
     }
 
-    setActiveCell({ x, y });
+    if (y >= grid.length) {
+      isNotSolved = false;
+
+      continue;
+    }
 
     const cell = grid[x][y];
-    const cellNumber = cell.cellNumber;
 
-    let testNumber: 'iterate' | 'next' | 'prev' = 'iterate';
+    if (cell.isManualSet) {
+      if (isCellCalculating == 'prev') {
+        y = x == 0 ? y - 1 : y;
+        x = x > 0 ? x - 1 : grid.length - 1;
+      } else {
+        y = x == grid.length - 1 ? y + 1 : y;
+        x = x == grid.length - 1 ? 0 : x + 1;
+      }
 
-    while (testNumber == 'iterate') {
-        const nextNumber = cellNumber + 1;
-
-        console.log("next iteration");
-
-        if (isAllowedNumber(nextNumber) && isViableNumber(grid, cell, nextNumber)) {
-            setCellNumber(nextNumber);
-            grid[x][y].cellNumber = nextNumber;
-            testNumber = 'next';
-        }
-
-        if (!isAllowedNumber(nextNumber)) {
-            setCellNumber(0);
-            grid[x][y].cellNumber = 0;
-            testNumber = 'prev';
-        }
+      continue;
+    } else {
+      cellNumber = cell.cellNumber + 1;
+      isCellCalculating = 'iteration';
     }
 
-    if (testNumber == 'next') {
-        nextIteration(x, y, grid);
+    while (isCellCalculating) {
+      if (cellNumber > grid.length) {
+        isCellCalculating = 'prev';
+
+        grid[x][y].cellNumber = 0;
+        document.getElementById(`${x} - ${y} - div`)!.textContent = '0';
+
+        y = x == 0 ? y - 1 : y;
+        x = x > 0 ? x - 1 : grid.length - 1;
+
+        break;
+      }
+
+      if (isViableNumber(grid, cell, cellNumber)) {
+        grid[x][y].cellNumber = cellNumber;
+
+        document.getElementById(`${x} - ${y} - div`)!.textContent = cellNumber.toString();
+
+        isCellCalculating = 'next';
+
+        y = x == grid.length - 1 ? y + 1 : y;
+        x = x == grid.length - 1 ? 0 : x + 1;
+
+        break;
+      }
+
+      cellNumber++;
+      iteration++;
     }
+  }
 
-    if (testNumber == 'prev') {
-        previousIteration(x, y, grid);
-    }
-}
-
-async function nextIteration(
-    x: number,
-    y: number,
-    grid: GridSudoku[][],
-) {
-    const nextX = x == 8 ? 0 : x + 1;
-    const nextY = x == 8 ? y + 1 : y;
-
-    await sleep(500);
-
-    gridCalculator(nextX, nextY, grid);
-}
-
-async function previousIteration(
-    x: number,
-    y: number,
-    grid: GridSudoku[][],
-) {
-    const nextX = x > 0 ? x - 1 : 8;
-    const nextY = x == 0 ? y - 1 : y;
-
-    await sleep(500);
-
-    gridCalculator(nextX, nextY, grid);
+  return grid;
 }

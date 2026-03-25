@@ -1,0 +1,12 @@
+{
+  "eval_id": 3,
+  "eval_name": "single-responsibility-detection",
+  "prompt": "Review src/routes/index.tsx. Are there any architectural violations?",
+  "assertions": [
+    {
+      "name": "identifies-multiple-components",
+      "text": "The review identifies that having multiple components in one file violates the single responsibility principle.",
+      "type": "text-contains"
+    }
+  ]
+}

@@ -1,48 +1,73 @@
 import { css } from '@styled-system/css';
-import { createGrid, isAllowedNumber } from './utils/createGrid';
+import { createGrid } from './utils/createGrid';
 import { useEventListener } from '@hooks/useEventListener';
 import { Cell } from './Cell';
 import { useSudokuStore } from './hooks/useSudokuStore';
 import { Button } from 'antd';
-import { gridCalculator, useGridCalculator } from './utils/gridCalculator';
+import { setUpBis } from './utils/gridCalculator';
+import { CalculateCell } from './CalculateCell';
 
-const calculateGrid = createGrid()
+const calculateGrid = createGrid(9);
+const baseGrid = Array.from({ length: 9 }, (_, i) => Array.from({ length: 9 }, (_, j) => ({ x: i, y: j })));
 
 export function Sudoku() {
-    const setCellNumber = useSudokuStore((state) => state.setCellNumber);
-    const setActiveCell = useSudokuStore((state) => state.setActiveCell);
-    const grid = useSudokuStore((state) => state.grid);
+  const setManualCellNumber = useSudokuStore((state) => state.setManualCellNumber);
+  const reset = useSudokuStore((state) => state.reset);
 
-    useEventListener({
-        eventType: 'keydown',
-        listener: (event) => {
-            const strokeKey = Number(event.key);
+  useEventListener({
+    eventType: 'keydown',
+    listener: (event) => {
+      const strokeKey = Number(event.key);
 
-            const canUpdateCell =
-                strokeKey > 0 && strokeKey < 10 && !Number.isNaN(strokeKey) && isAllowedNumber(strokeKey);
-            if (canUpdateCell) {
-                setCellNumber(strokeKey);
-            }
-        },
-    });
+      const canUpdateCell = !Number.isNaN(strokeKey) && strokeKey <= calculateGrid.length;
 
-    return (
-        <>
-            <div
-                className={css({
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(9, 50px)',
-                })}
-            >
-                {grid
-                    .flatMap((row) => row)
-                    .map((cell, i) => (
-                        <Cell key={i} x={cell.x} y={cell.y} />
-                    ))}
-            </div>
-            <Button onClick={() => gridCalculator(0, 0, calculateGrid, setCellNumber, setActiveCell)}>
-                Calculate
-            </Button>
-        </>
-    );
+      if (canUpdateCell) {
+        setManualCellNumber(strokeKey, calculateGrid);
+      }
+    },
+  });
+
+  return (
+    <>
+      <div className={css({ display: 'flex', gap: '1rem' })}>
+        <div
+          className={css({
+            display: 'grid',
+          })}
+          style={{ gridTemplateColumns: `repeat(${baseGrid.length}, 50px)` }}
+        >
+          {baseGrid
+            .flatMap((row) => row)
+            .map((cell, i) => (
+              <Cell key={i} x={cell.x} y={cell.y} size={9} />
+            ))}
+        </div>
+        <div
+          className={css({
+            display: 'grid',
+          })}
+          style={{ gridTemplateColumns: `repeat(${baseGrid.length}, 50px)` }}
+        >
+          {calculateGrid
+            .flatMap((row) => row)
+            .map((cell, i) => (
+              <CalculateCell key={i} cell={cell} />
+            ))}
+        </div>
+      </div>
+      <Button
+        onClick={() => {
+          console.log(
+            setUpBis(
+              calculateGrid.flatMap((r) => r.map((c) => ({ x: c.x, y: c.y, cellNumber: c.cellNumber }))),
+              9,
+            ),
+          );
+        }}
+      >
+        Calculate
+      </Button>
+      <Button onClick={() => reset()}>Reset</Button>
+    </>
+  );
 }

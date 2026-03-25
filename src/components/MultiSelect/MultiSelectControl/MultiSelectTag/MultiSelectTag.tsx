@@ -1,5 +1,4 @@
 import styles from './MultiSelectTag.module.scss';
-import { CloseOutlined } from '@ant-design/icons';
 
 interface MultiSelectTagProps {
     label: string;
@@ -17,7 +16,7 @@ export function MultiSelectTag({ label, onRemove }: MultiSelectTagProps) {
                     onRemove();
                 }}
             >
-                <CloseOutlined />
+                X
             </span>
         </span>
     );

@@ -1,4 +1,4 @@
-import { cva } from '../../styled-system/css';
+import { css, cva } from '../../styled-system/css';
 
 export const flex = cva({
     base: {
@@ -19,6 +19,40 @@ export const flex = cva({
         visual: 'row',
     },
 });
+
+export const buttonShape = cva({
+  base: {
+    backgroundColor: 'gray.300',
+    padding: '3px',
+    color: 'black',
+    borderRadius: '5px',
+    cursor: 'pointer',
+    _hover: {
+      backgroundColor: 'gray.500',
+    },
+  },
+  variants: {
+    visual: {
+      button: {},
+      icon: {
+        backgroundColor: 'transparent',
+        color: 'gray.50',
+      },
+    },
+  },
+});
+
+export const inputShape = cva({
+  base: {
+    padding: '5px 2px',
+    borderRadius: '5px',
+    color: 'black',
+    backgroundColor: 'gray.200',
+    _after: {
+      marginRight: '5px'
+    }
+  }
+})
 
 export const basicShape = cva({
     base: {

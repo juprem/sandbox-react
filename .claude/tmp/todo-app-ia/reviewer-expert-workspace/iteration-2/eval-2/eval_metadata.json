@@ -1,0 +1,12 @@
+{
+  "eval_id": 2,
+  "eval_name": "as-assertion-detection",
+  "prompt": "Review src/services/subtask-service.ts for type safety. Are there any problematic patterns?",
+  "assertions": [
+    {
+      "name": "identifies-as-assertion",
+      "text": "The review identifies the use of 'as' assertions as a type safety issue.",
+      "type": "text-contains"
+    }
+  ]
+}

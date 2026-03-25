@@ -21,7 +21,7 @@ interface MappedRdv {
     name: string;
 }
 
-function getMultipleMappedRdvs(data: Rdv[]) {
+export function getMultipleMappedRdvs(data: Rdv[]) {
     const mapStartEnd = data
         .map((rdv) => ({
             start: getHourAndMinute(rdv.start_hour),
@@ -35,7 +35,7 @@ function getMultipleMappedRdvs(data: Rdv[]) {
     mapStartEnd.forEach((mse) => {
         const depth = getCalendarDepthToInsert(calendarDays, mse);
 
-        if (depth == calendarDays.length) {
+        if (depth >= calendarDays.length) {
             calendarDays.push([mse]);
         } else {
             calendarDays[depth].push(mse);

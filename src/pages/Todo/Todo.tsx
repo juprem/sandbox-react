@@ -2,7 +2,12 @@ import { useGetAllTodo } from '@hooks/useTodos';
 import { Link } from '@tanstack/react-router';
 import { css } from '@styled-system/css';
 import { CreateTodoModal } from './CreateTodo/CreateTodoModal';
-import { TodoCard } from '../../components/Card/TodoCard';
+import { TodoCard } from '../../components/CardTodo/TodoCard';
+
+function concatIfExist(duration?: number) {
+
+}
+
 
 export function Todo() {
     const { data } = useGetAllTodo();

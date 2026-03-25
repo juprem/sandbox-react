@@ -1,0 +1,20 @@
+{
+  "summary": {
+    "pass_rate": 1.0,
+    "passed": 2,
+    "failed": 0,
+    "total": 2
+  },
+  "expectations": [
+    {
+      "text": "The report identifies the use of `any` and recommends proper typing or type guards.",
+      "passed": true,
+      "evidence": "The report mentions 'accepts an argument of type any' and suggests defining a proper interface."
+    },
+    {
+      "text": "The report identifies the use of `as` assertion and recommends `satisfies` or proper inference.",
+      "passed": true,
+      "evidence": "The report mentions 'uses the as keyword' and suggests using a validation library or type guard."
+    }
+  ]
+}

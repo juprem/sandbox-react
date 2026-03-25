@@ -1,23 +1,23 @@
 import { Button, Select } from 'antd';
 import { options } from '../model/CalendarModel';
 import { useCalendarStore } from '../store/useCalendarStore';
+import { useShallow } from 'zustand/react/shallow';
+import { SelectMonth } from './SelectMonth';
 
 export function MonthHeader() {
-    const setMonth = useCalendarStore((state) => state.setMonth);
-    const month = useCalendarStore((state) => state.month);
-    const year = useCalendarStore((state) => state.year);
+  const { next, prev } = useCalendarStore(
+    useShallow((state) => ({
+      prev: state.setPrevMonth,
+      next: state.setNextMonth,
+      setMonth: state.setMonth,
+    })),
+  );
 
-    return (
-        <>
-            <Button icon={'<'} type="text" onClick={() => setMonth(month.index - 1)} />
-            <Select
-                labelRender={() => `${month.label} ${year}`}
-                style={{ width: '200px' }}
-                value={month.index}
-                options={options}
-                onChange={setMonth}
-            />
-            <Button icon={'>'} type="text" onClick={() => setMonth(month.index + 1)} />
-        </>
-    );
+  return (
+    <>
+      <Button icon={'<'} type="text" onClick={() => prev()} />
+      <SelectMonth />
+      <Button icon={'>'} type="text" onClick={() => next()} />
+    </>
+  );
 }

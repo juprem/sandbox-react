@@ -1,0 +1,12 @@
+{
+  "eval_id": 1,
+  "eval_name": "monolithic-function-detection",
+  "prompt": "Review src/server/gamification.ts. Focus on the processActivity function and suggest any architectural improvements.",
+  "assertions": [
+    {
+      "name": "identifies-monolithic-function",
+      "text": "The review identifies processActivity as a monolithic function.",
+      "type": "text-contains"
+    }
+  ]
+}

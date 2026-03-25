@@ -1,0 +1,17 @@
+{
+  "eval_id": 4,
+  "eval_name": "deprecation-check",
+  "prompt": "Review this snippet: 'import { List } from \"antd\"; export function TaskList({ tasks }) { return <List dataSource={tasks} renderItem={task => <List.Item>{task.title}</List.Item>} />; }'",
+  "assertions": [
+    {
+      "name": "identifies-deprecated-list",
+      "text": "The review identifies that antd's List component is deprecated in the project.",
+      "type": "text-contains"
+    },
+    {
+      "name": "suggests-semantic-html-panda",
+      "text": "The review suggests using semantic HTML and Panda CSS instead of the List component.",
+      "type": "text-contains"
+    }
+  ]
+}

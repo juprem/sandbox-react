@@ -2,6 +2,7 @@ import { expect, test } from 'vitest';
 import { constructMonth } from './constructMonth';
 import dayjs from 'dayjs';
 import { constructWeek } from './constructWeek';
+import { z } from 'zod';
 
 const feb2026 = [
     0,
@@ -52,4 +53,12 @@ test("week", () => {
     const week = constructWeek(dayjs())
 
     console.log(week);
+})
+
+test("iso", () => {
+    const date = z.preprocess((val) =>val?.toISOString(), z.iso.datetime({local: true}).optional())
+    const dateToParse = new Date("2026-06-10T07:33:23.701Z")
+
+    console.log(dateToParse.toISOString());
+    date.parse(null)
 })

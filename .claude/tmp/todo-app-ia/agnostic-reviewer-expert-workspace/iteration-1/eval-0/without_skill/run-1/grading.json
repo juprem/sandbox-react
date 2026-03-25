@@ -1,0 +1,20 @@
+{
+  "summary": {
+    "pass_rate": 1.0,
+    "passed": 2,
+    "failed": 0,
+    "total": 2
+  },
+  "expectations": [
+    {
+      "text": "The report identifies the use of `export default` and recommends named exports.",
+      "passed": true,
+      "evidence": "The report mentions 'export default is used' and suggests checking project preference."
+    },
+    {
+      "text": "The report identifies the presence of multiple components in a single file and recommends splitting them.",
+      "passed": true,
+      "evidence": "The report mentions 'contains two components' and suggests splitting the file."
+    }
+  ]
+}

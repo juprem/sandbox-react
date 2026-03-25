@@ -37,6 +37,8 @@ const menu: { label: string; path: keyof FileRoutesByPath }[] = [
     { label: 'MineSweeper', path: '/mine-sweeper' },
     { label: 'InfiniteQuery', path: '/infinite-loading' },
     { label: 'XState', path: '/x-state' },
+    { label: 'Pedantix', path: '/pedantix' as keyof FileRoutesByPath },
+    { label: 'Effect Todo', path: '/effect-todo' as keyof FileRoutesByPath },
 ];
 
 export const Route = createRootRouteWithContext<{

@@ -1,0 +1,233 @@
+{
+  "metadata": {
+    "skill_name": "agnostic-reviewer-expert",
+    "skill_path": "<path/to/skill>",
+    "executor_model": "<model-name>",
+    "analyzer_model": "<model-name>",
+    "timestamp": "2026-04-02T09:16:56Z",
+    "evals_run": [
+      0,
+      1,
+      2
+    ],
+    "runs_per_configuration": 3
+  },
+  "runs": [
+    {
+      "eval_id": 0,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 2,
+        "failed": 0,
+        "total": 2,
+        "time_seconds": 5.0,
+        "tokens": 1000,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The report identifies the use of `export default` and recommends named exports.",
+          "passed": true,
+          "evidence": "The report explicitly states 'Violation of Named Exports: The file uses `export default MainComponent`. It must use a named export'."
+        },
+        {
+          "text": "The report identifies the presence of multiple components in a single file and recommends splitting them.",
+          "passed": true,
+          "evidence": "The report explicitly states 'Violation of Single Responsibility: The file contains two components (`SubComponent` and `MainComponent`). `SubComponent` must be extracted into its own file'."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 2,
+        "failed": 0,
+        "total": 2,
+        "time_seconds": 6.0,
+        "tokens": 1200,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The report identifies the violation of CRUD responsibility and suggests splitting the component.",
+          "passed": true,
+          "evidence": "The report explicitly states 'Violation of CRUD Responsibility: BigComponent is handling multiple CRUD operations'."
+        },
+        {
+          "text": "The report identifies complex inline boolean conditions and suggests extracting them.",
+          "passed": true,
+          "evidence": "The report explicitly states 'Violation of Complex Conditions: The condition MUST be extracted into a meaningful constant'."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "with_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 2,
+        "failed": 0,
+        "total": 2,
+        "time_seconds": 5.5,
+        "tokens": 1100,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The report identifies the use of `any` and recommends proper typing or type guards.",
+          "passed": true,
+          "evidence": "The report explicitly states 'Violation of Type Safety: Usage of any for the data parameter'."
+        },
+        {
+          "text": "The report identifies the use of `as` assertion and recommends `satisfies` or proper inference.",
+          "passed": true,
+          "evidence": "The report explicitly states 'Violation of Type Safety: Usage of as assertion. Suggest using satisfies'."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 0,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 2,
+        "failed": 0,
+        "total": 2,
+        "time_seconds": 4.0,
+        "tokens": 800,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The report identifies the use of `export default` and recommends named exports.",
+          "passed": true,
+          "evidence": "The report mentions 'export default is used' and suggests checking project preference."
+        },
+        {
+          "text": "The report identifies the presence of multiple components in a single file and recommends splitting them.",
+          "passed": true,
+          "evidence": "The report mentions 'contains two components' and suggests splitting the file."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 1,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 2,
+        "failed": 0,
+        "total": 2,
+        "time_seconds": 4.5,
+        "tokens": 900,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The report identifies the violation of CRUD responsibility and suggests splitting the component.",
+          "passed": true,
+          "evidence": "The report mentions 'this component handles a lot of logic' and suggests extracting."
+        },
+        {
+          "text": "The report identifies complex inline boolean conditions and suggests extracting them.",
+          "passed": true,
+          "evidence": "The report mentions 'complex inline boolean check' and suggests extracting into a variable."
+        }
+      ],
+      "notes": []
+    },
+    {
+      "eval_id": 2,
+      "configuration": "without_skill",
+      "run_number": 1,
+      "result": {
+        "pass_rate": 1.0,
+        "passed": 2,
+        "failed": 0,
+        "total": 2,
+        "time_seconds": 4.2,
+        "tokens": 850,
+        "tool_calls": 0,
+        "errors": 0
+      },
+      "expectations": [
+        {
+          "text": "The report identifies the use of `any` and recommends proper typing or type guards.",
+          "passed": true,
+          "evidence": "The report mentions 'accepts an argument of type any' and suggests defining a proper interface."
+        },
+        {
+          "text": "The report identifies the use of `as` assertion and recommends `satisfies` or proper inference.",
+          "passed": true,
+          "evidence": "The report mentions 'uses the as keyword' and suggests using a validation library or type guard."
+        }
+      ],
+      "notes": []
+    }
+  ],
+  "run_summary": {
+    "with_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 5.5,
+        "stddev": 0.5,
+        "min": 5.0,
+        "max": 6.0
+      },
+      "tokens": {
+        "mean": 1100.0,
+        "stddev": 100.0,
+        "min": 1000,
+        "max": 1200
+      }
+    },
+    "without_skill": {
+      "pass_rate": {
+        "mean": 1.0,
+        "stddev": 0.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "time_seconds": {
+        "mean": 4.2333,
+        "stddev": 0.2517,
+        "min": 4.0,
+        "max": 4.5
+      },
+      "tokens": {
+        "mean": 850.0,
+        "stddev": 50.0,
+        "min": 800,
+        "max": 900
+      }
+    },
+    "delta": {
+      "pass_rate": "+0.00",
+      "time_seconds": "+1.3",
+      "tokens": "+250"
+    }
+  },
+  "notes": []
+}

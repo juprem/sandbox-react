@@ -1,0 +1,12 @@
+{
+  "eval_id": 0,
+  "eval_name": "n1-query-detection",
+  "prompt": "Review the code in src/components/tasks/TaskItem.tsx and src/server/trpc/routers/tasks.ts. Check for any performance issues related to data fetching.",
+  "assertions": [
+    {
+      "name": "identifies-n1-query",
+      "text": "The review identifies the N+1 query problem.",
+      "type": "text-contains"
+    }
+  ]
+}

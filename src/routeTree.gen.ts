@@ -13,10 +13,12 @@ import { createFileRoute } from '@tanstack/react-router'
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as XStateRouteImport } from './routes/x-state'
 import { Route as TetrisRouteImport } from './routes/tetris'
+import { Route as PedantixRouteImport } from './routes/pedantix'
 import { Route as MountingRouteImport } from './routes/mounting'
 import { Route as MineSweeperRouteImport } from './routes/mine-sweeper'
 import { Route as InfiniteLoadingRouteImport } from './routes/infinite-loading'
 import { Route as EnhancedSwitchRouteImport } from './routes/enhanced-switch'
+import { Route as EffectTodoRouteImport } from './routes/effect-todo'
 import { Route as DraggableMotionRouteImport } from './routes/draggable-motion'
 import { Route as CrashTestRouteImport } from './routes/crash-test'
 import { Route as ConwayGame2RouteImport } from './routes/conway-game2'
@@ -40,6 +42,11 @@ const TetrisRoute = TetrisRouteImport.update({
   path: '/tetris',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PedantixRoute = PedantixRouteImport.update({
+  id: '/pedantix',
+  path: '/pedantix',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MountingRoute = MountingRouteImport.update({
   id: '/mounting',
   path: '/mounting',
@@ -58,6 +65,11 @@ const InfiniteLoadingRoute = InfiniteLoadingRouteImport.update({
 const EnhancedSwitchRoute = EnhancedSwitchRouteImport.update({
   id: '/enhanced-switch',
   path: '/enhanced-switch',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EffectTodoRoute = EffectTodoRouteImport.update({
+  id: '/effect-todo',
+  path: '/effect-todo',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DraggableMotionRoute = DraggableMotionRouteImport.update({
@@ -125,14 +137,16 @@ export interface FileRoutesByFullPath {
   '/conway-game2': typeof ConwayGame2Route
   '/crash-test': typeof CrashTestRoute
   '/draggable-motion': typeof DraggableMotionRoute
+  '/effect-todo': typeof EffectTodoRoute
   '/enhanced-switch': typeof EnhancedSwitchRoute
   '/infinite-loading': typeof InfiniteLoadingRoute
   '/mine-sweeper': typeof MineSweeperRoute
   '/mounting': typeof MountingRoute
+  '/pedantix': typeof PedantixRoute
   '/tetris': typeof TetrisRoute
   '/x-state': typeof XStateRoute
   '/todo/$todoId': typeof TodoTodoIdRoute
-  '/todo': typeof TodoIndexRoute
+  '/todo/': typeof TodoIndexRoute
   '/api/trpc/$': typeof ApiTrpcSplatRoute
 }
 export interface FileRoutesByTo {
@@ -144,10 +158,12 @@ export interface FileRoutesByTo {
   '/conway-game2': typeof ConwayGame2Route
   '/crash-test': typeof CrashTestRoute
   '/draggable-motion': typeof DraggableMotionRoute
+  '/effect-todo': typeof EffectTodoRoute
   '/enhanced-switch': typeof EnhancedSwitchRoute
   '/infinite-loading': typeof InfiniteLoadingRoute
   '/mine-sweeper': typeof MineSweeperRoute
   '/mounting': typeof MountingRoute
+  '/pedantix': typeof PedantixRoute
   '/tetris': typeof TetrisRoute
   '/x-state': typeof XStateRoute
   '/todo/$todoId': typeof TodoTodoIdRoute
@@ -164,10 +180,12 @@ export interface FileRoutesById {
   '/conway-game2': typeof ConwayGame2Route
   '/crash-test': typeof CrashTestRoute
   '/draggable-motion': typeof DraggableMotionRoute
+  '/effect-todo': typeof EffectTodoRoute
   '/enhanced-switch': typeof EnhancedSwitchRoute
   '/infinite-loading': typeof InfiniteLoadingRoute
   '/mine-sweeper': typeof MineSweeperRoute
   '/mounting': typeof MountingRoute
+  '/pedantix': typeof PedantixRoute
   '/tetris': typeof TetrisRoute
   '/x-state': typeof XStateRoute
   '/todo/$todoId': typeof TodoTodoIdRoute
@@ -185,14 +203,16 @@ export interface FileRouteTypes {
     | '/conway-game2'
     | '/crash-test'
     | '/draggable-motion'
+    | '/effect-todo'
     | '/enhanced-switch'
     | '/infinite-loading'
     | '/mine-sweeper'
     | '/mounting'
+    | '/pedantix'
     | '/tetris'
     | '/x-state'
     | '/todo/$todoId'
-    | '/todo'
+    | '/todo/'
     | '/api/trpc/$'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -204,10 +224,12 @@ export interface FileRouteTypes {
     | '/conway-game2'
     | '/crash-test'
     | '/draggable-motion'
+    | '/effect-todo'
     | '/enhanced-switch'
     | '/infinite-loading'
     | '/mine-sweeper'
     | '/mounting'
+    | '/pedantix'
     | '/tetris'
     | '/x-state'
     | '/todo/$todoId'
@@ -223,10 +245,12 @@ export interface FileRouteTypes {
     | '/conway-game2'
     | '/crash-test'
     | '/draggable-motion'
+    | '/effect-todo'
     | '/enhanced-switch'
     | '/infinite-loading'
     | '/mine-sweeper'
     | '/mounting'
+    | '/pedantix'
     | '/tetris'
     | '/x-state'
     | '/todo/$todoId'
@@ -243,10 +267,12 @@ export interface RootRouteChildren {
   ConwayGame2Route: typeof ConwayGame2Route
   CrashTestRoute: typeof CrashTestRoute
   DraggableMotionRoute: typeof DraggableMotionRoute
+  EffectTodoRoute: typeof EffectTodoRoute
   EnhancedSwitchRoute: typeof EnhancedSwitchRoute
   InfiniteLoadingRoute: typeof InfiniteLoadingRoute
   MineSweeperRoute: typeof MineSweeperRoute
   MountingRoute: typeof MountingRoute
+  PedantixRoute: typeof PedantixRoute
   TetrisRoute: typeof TetrisRoute
   XStateRoute: typeof XStateRoute
   TodoTodoIdRoute: typeof TodoTodoIdRoute
@@ -268,6 +294,13 @@ declare module '@tanstack/react-router' {
       path: '/tetris'
       fullPath: '/tetris'
       preLoaderRoute: typeof TetrisRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pedantix': {
+      id: '/pedantix'
+      path: '/pedantix'
+      fullPath: '/pedantix'
+      preLoaderRoute: typeof PedantixRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/mounting': {
@@ -296,6 +329,13 @@ declare module '@tanstack/react-router' {
       path: '/enhanced-switch'
       fullPath: '/enhanced-switch'
       preLoaderRoute: typeof EnhancedSwitchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/effect-todo': {
+      id: '/effect-todo'
+      path: '/effect-todo'
+      fullPath: '/effect-todo'
+      preLoaderRoute: typeof EffectTodoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/draggable-motion': {
@@ -357,7 +397,7 @@ declare module '@tanstack/react-router' {
     '/todo/': {
       id: '/todo/'
       path: '/todo'
-      fullPath: '/todo'
+      fullPath: '/todo/'
       preLoaderRoute: typeof TodoIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
@@ -387,10 +427,12 @@ const rootRouteChildren: RootRouteChildren = {
   ConwayGame2Route: ConwayGame2Route,
   CrashTestRoute: CrashTestRoute,
   DraggableMotionRoute: DraggableMotionRoute,
+  EffectTodoRoute: EffectTodoRoute,
   EnhancedSwitchRoute: EnhancedSwitchRoute,
   InfiniteLoadingRoute: InfiniteLoadingRoute,
   MineSweeperRoute: MineSweeperRoute,
   MountingRoute: MountingRoute,
+  PedantixRoute: PedantixRoute,
   TetrisRoute: TetrisRoute,
   XStateRoute: XStateRoute,
   TodoTodoIdRoute: TodoTodoIdRoute,

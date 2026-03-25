@@ -15,9 +15,9 @@ interface ReducerAction {
 }
 interface StateReducer {
     status: 'pending' | 'success' | 'error' | 'loading';
-    data?: unknown;
+    data?: unknown | undefined;
     fetching: boolean;
-    error?: string;
+    error?: string | undefined;
     loading?: boolean;
 }
 

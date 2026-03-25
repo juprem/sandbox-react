@@ -2,8 +2,8 @@ import { useInfiniteQuery } from '@tanstack/react-query';
 
 type Page = {
     data: number[];
-    nextCursor?: number;
-    prevCursor?: number;
+    nextCursor: number | undefined;
+    prevCursor: number | undefined;
 };
 
 async function queryFnInfinite({ pageParam }: { pageParam: number }) {

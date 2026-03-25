@@ -1,0 +1,57 @@
+{
+  "expectations": [
+    {
+      "text": "The review identifies the N+1 query problem.",
+      "passed": true,
+      "evidence": "The report explicitly identifies the N+1 query problem in Section 2 (JIRA-26), Section 4 (Critical Frontend finding), and Section 5 (Conclusion)."
+    }
+  ],
+  "summary": {
+    "passed": 1,
+    "failed": 0,
+    "total": 1,
+    "pass_rate": 1.0
+  },
+  "execution_metrics": {
+    "output_chars": 1944,
+    "transcript_chars": 0
+  },
+  "timing": {
+    "executor_duration_seconds": 0.0,
+    "grader_duration_seconds": 0.0,
+    "total_duration_seconds": 0.0
+  },
+  "claims": [
+    {
+      "claim": "Critical (Frontend): N+1 Fetching Pattern in TaskItem.tsx.",
+      "type": "factual",
+      "verified": true,
+      "evidence": "The code review report clearly points to the problematic code pattern where trpc.tags.getForTask.useQuery is called inside TaskItem.tsx."
+    },
+    {
+      "claim": "All procedures currently use publicProcedure.",
+      "type": "factual",
+      "verified": true,
+      "evidence": "The report highlights this as a critical security concern."
+    },
+    {
+      "claim": "The reorder procedure performs individual database updates in a loop.",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Found in Section 4: 'Critical (Backend): Inefficient Loop in reorder procedure'."
+    }
+  ],
+  "user_notes_summary": {
+    "uncertainties": [],
+    "needs_review": [],
+    "workarounds": []
+  },
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "reason": "Consider adding assertions for security/authentication checks (e.g., verifying procedures are not public) and backend efficiency (e.g., bulk updates), as these were also found by the skill but aren't currently being measured."
+      }
+    ],
+    "overall": "The eval assertion correctly covers the primary target issue (N+1 query). The skill performed exceptionally well, identifying not only the requested performance issue but also critical security and backend efficiency problems."
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "skill_name": "reviewer-expert",
+  "evals": [
+    {
+      "id": 0,
+      "name": "n1-query-detection",
+      "prompt": "Review the code in src/components/tasks/TaskItem.tsx and src/server/trpc/routers/tasks.ts. Check for any performance issues related to data fetching.",
+      "files": ["src/components/tasks/TaskItem.tsx", "src/server/trpc/routers/tasks.ts"]
+    },
+    {
+      "id": 1,
+      "name": "monolithic-function-detection",
+      "prompt": "Review src/server/gamification.ts. Focus on the processActivity function and suggest any architectural improvements.",
+      "files": ["src/server/gamification.ts"]
+    },
+    {
+      "id": 2,
+      "name": "as-assertion-detection",
+      "prompt": "Review src/services/subtask-service.ts for type safety. Are there any problematic patterns?",
+      "files": ["src/services/subtask-service.ts"]
+    },
+    {
+      "id": 3,
+      "name": "single-responsibility-detection",
+      "prompt": "Review src/routes/index.tsx. Are there any architectural violations?",
+      "files": ["src/routes/index.tsx"]
+    },
+    {
+      "id": 4,
+      "name": "deprecation-check",
+      "prompt": "Review this snippet: 'import { List } from \"antd\"; export function TaskList({ tasks }) { return <List dataSource={tasks} renderItem={task => <List.Item>{task.title}</List.Item>} />; }'",
+      "files": []
+    }
+  ]
+}
