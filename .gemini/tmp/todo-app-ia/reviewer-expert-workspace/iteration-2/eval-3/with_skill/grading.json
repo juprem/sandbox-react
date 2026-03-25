@@ -1,0 +1,50 @@
+{
+  "expectations": [
+    {
+      "text": "The review identifies that having multiple components in one file violates the single responsibility principle.",
+      "passed": false,
+      "evidence": "The report identifies the presence of multiple components (Home and FeatureCard) in src/routes/index.tsx, but it attributes this to a violation of the DRY (Don't Repeat Yourself) principle because the component is duplicated from src/components/FeatureCard.tsx. It does not mention the Single Responsibility Principle or indicate that multiple components in one file is an architectural violation regardless of duplication."
+    }
+  ],
+  "summary": {
+    "passed": 0,
+    "failed": 1,
+    "total": 1,
+    "pass_rate": 0.0
+  },
+  "claims": [
+    {
+      "claim": "FeatureCard is defined locally in src/routes/index.tsx.",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Verified by reading src/routes/index.tsx which contains a local function FeatureCard."
+    },
+    {
+      "claim": "FeatureCard already exists in src/components/FeatureCard.tsx.",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Verified by reading src/components/FeatureCard.tsx which contains an identical FeatureCard component."
+    },
+    {
+      "claim": "src/routes/index.tsx uses 'backgroundColor: \"orange\"' literal.",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Found in src/routes/index.tsx at line 15: backgroundColor: 'orange'."
+    },
+    {
+      "claim": "src/routes/index.tsx uses a radial-gradient with rgba values.",
+      "type": "factual",
+      "verified": true,
+      "evidence": "Found in src/routes/index.tsx at line 35: bg: 'radial-gradient(circle, rgba(79,184,178,0.2), transparent 66%)'."
+    }
+  ],
+  "eval_feedback": {
+    "suggestions": [
+      {
+        "assertion": "The review identifies that having multiple components in one file violates the single responsibility principle.",
+        "reason": "The report correctly identifies the issue (multiple components) but misses the specific architectural principle (SRP) that the assertion is looking for. The assertion is highly specific about the naming of the principle, which might be too strict if the goal is just to catch the structural issue."
+      }
+    ],
+    "overall": "The evaluation assertion is specific about the Single Responsibility Principle, but the reviewer identified it as a DRY violation. The reviewer correctly spotted the problem but framed it through a different architectural lens."
+  }
+}

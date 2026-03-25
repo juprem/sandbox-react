@@ -1,0 +1,15 @@
+{
+  "eval_id": 1,
+  "eval_name": "crud-responsibility-and-complex-conditions",
+  "prompt": "Review `src/components/BigComponent.tsx` which handles CRUD operations and has complex inline boolean conditions.",
+  "assertions": [
+    {
+      "name": "identifies-crud-violation",
+      "expected": "The report identifies the violation of CRUD responsibility and suggests splitting the component."
+    },
+    {
+      "name": "identifies-complex-conditions",
+      "expected": "The report identifies complex inline boolean conditions and suggests extracting them."
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "eval_id": 2,
+  "eval_name": "type-safety-violation",
+  "prompt": "Review `src/utils/TypeUnsafe.ts` which uses `as` and `any`.",
+  "assertions": [
+    {
+      "name": "identifies-any-violation",
+      "expected": "The report identifies the use of `any` and recommends proper typing or type guards."
+    },
+    {
+      "name": "identifies-as-assertion",
+      "expected": "The report identifies the use of `as` assertion and recommends `satisfies` or proper inference."
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "summary": {
+    "pass_rate": 1.0,
+    "passed": 2,
+    "failed": 0,
+    "total": 2
+  },
+  "expectations": [
+    {
+      "text": "The report identifies the violation of CRUD responsibility and suggests splitting the component.",
+      "passed": true,
+      "evidence": "The report explicitly states 'Violation of CRUD Responsibility: BigComponent is handling multiple CRUD operations'."
+    },
+    {
+      "text": "The report identifies complex inline boolean conditions and suggests extracting them.",
+      "passed": true,
+      "evidence": "The report explicitly states 'Violation of Complex Conditions: The condition MUST be extracted into a meaningful constant'."
+    }
+  ]
+}

@@ -14,7 +14,7 @@ export const formOptions = Object.entries(formTranslate).map(([key, value]) => (
 export type WhiteBoardState = {
     color: string;
     form: FormDrawing;
-    canvas?: HTMLCanvasElement;
+    canvas: HTMLCanvasElement | undefined;
     abortController: AbortController;
 };
 

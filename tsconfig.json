@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "target": "ES2022",
     "useDefineForClassFields": true,
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
@@ -17,6 +16,7 @@
     /* Linting */
     "strict": true,
     "noUnusedLocals": false,
+    "exactOptionalPropertyTypes": true,
     "noUnusedParameters": false,
     "noFallthroughCasesInSwitch": true,
     "paths": {
@@ -31,5 +31,10 @@
     }
   },
   "include": ["src", "generated/prisma"],
-  "references": [{ "path": "./tsconfig.node.json" }]
+  "references": [{ "path": "./tsconfig.node.json" }],
+  "plugins": [
+    {
+      "name": "@effect/language-service"
+    }
+  ]
 }

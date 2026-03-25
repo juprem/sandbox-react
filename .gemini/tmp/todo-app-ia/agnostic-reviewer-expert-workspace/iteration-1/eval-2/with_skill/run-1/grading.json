@@ -1,0 +1,20 @@
+{
+  "summary": {
+    "pass_rate": 1.0,
+    "passed": 2,
+    "failed": 0,
+    "total": 2
+  },
+  "expectations": [
+    {
+      "text": "The report identifies the use of `any` and recommends proper typing or type guards.",
+      "passed": true,
+      "evidence": "The report explicitly states 'Violation of Type Safety: Usage of any for the data parameter'."
+    },
+    {
+      "text": "The report identifies the use of `as` assertion and recommends `satisfies` or proper inference.",
+      "passed": true,
+      "evidence": "The report explicitly states 'Violation of Type Safety: Usage of as assertion. Suggest using satisfies'."
+    }
+  ]
+}

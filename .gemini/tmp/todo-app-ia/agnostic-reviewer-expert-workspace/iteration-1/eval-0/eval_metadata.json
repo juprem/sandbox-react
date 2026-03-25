@@ -1,0 +1,15 @@
+{
+  "eval_id": 0,
+  "eval_name": "named-exports-and-single-responsibility",
+  "prompt": "Review this file `src/components/MultipleComponents.tsx` which contains two components and uses `export default`.",
+  "assertions": [
+    {
+      "name": "identifies-export-default",
+      "expected": "The report identifies the use of `export default` and recommends named exports."
+    },
+    {
+      "name": "identifies-multiple-components",
+      "expected": "The report identifies the presence of multiple components in a single file and recommends splitting them."
+    }
+  ]
+}

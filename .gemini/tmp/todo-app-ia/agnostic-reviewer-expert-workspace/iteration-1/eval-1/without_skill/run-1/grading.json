@@ -1,0 +1,20 @@
+{
+  "summary": {
+    "pass_rate": 1.0,
+    "passed": 2,
+    "failed": 0,
+    "total": 2
+  },
+  "expectations": [
+    {
+      "text": "The report identifies the violation of CRUD responsibility and suggests splitting the component.",
+      "passed": true,
+      "evidence": "The report mentions 'this component handles a lot of logic' and suggests extracting."
+    },
+    {
+      "text": "The report identifies complex inline boolean conditions and suggests extracting them.",
+      "passed": true,
+      "evidence": "The report mentions 'complex inline boolean check' and suggests extracting into a variable."
+    }
+  ]
+}

@@ -30,4 +30,6 @@ styled-system
 styled-system-studio
 /generated/prisma
 
-/generated/prisma
+/.wrangler
+/.tanstack
+.env

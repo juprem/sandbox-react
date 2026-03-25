@@ -14,13 +14,13 @@ export const rdvRouter = TRPCRouter({
         )
         .query(async ({ input}) => {
             return prisma.rdv.findMany({
-                where: {
-                    day: {
-                        month: input.month,
-                        day: input.day,
-                        year: input.year,
-                    },
+              where: {
+                day: {
+                  month: input.month,
+                  day: input.day,
+                  year: input.year,
                 },
+              },
             });
         }),
     addRdv: publicProcedure.input(RdvCreateSchema).mutation(async ({ input }) => {

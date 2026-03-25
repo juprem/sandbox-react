@@ -1,0 +1,44 @@
+{
+  "expectations": [
+    {
+      "text": "The review identifies that antd's List component is deprecated in the project.",
+      "passed": true,
+      "evidence": "Report explicitly states under 'Critical': '**Deprecated Component**: `antd.List` is deprecated in this project.'"
+    },
+    {
+      "text": "The review suggests using semantic HTML and Panda CSS instead of the List component.",
+      "passed": true,
+      "evidence": "Report suggests under 'Technical Compliance (Mandates)': 'The component uses `antd` components instead of semantic HTML styled with Panda CSS as preferred by the project's mandates.' and under 'Critical': 'Use semantic HTML (<ul>/<li>) combined with Panda CSS for styling.'"
+    }
+  ],
+  "summary": {
+    "passed": 2,
+    "failed": 0,
+    "total": 2,
+    "pass_rate": 1.0
+  },
+  "claims": [
+    {
+      "claim": "antd.List is deprecated in this project",
+      "type": "factual",
+      "verified": true,
+      "evidence": "The report correctly identifies this mandate which is the primary focus of the evaluation."
+    },
+    {
+      "claim": "The component lacks TypeScript type safety",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The snippet uses destructuring for the 'tasks' prop without any type definitions."
+    },
+    {
+      "claim": "The code review suggests adding a key prop",
+      "type": "quality",
+      "verified": true,
+      "evidence": "The suggestion 'Add a key prop to the list items' is present in the report and is technically correct for the provided snippet."
+    }
+  ],
+  "eval_feedback": {
+    "suggestions": [],
+    "overall": "The evaluation criteria are well-aligned with the task of checking for deprecated component usage and proposing correct alternatives."
+  }
+}

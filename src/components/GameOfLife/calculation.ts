@@ -1,6 +1,6 @@
-import { filterUndefined } from 'src/utils/filterUndefined';
 import { CellStatus } from './LifeGame';
 import { BaseGridCell, GridGenerator } from '../iterator/GridGenerator';
+import { filterUndefined } from '../../utils/filterUndefined';
 
 export function calculateNextIteration(cells: CellStatus[][]) {
     return cells.map((it) =>

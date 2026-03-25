@@ -1,0 +1,20 @@
+{
+  "summary": {
+    "pass_rate": 1.0,
+    "passed": 2,
+    "failed": 0,
+    "total": 2
+  },
+  "expectations": [
+    {
+      "text": "The report identifies the use of `export default` and recommends named exports.",
+      "passed": true,
+      "evidence": "The report explicitly states 'Violation of Named Exports: The file uses `export default MainComponent`. It must use a named export'."
+    },
+    {
+      "text": "The report identifies the presence of multiple components in a single file and recommends splitting them.",
+      "passed": true,
+      "evidence": "The report explicitly states 'Violation of Single Responsibility: The file contains two components (`SubComponent` and `MainComponent`). `SubComponent` must be extracted into its own file'."
+    }
+  ]
+}

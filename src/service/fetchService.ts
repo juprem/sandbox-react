@@ -1,11 +1,10 @@
 import superagent from 'superagent';
-import { Buffer } from 'buffer';
 import { z } from 'zod';
 
 const username = 'user';
 const password = 'password';
-const credentials = Buffer.from(`${username}:${password}`).toString('base64');
-const authHeader = `Basic ${credentials}`;
+// const credentials = Buffer.from(`${username}:${password}`).toString('base64');
+const authHeader = `Basic $credentials`;
 
 export function fetchService() {
     async function getQuery<T>(path: string, schema: z.ZodType<T>): Promise<T> {

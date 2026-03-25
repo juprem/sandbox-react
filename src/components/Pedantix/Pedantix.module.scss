@@ -1,0 +1,129 @@
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Inter', sans-serif;
+  color: var(--text-color, #333);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+  
+  h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.5rem;
+  }
+  
+  p {
+    font-size: 1.1rem;
+    color: #666;
+  }
+}
+
+.inputSection {
+  position: sticky;
+  top: 1rem;
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  padding: 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.titleSection {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  height: 60px;
+}
+
+.board {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: white;
+  padding: 1rem;
+  gap: 0.2rem;
+}
+
+.token {
+  display: inline-block;
+  margin-right: 2px;
+  margin-bottom: 5px;
+  transition: all 0.3s ease;
+}
+
+.hidden {
+  background: #494747;
+  color: white;
+  border-radius: 4px;
+  user-select: none;
+  min-width: 1ch;
+  width: var(--length);
+  text-align: center;
+  height: 20px;
+  
+  &.title {
+     background: #cbd5e1;
+  }
+}
+
+.revealed {
+  color: #1f2937;
+  font-weight: 500;
+  animation: revealAnimation 0.5s ease-out;
+  &.title {
+    color: white;
+  }
+}
+
+@keyframes revealAnimation {
+  from {
+    transform: translateY(5px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.stats {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.winMessage {
+  background: #dcfce7;
+  color: #166534;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  text-align: center;
+  border: 2px solid #bbf7d0;
+  margin-bottom: 2rem;
+  animation: bounce 1s infinite alternate;
+  
+  h2 {
+    margin-bottom: 0.5rem;
+  }
+}
+
+@keyframes bounce {
+  from { transform: translateY(0); }
+  to { transform: translateY(-5px); }
+}

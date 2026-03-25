@@ -6,26 +6,29 @@ import { EmptyCell } from '../DayCell/EmptyCell';
 import { DayCell } from '../DayCell/DayCell';
 import styles from './CalendarBody.module.scss';
 import { DayContext } from '../hooks/dayContext';
+import { Suspense } from 'react';
 
 export function CalendarBody() {
-    const monthNumber = useCalendarStore((state) => state.month.index);
-    const year = useCalendarStore((state) => state.year);
-    const month = constructMonth(dayjs().set('month', monthNumber).set('year', year));
+  const monthNumber = useCalendarStore((state) => state.month.index);
+  const year = useCalendarStore((state) => state.year);
+  const month = constructMonth(dayjs().set('month', monthNumber).set('year', year));
 
-    return (
-        <>
-            <DaysHeader />
-            <div className={styles.calendarContainer}>
-                {month.map((day, index) =>
-                    day == 0 ? (
-                        <EmptyCell key={index} />
-                    ) : (
-                        <DayContext.Provider key={day.toString()} value={{ day }}>
-                            <DayCell day={day} />
-                        </DayContext.Provider>
-                    ),
-                )}
-            </div>
-        </>
-    );
+  return (
+    <>
+      <DaysHeader />
+      <div className={styles.calendarContainer}>
+        {month.map((day, index) =>
+          day == 0 ? (
+            <EmptyCell key={index} />
+          ) : (
+            <DayContext.Provider key={day.toString()} value={{ day }}>
+              <Suspense fallback={<EmptyCell day={day.date()} />}>
+                <DayCell day={day} />
+              </Suspense>
+            </DayContext.Provider>
+          ),
+        )}
+      </div>
+    </>
+  );
 }

@@ -1,0 +1,30 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model day {
+  id    Int   @id(map: "Day_pkey") @default(autoincrement())
+  day   Int   @db.SmallInt
+  month Int   @db.SmallInt
+  year  Int   @db.SmallInt
+  rdv   rdv[]
+
+  @@unique([day, month, year], map: "day_unique")
+  @@index([month, year], map: "index_month")
+}
+
+model rdv {
+  id         Int    @id @default(autoincrement())
+  day_id     Int
+  start_hour String @db.VarChar
+  end_hour   String
+  name       String @db.VarChar
+  day        day    @relation(fields: [day_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "constraint_day")
+
+  @@index([day_id], map: "index_day")
+}
